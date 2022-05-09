@@ -1,0 +1,441 @@
+
+# i3 config file (v4)
+
+# 设置win键为mod键
+set $mod Mod4
+
+
+font pango:CaskaydiaCove Nerd Font Mono 8
+
+
+#-
+#--window style---window
+
+#===================================================================================
+# =================== 设置一些需要自启的软件，下面是我的示例
+#===================================================================================
+
+#以 exec 和 exec_always 开头的是设置自动启动程序，exec_always 会在重启 i3 时跟着重启。
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+# 把 nm-applet 开起来，用于显示网络托盘图标，需要安装 gnome-extra/nm-applet
+exec --no-startup-id nm-applet
+
+#===autostart parograms只可以同时启用其中一种===
+exec --no-startup-id  xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &
+# exec --no-startup-id picom -b
+
+
+exec --no-startup-id nm-applet
+#登录时 启用窗口透明
+exec --no-startup-id compton  --experimental-backends -b
+#登陆时 随机选择壁纸 ，~/Pictures/DesktopBackground 下要放几张图片
+exec --no-startup-id feh --randomize --bg-fill ~/图片/wallpaper/
+
+# 桌面通知
+exec --no-startup-id dunst &
+
+# 剪切板管理器
+exec --no-startup-id copyq &
+
+#登录时启动fcitx
+exec --no-startup-id fcitx
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+# bar {
+#         status_command i3status
+# }
+# 登陆时启动polybar,与bar{}别同时使用
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+
+#===================================================================================
+# =================== 设置一些需要自启的软件，
+#===================================================================================
+
+#===programs shortcuts===
+
+# start a terminal
+# bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec st
+bindsym $mod+x exec xterm
+
+# dmenu (a program launcher)
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+# browsers--firefox chromium
+bindsym $mod+Shift+f exec firefox
+bindsym $mod+Shift+c exec chromium
+
+# printscreen--scrot(Print=PrtSc/PrintScreen)
+bindsym $mod+Print exec scrot
+
+# start dmenu (a program launcher)
+bindsym $mod+d exec dmenu_run
+bindsym $mod+s exec rofi -show drun -theme gaara-theme
+
+
+# 设置火焰截图
+bindsym $mod+Shift+s exec --no-startup-id flameshot gui
+
+# 设置快捷键来显示隐藏 polybar
+bindsym $mod+p exec --no-startup-id polybar-msg cmd toggle
+
+# 启用基于 rofi 的 powermenu
+bindsym $mod+q exec --no-startup-id "$HOME/.config/rofi/powermenu/powermenu.sh"
+
+#===appearance===
+#---window style---
+
+#设置 window  gaps，参数根据自己屏幕尺寸微调就行
+gaps inner 8
+gaps outer 5
+smart_gaps on
+
+#以 new_window 和 new_float 开头的是设置新窗口的边框样式。
+# new window去除 i3 的标题栏,i3 的标题栏还是有点难看的。在 config 文件中加入
+new_window none
+new_float normal
+#以 hide_edge_borders 开头的是设置是否隐藏相接的两个窗口之间的边框。hide_edge_borders none|vertical|horizontal|both
+hide_edge_borders both
+
+# 设置一下颜色主题，这个比较重要，建议根据自己的配色来微调。 依次是边框颜色、背景色、文本颜色、焦点指示顔色和子窗口的边框颜色。
+# 以 client.focused client.focused_inactive client.unfocused client.urgent client.placeholder client.background 开头的是设置对应的东西的颜色的。
+#  class                 border   backgr.  text  indicator  child_border
+client.focused          #4c7899  #285577  #ffffff  #2e9ef4   #285577
+client.focused_inactive #81c2d6  #5f676a  #ffffff  #484e50   #0b6e48
+client.unfocused        #c9cabb  #222222  #888888  #292d2e   #222222
+client.urgent           #2f343a  #900000  #ffffff  #199475   #900000
+client.placeholder      #a2b4ba  #0c0c0c  #ffffff  #1793d0   #0c0c0c
+client.background       #82abba
+
+# popups
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+
+# float programs(find the programs'names in "/usr/share/applictions")
+for_window [class="Xfce4-terminal"] floating enable
+for_window [class="Gpicview"] floating enable
+for_window [class="mpv"] floating enable
+for_window [class="Gimp"] floating enable
+for_window [class="Xarchiver"] floating enable
+for_window [class="Genymotion"] floating enable
+for_window [class="Vlc"] floating enable
+for_window [class="VirtualBox"] floating enable
+for_window [class="Thunar"] floating enable
+for_window [class="shadowsocks-qt5"] floating enable
+for_window [class="Catfish"] floating enable
+for_window [class="Xfce4-appfinder"] floating enable
+for_window [class="google-chrome-stable"] floating enable
+for_window [class="google-chrome"] floating enable
+for_window [class="typora"] floating enable
+
+#===appearance===
+
+#---wallpaper---
+
+# random mode
+exec --no-startup-id  ~/.config/i3/wallpaper.sh &
+
+#---bar---
+
+bar {
+    # status_command i3status
+    status_command i3status -c ~/.config/i3/i3status.conf
+    # status_command i3blocks -c ~/.config/i3/i3blocks.conf
+    #i3bar_command i3bar --transparency
+    position top
+    #i3bar 有三种显示模式（dock 停靠，hide 隐藏，invisible 无形）
+    mode hide
+
+    #是否显示工作区按钮：
+    workspace_buttons yes
+    #指定输出位置，默认是全部显示器都有，单独设置可以启动多个不同的：
+    #output eDP1
+    output HDMI2
+
+    #托盘显示位置：tray_output none|primary|<output>
+    tray_output primary
+
+    #托盘内容之间的间距：
+    tray_padding 0
+
+    #设置字体：
+    font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+    font pango:SauceCodePro Nerd Font Mono 10
+
+    #分隔符：
+    separator_symbol "|"
+
+    #状态栏实时显示网速
+    status_command exec ~/.config/i3/net-speed.sh
+    #清除工作区号码，如果指定了名字，清除了挺好的：
+    strip_workspace_numbers yes
+
+    colors {
+    background #285477
+    statusline #dedede
+    separator #2d2d2d
+    focused_workspace #636e88 #285de7 #dedfdg
+    active_workspace #556677 #234567 #56ef67
+    inactive_workspace #636d72 #2d2d2d #dedede
+    urgent_workspace #ffffff #900000 #d23d32
+    }
+
+#height 30
+}
+
+# tray icons(eDP1 is the display device's name, use the command "xrandr" to see the display device name.)
+exec --no-startup-id xrandr --output HDMI2 --primary
+
+# external display device(eDP1 is the display device's name, use the command "xrandr" to see the display device name.)
+#exec --no-startup-id xrandr --output HDMI1 1920*1080 --right-of eDP1
+
+#===workspace control===
+
+#以 workspace 开头的是设置工作区显示在哪个屏幕的。
+
+# Workspace names
+#workspace "1:Arch" output eDP1
+#workspace "2:Web" output eDP1
+#workspace "3:Code" output eDP1
+#workspace "9:Mail" output eDP1
+
+# 以 assign 开头的是设置自动移到工作区。
+assign [class="Chromium"] 1
+assign [class="code"] 3
+
+#---switch workspace---
+
+# switch to near workspace
+bindsym $mod+Tab workspace next
+bindsym mod1+Tab workspace prev
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+#===window control===
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+
+
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# hide | show window(minus is "-" and plus is "+".)
+bindsym $mod+minus move scratchpad
+bindsym $mod+plus scratchpad show
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+mod1+s layout stacking
+bindsym $mod+mod1+t layout tabbed
+bindsym $mod+mod1+c layout toggle split
+
+# change border style
+bindsym $mod+mod1+u border none
+bindsym $mod+mod1+n border normal
+bindsym $mod+mod1+o border 1pixel
+bindsym $mod+mod1+b border toggle
+
+#---window focus---
+
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# 以 focus_follows_mouse 开头的是设置焦点是否跟随鼠标。
+focus_follows_mouse yes
+
+#以 popup_during_fullscreen 开头的是设置全屏模式下遇到弹窗的处理方法。
+#popup_during_fullscreen smart|ignore|leave_fullscreen
+popup_during_fullscreen smart
+
+#以 workspace_auto_back_and_forth 开头的是设置是否启用回到之前的工作区的。
+#workspace_auto_back_and_forth yes|no
+workspace_auto_back_and_forth yes
+
+#以 force_display_urgency_hint 开头的是设置是否启用延时焦点复位，能防止不知道那个窗口发送了提示。
+#force_display_urgency_hint <timeout> ms
+force_display_urgency_hint 500 ms
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+semicolon focus right
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# focus the parent container
+bindsym $mod+mod1+p focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+
+# Use Mouse+$mod to drag a floating window,以 floating_modifier 开头的是浮动模式移动组合键，设置之后可以按下这个键和鼠标进行拖动浮动模式的窗口。
+floating_modifier $mod
+#以 floating_minimum_size 或 floating_maximum_size 开头的是浮动窗口最小或最大尺寸，设置成 -1 时，不约束，设置成 0 或不设置则使用默认值。
+floating_maximum_size -1 x -1
+
+# move focused window
+# move floating/tiling window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+bindsym $mod+Shift+semicolon move right
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+#以 default_orientation 开头的是设置新工作区默认打开方向。
+# default_orientation horizontal|vertical|auto
+default_orientation vertical
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+
+#以 mode 开头的是组合模块，可以在快捷键之后选择做的事。
+# resize window (you can also use the mouse for that)
+bindsym $mod+r mode "resize"
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+
+
+
+# Use pactl to adjust volume in PulseAudio.
+# 我使用的是 pulseaudio，所以我使用 pactl 来调节音量
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+
+# 我使用 xbacklight 来调节亮度，你也可以选择安装其他的
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5
+
+# screen off | sleep | shutdown(time unit: seconds)
+#exec --no-startup-id xset dpms 300 1357 6789
+exec --no-startup-id xset dpms 365 1357
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# i3lock
+ mode "i3lock: Return to lock/Escape to Cancel" {
+            bindsym Return mode "default" exec i3lock -I 600 -i ~/图片/1.jpg
+            bindsym Escape mode "default"
+    }
+
+bindsym $mod+Shift+l mode "i3lock: Return to lock/Escape to Cancel"
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+
+
+# win+c可以调出选项，你可以选择锁屏(L)，注销(O)，重启(R)，关机(S)，退出选项(Esc)。
+#*********************************************电源管理*************************************
+set $mode_system  lock(L) logout(O) reboot(R) shutdown(S) exit(Esc)
+bindsym $mod+c mode "$mode_system"
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3lock -c '#000000', mode "default"
+    bindsym o exec --no-startup-id i3-msg exit, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym s exec --no-startup-id systemctl poweroff, mode "default"
+    bindsym Escape mode "default"
+}
+
+
+#===power manager===
+set $mode_system select: lock(L) exit(E) reboot(R) poweroff(O) cancel(Esc)
+bindsym $mod+Shift+Escape mode "$mode_system"
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3lock -c '#000000', mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym o exec --no-startup-id systemctl poweroff, mode "default"
+    bindsym Escape mode "default"
+}
