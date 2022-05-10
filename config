@@ -21,8 +21,14 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # 把 nm-applet 开起来，用于显示网络托盘图标，需要安装 gnome-extra/nm-applet
 exec --no-startup-id nm-applet
 
+# random mode
+exec --no-startup-id  ~/.config/i3/wallpaper.sh &
+
+# exec --no-startup-id conky -c ~/.conkyrc
+
 # 护眼工具
-exec --no-startup-id redshift &
+# exec --no-startup-id redshift
+exec --no-startup-id redshift-gtk
 
 #===autostart parograms只可以同时启用其中一种===
 exec --no-startup-id  xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &
@@ -79,9 +85,6 @@ mode "$mode_display" {
 }
 # Declare here the shortcut to bring the display selection menu
 bindsym $mod+Control+x mode "$mode_display"
-
-# random mode
-exec --no-startup-id  ~/.config/i3/wallpaper.sh &
 
 #===================================================================================
 # =================== 设置一些需要自启的软件，
