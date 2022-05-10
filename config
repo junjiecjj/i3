@@ -139,18 +139,20 @@ for_window [class="Xfce4-appfinder"] floating enable
 for_window [class="google-chrome-stable"] floating enable
 for_window [class="google-chrome"] floating enable
 for_window [class="typora"] floating enable
+for_window [class="nautilus"] floating enable
 
 
 #---bar---
 
 bar {
+    # i3bar_command $HOME/.config/polybar/launch.sh
     # status_command i3status
     status_command i3status -c ~/.config/i3/i3status.conf
     # status_command i3blocks -c ~/.config/i3/i3blocks.conf
     #i3bar_command i3bar --transparency
     position top
     #i3bar 有三种显示模式（dock 停靠，hide 隐藏，invisible 无形）
-    mode hide
+    mode dock
 
     #是否显示工作区按钮：
     workspace_buttons yes
@@ -271,6 +273,8 @@ mode "i3lock: Return to lock/Escape to Cancel" {
 
 # bindsym $mod+Shift+l mode "i3lock: Return to lock/Escape to Cancel"
 bindsym $mod+Control+l mode "i3lock: Return to lock/Escape to Cancel"
+bindsym $mod+mod1+l exec slock
+bindsym $mod+mod1+x exec xscreensaver
 
 # 设置火焰截图
 bindsym $mod+Shift+s exec --no-startup-id flameshot gui
@@ -507,3 +511,21 @@ mode "$mode_system" {
     bindsym o exec --no-startup-id systemctl poweroff, mode "default"
     bindsym Escape mode "default"
 }
+
+# 关机，重启和锁屏的键位绑定可以添加到 ~/.config/i3/config。接下来的例子假定你已经安装了 polkit 来允许非特权用户执行电源管理 命令。
+set $Locker i3lock && sleep 1
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $Locker, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Pause mode "$mode_system"
