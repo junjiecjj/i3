@@ -532,3 +532,17 @@ mode "$mode_system" {
 }
 
 bindsym $mod+Pause mode "$mode_system"
+
+
+# 因为个人习惯，默认去除了鼠标和触摸板的加速度，可以在 i3wm 的主配置中修改。建议在其它环境下(例如 GNOME)配置好比较输入的参数，然后获取以后粘贴到 i3wm 的配置中。
+exec --no-startup-id xinput --set-prop 'TPPS/2 IBM TrackPoint' 'libinput Accel Speed' -0.6
+exec --no-startup-id xinput --set-prop 'TPPS/2 IBM TrackPoint' 'libinput Accel Speed Default' 0
+#xinput --set-prop 'TPPS/2 IBM TrackPoint' 'libinput Accel Profiles Available' 1, 1
+exec --no-startup-id xinput --set-prop 'TPPS/2 IBM TrackPoint' 'libinput Accel Profile Enabled' 1, 0
+exec --no-startup-id xinput --set-prop 'TPPS/2 IBM TrackPoint' 'libinput Accel Profile Enabled Default' 1, 0
+
+exec --no-startup-id xinput --set-prop 'Synaptics TM3072-003' 'libinput Tapping Enabled' 1
+exec --no-startup-id xinput --set-prop 'Synaptics TM3072-003' 'libinput Accel Speed' -0.22
+exec --no-startup-id xinput --set-prop 'Synaptics TM3072-003' 'libinput Click Methods Available' 1, 1
+exec --no-startup-id xinput --set-prop 'Synaptics TM3072-003' 'libinput Click Method Enabled' 0, 1
+exec --no-startup-id xinput --set-prop 'Synaptics TM3072-003' 'Coordinate Transformation Matrix' 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0
