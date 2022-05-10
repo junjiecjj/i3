@@ -21,6 +21,9 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # 把 nm-applet 开起来，用于显示网络托盘图标，需要安装 gnome-extra/nm-applet
 exec --no-startup-id nm-applet
 
+# 护眼工具
+exec --no-startup-id redshift &
+
 #===autostart parograms只可以同时启用其中一种===
 exec --no-startup-id  xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &
 # exec --no-startup-id picom -b
