@@ -6,7 +6,7 @@ set $mod Mod4
 set $up l
 set $down k
 set $left j
-set $right semicolon
+# set $right semicolon
 # Use Mouse+$mod to drag a floating window,以 floating_modifier 开头的是浮动模式移动组合键，设置之后可以按下这个键和鼠标进行拖动浮动模式的窗口。
 # 你可以按住Mod1,同时鼠标左键点击拖动动窗口到你想要的方位。
 # 当你按住浮动调节器时（Mod1）,你可以通过按住鼠标右键并拖动，来调整那一个窗口的大小。
@@ -542,6 +542,10 @@ bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_
 bindsym $mod+Shift+s sticky toggle
 
 
+bindsym $mod+slash     move container to workspace prev; workspace prev
+bindsym $mod+quoteright    move container to workspace next; workspace next
+bindsym $mod+comma     move container to workspace prev
+bindsym $mod+period    move container to workspace next
 
 
 #---switch workspace---
@@ -559,15 +563,15 @@ bindsym $mod+Control+braceleft     move workspace to output left
 bindsym $mod+Control+braceright    move workspace to output right
 bindsym $mod+Control+bracketleft   move workspace to output left
 bindsym $mod+Control+bracketright  move workspace to output right
-bindsym $mod+Control+less           move workspace to output left
-bindsym $mod+Control+greater        move workspace to output right
+# bindsym $mod+Control+less           move workspace to output left
+# bindsym $mod+Control+greater        move workspace to output right
 
 # 在显示器之间移动窗口container
 # move focused window between monitors, bracketleft=[  bracketright=]
 bindsym $mod+Shift+bracketleft    move container to output left
 bindsym $mod+Shift+bracketright   move container to output right
-bindsym $mod+Shift+greater          move container to output right
-bindsym $mod+Shift+less             move container to output left
+# bindsym $mod+Shift+greater          move container to output right
+# bindsym $mod+Shift+less             move container to output left
 
 # # 将此窗口移动到投影仪输出
 # bindsym $mod+x move container to output VGA1
@@ -580,10 +584,10 @@ bindsym $mod+Shift+less             move container to output left
 bindsym $mod+bracketleft  focus output left
 bindsym $mod+bracketright focus output right
 # 聚焦于显示输出 HDMI-2
-bindsym $mod+braceright focus output HDMI-2
+# bindsym $mod+braceright focus output HDMI-2
 
 # 聚焦于主显示输出
-bindsym $mod+braceleft focus output primary
+# bindsym $mod+braceleft focus output primary
 
 
 
