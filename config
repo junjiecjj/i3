@@ -555,29 +555,36 @@ bindsym $mod+Control+Left workspace prev
 # 移动目前工作区到下一个输出（如果你只有两个输出，相当于在两个输出之间切换）
 # Strangely, I'd expect the $mod+Ctrl+greater to require me to hit Ctrl and Shift at the same time, since you need to press Shift to type < and >. However, pressing just mod, Ctrl, and , works, which is very nice.
 # Moving wrokspaces between screens,braceleft={  braceright=}
-bindsym $mod+Shift+braceleft     move workspace to output left
-bindsym $mod+Shift+braceright    move workspace to output right
-bindsym $mod+Shift+bracketleft   move workspace to output left
-bindsym $mod+Shift+bracketright  move workspace to output right
-bindsym $mod+Ctrl+less           move workspace to output left
-bindsym $mod+Ctrl+greater        move workspace to output right
+bindsym $mod+Control+braceleft     move workspace to output left
+bindsym $mod+Control+braceright    move workspace to output right
+bindsym $mod+Control+bracketleft   move workspace to output left
+bindsym $mod+Control+bracketright  move workspace to output right
+bindsym $mod+Control+less           move workspace to output left
+bindsym $mod+Control+greater        move workspace to output right
 
 # 在显示器之间移动窗口container
 # move focused window between monitors, bracketleft=[  bracketright=]
-bindsym $mod+Control+bracketleft    move container to output left
-bindsym $mod+Control+bracketright   move container to output right
+bindsym $mod+Shift+bracketleft    move container to output left
+bindsym $mod+Shift+bracketright   move container to output right
 bindsym $mod+Shift+greater          move container to output right
 bindsym $mod+Shift+less             move container to output left
-
-
-# 聚焦于左右边的显示器输出
-bindsym $mod+bracketleft  focus output left
-bindsym $mod+bracketright focus output right
 
 # # 将此窗口移动到投影仪输出
 # bindsym $mod+x move container to output VGA1
 # # 将此窗口移到主输出
 # bindsym $mod+x move container to output primary
+
+
+
+# 聚焦于左右边的显示器输出
+bindsym $mod+bracketleft  focus output left
+bindsym $mod+bracketright focus output right
+# 聚焦于显示输出 HDMI-2
+bindsym $mod+braceright focus output HDMI-2
+
+# 聚焦于主显示输出
+bindsym $mod+braceleft focus output primary
+
 
 
 # 以 focus_follows_mouse 开头的是设置焦点是否跟随鼠标。
