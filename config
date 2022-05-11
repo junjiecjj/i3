@@ -64,13 +64,20 @@ exec_always --no-startup-id bash  ~/.config/i3/wallpaper.sh &
 exec --no-startup-id dunst &
 
 # 剪切板管理器
-exec --no-startup-id copyq &
+exec --no-startup-id copyq
+
+# 开启小键盘
+exec --no-startup-id copexec_always --no-startup-id numlockx on # 开启小键盘yq &
 
 # 启动i3时执行,重启i3时不执行
 # exec --no-startup-id fcitx
 exec --no-startup-id fcitx-sogoupingyin
 # 无论何时都执行
 exec_always --no-startup-id fcitx
+
+
+# fcitx5 输入法
+exec --no-startup-id fcitx5 &
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -115,10 +122,6 @@ mode "$mode_display" {
 # =================== 设置一些需要自启的软件，
 #===================================================================================
 
-#设置 window  gaps，参数根据自己屏幕尺寸微调就行
-gaps inner 8
-gaps outer 5
-smart_gaps on
 
 
 # 此选项决定新窗口拥有什么样的边框风格。默认是normal。注意，new_float 仅应用于作为浮动窗口呼出的窗口。例如对话窗口，而不是到后来才被设置成浮动窗口的窗口。
@@ -136,14 +139,6 @@ default_border pixel  1
 # 新的浮动窗口的边界宽度，同上。
 default_floating_border pixel 1
 
-# 在只有一个窗口的情况下自动最大化当前的窗口，不处理窗口的Gap。
-smart_borders on
-
-# 你可以使用hide_edge_borders来隐藏与屏幕边缘靠近的边框。如果你使用滚动条的话这很有用，或者不想浪费甚至两像素的显示空间。"smart"选项是在工作区内只有一个可见窗口时才隐藏边框，而在工作去内有多个窗口，他不会隐藏边框。
-# 语法
-# hide_edge_borders none|vertical|horizontal|both|smart
-#以 hide_edge_borders 开头的是设置是否隐藏相接的两个窗口之间的边框。hide_edge_borders none|vertical|horizontal|both
-hide_edge_borders both
 
 # 设置一下颜色主题，这个比较重要，建议根据自己的配色来微调。 依次是边框颜色、背景色、文本颜色、焦点指示顔色和子窗口的边框颜色。
 # 以 client.focused client.focused_inactive client.unfocused client.urgent client.placeholder client.background 开头的是设置对应的东西的颜色的。
@@ -355,7 +350,7 @@ bindsym $mod+Shift+q kill
 # reload the configuration file
 bindsym $mod+Control+c reload
 
-# 耿冠壁纸
+# 更换壁纸
 bindsym $mod+Control+b exec feh --recursive --randomize --bg-fill /home/jack/图片/Wallpapers/
 
 
@@ -631,10 +626,30 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
-for_window [class="^.*"] border pixel 2
+#############################
+### settings for i3-gaps: ###
+#############################
 
-gaps inner 8
-gaps outer 6
+
+for_window [class="^.*"] border pixel 2
+#设置 window  gaps，参数根据自己屏幕尺寸微调就行
+gaps inner 3
+gaps outer 3
+
+smart_gaps on
+
+
+# 在只有一个窗口的情况下自动最大化当前的窗口，不处理窗口的Gap。
+smart_borders on
+
+# 你可以使用hide_edge_borders来隐藏与屏幕边缘靠近的边框。如果你使用滚动条的话这很有用，或者不想浪费甚至两像素的显示空间。"smart"选项是在工作区内只有一个可见窗口时才隐藏边框，而在工作去内有多个窗口，他不会隐藏边框。
+# 语法
+# hide_edge_borders none|vertical|horizontal|both|smart
+#以 hide_edge_borders 开头的是设置是否隐藏相接的两个窗口之间的边框。hide_edge_borders none|vertical|horizontal|both
+hide_edge_borders smart_no_gaps
+
+
+
 set $mode_gaps Gaps: (o) outer, (i) inner
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
 set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
