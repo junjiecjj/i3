@@ -3,10 +3,9 @@
 
 # 设置win键为mod键
 set $mod Mod4
-set $up k
-set $down j
-set $left h
-set $right l
+set $up l
+set $down k
+set $left j
 set $right semicolon
 # Use Mouse+$mod to drag a floating window,以 floating_modifier 开头的是浮动模式移动组合键，设置之后可以按下这个键和鼠标进行拖动浮动模式的窗口。
 # 你可以按住Mod1,同时鼠标左键点击拖动动窗口到你想要的方位。
@@ -32,32 +31,34 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # 把 nm-applet 开起来，用于显示网络托盘图标，需要安装 gnome-extra/nm-applet
 exec --no-startup-id nm-applet
 
-
+# 锁屏工具
 exec --no-startup-id xscreensaver -no-splash &
 
-# random mode
-exec --no-startup-id  ~/.config/i3/wallpaper.sh &
 
 # exec --no-startup-id conky -c ~/.conkyrc
 
+# 在每次注销或者刷新i3wm时自动执行nitrogen并刷新壁纸
+exec_always nitrogen --restore; sleep 1
+# exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 
 # 护眼工具
 # exec --no-startup-id redshift
 exec --no-startup-id redshift-gtk
 
 #===autostart parograms只可以同时启用其中一种===
-exec --no-startup-id  xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &
-# exec --no-startup-id picom -b
+exec_always --no-startup-id   picom --experimental-backends -b
 # exec --no-startup-id  compton -cCGfF -o 0.38 -O 200 -I 200 -t 0 -l 0 -r 3 -D2 -m 0.88
 
-exec --no-startup-id nm-applet
 #登录时 启用窗口透明
-exec --no-startup-id compton  --experimental-backends -b
-#登陆时 随机选择壁纸 ，~/Pictures/DesktopBackground 下要放几张图片
-exec --no-startup-id feh --randomize --bg-fill ~/图片/wallpaper/
+exec_always --no-startup-id compton  -b
 
-# 在每次注销或者刷新i3wm时自动执行nitrogen并刷新壁纸
-exec_always nitrogen --restore
+# exec_always --no-startup-id  xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &
+
+#登陆时 随机选择壁纸 ，~/Pictures/DesktopBackground 下要放几张图片
+exec_always --no-startup-id feh --recursive --randomize --bg-fill /home/jack/图片/Wallpapers/
+
+# random mode
+exec_always --no-startup-id bash  ~/.config/i3/wallpaper.sh &
 
 # 桌面通知
 exec --no-startup-id dunst &
@@ -65,8 +66,12 @@ exec --no-startup-id dunst &
 # 剪切板管理器
 exec --no-startup-id copyq &
 
-#登录时启动fcitx
-exec --no-startup-id fcitx
+# 启动i3时执行,重启i3时不执行
+# exec --no-startup-id fcitx
+exec --no-startup-id fcitx-sogoupingyin
+# 无论何时都执行
+exec_always --no-startup-id fcitx
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 # bar {
@@ -79,10 +84,12 @@ exec --no-startup-id fcitx
 # tray icons(eDP1 is the display device's name, use the command "xrandr" to see the display device name.)
 # 其中的eDP1便是我的显示设备名称。如果你的显示设备名称不是eDP1 ，那么需要修改
 exec --no-startup-id xrandr --output eDP-1 --primary
-# exec --no-startup-id  xrandr --output DP-3  --right-of eDP-1  --auto
-# xrandr
-# exec --no-startup-id xrandr --output eDP1 --mode 1920x1080 --same-as HDMI2
-# external display device(eDP1 is the display device's name, use the command "xrandr" to see the display device name.)
+
+# 如果为笔记本外接两个显示器，关闭笔记本的显示器
+# exec --no-startup-id xrandr --output DP-1-8 --mode 1920x1080 --primary
+# exec --no-startup-id  xrandr --output DP-1-9 --mode 1920x1080  --right-of DP-1-8  --auto
+# exec --no-startup-id xrandr  --output eDP-1 --off
+
 #exec --no-startup-id xrandr --output HDMI1 1920*1080 --right-of eDP1
 
 
@@ -115,23 +122,19 @@ smart_gaps on
 
 
 # 此选项决定新窗口拥有什么样的边框风格。默认是normal。注意，new_float 仅应用于作为浮动窗口呼出的窗口。例如对话窗口，而不是到后来才被设置成浮动窗口的窗口。
+# 如果被设置为 pixel，新窗口将会保留边框，而不显示标题栏。 如果被设置为 normal，新窗口将同时具有边框和标题栏。 同时，你还可以指定边框的宽度。
 # 语法
 # new_window normal|none|pixel
 # new_window normal|pixel <px>
 # new_float normal|none|pixel
 # new_float normal|pixel <px>
 
-#以 new_window 和 new_float 开头的是设置新窗口的边框样式。
-# new window去除 i3 的标题栏,i3 的标题栏还是有点难看的。在 config 文件中加入
-# new_window none
-# new_float normal
 
 # 设置新的窗口的边界宽度，效果是不显示窗口的title。
-# new_window 1pixel
-new_window pixel 2
+default_border pixel  1
 
 # 新的浮动窗口的边界宽度，同上。
-new_float pixel 1
+default_floating_border pixel 1
 
 # 在只有一个窗口的情况下自动最大化当前的窗口，不处理窗口的Gap。
 smart_borders on
@@ -174,6 +177,7 @@ for_window [class="google-chrome"] floating enable
 for_window [class="typora"] floating enable
 for_window [class="nautilus"] floating enable
 for_window [class="spyder"] floating enable
+for_window [class="netease-cloud-music"] floating enable
 
 
 #---bar---
@@ -181,15 +185,19 @@ for_window [class="spyder"] floating enable
 bar {
     # i3bar_command $HOME/.config/polybar/launch.sh
     # status_command i3status
-    status_command i3status -c ~/.config/i3/i3status.conf
-    status_command i3blocks -c ~/.config/i3/i3blocks.conf
-    #i3bar_command i3bar --transparency
+    # status_command i3status -c ~/.config/i3/i3status.conf
+    # status_command i3blocks -c ~/.config/i3/i3blocks.conf
+    # i3bar_command i3bar --transparency
     position top
     #i3bar 有三种显示模式（dock 停靠，hide 隐藏，invisible 无形）
-    mode dock
+    mode  dock
+    # modifier Mod4
+
 
     #是否显示工作区按钮：
-    workspace_buttons yes
+    workspace_buttons yesnd
+    workspace_min_width  40
+
     #指定输出位置，默认是全部显示器都有，单独设置可以启动多个不同的：
     output eDP-1
     # output HDMI2
@@ -223,7 +231,7 @@ bar {
         urgent_workspace    #d64e4e #d64e4e #ffffff
         binding_mode        #229c56 #229c56 #ffffff
     }
-#height 30
+    # height 40
 }
 
 
@@ -239,8 +247,8 @@ bar {
 #workspace "9:Mail" output eDP1
 
 # 以 assign 开头的是设置自动移到工作区。
-assign [class="Chromium"] 1
-assign [class="code"] 3
+# assign [class="Chromium"] 1
+# assign [class="code"] 3
 
 #===programs shortcuts===
 
@@ -283,6 +291,10 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+bindsym $mod+Control+o exec amixer set Master playback 5-
+bindsym $mod+Control+p exec amixer set Master playback 5+
+#bindsym $mod+o exec amixer set Master toggle
+#bindsym $mod+p exec amixer set PCM toggle
 
 # 我使用 xbacklight 来调节亮度，你也可以选择安装其他的
 bindsym XF86MonBrightnessUp exec xbacklight -inc 5
@@ -316,6 +328,7 @@ mode "$mode_launcher" {
     bindsym b exec blueman-manager
     bindsym s exec --no-startup-id flameshot gui -p  ~/图片/
     bindsym w exec VBoxManage startvm "win10"  --type gui
+    bindsym m exec --no-startup-id netease-cloud-music
 
 
     bindsym Escape mode "default"
@@ -342,12 +355,17 @@ bindsym $mod+Shift+q kill
 # reload the configuration file
 bindsym $mod+Control+c reload
 
+# 耿冠壁纸
+bindsym $mod+Control+b exec feh --recursive --randomize --bg-fill /home/jack/图片/Wallpapers/
+
+
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 # 重启i3: $mod+Shift+R
 bindsym $mod+Control+r restart
 
 #开启/关闭触摸板
-bindsym $mod+Ctrl+t exec --no-startup-id $HOME/.config/i3/touchpad.sh
+# bindsym $mod+Control+t exec --no-startup-id $HOME/.config/i3/touchpad.sh
+bindsym $mod+Control+t exec --no-startup-id $HOME/.config/i3/toggletouchpad.sh
 
 # wps, et, wpp
 bindsym $mod+Shift+w exec wps
@@ -396,84 +414,41 @@ bindsym $mod+0 workspace number $ws10
 
 # move focused container to workspace 
 # 将焦点窗口移动至其他工作空间: $mod+Shift+$num
-# bindsym $mod+Shift+1 move container to workspace  $ws1
-# bindsym $mod+Shift+2 move container to workspace  $ws2
-# bindsym $mod+Shift+3 move container to workspace  $ws3
-# bindsym $mod+Shift+4 move container to workspace  $ws4
-# bindsym $mod+Shift+5 move container to workspace  $ws5
-# bindsym $mod+Shift+6 move container to workspace  $ws6
-# bindsym $mod+Shift+7 move container to workspace  $ws7
-# bindsym $mod+Shift+8 move container to workspace  $ws8
-# bindsym $mod+Shift+9 move container to workspace  $ws9
-# bindsym $mod+Shift+0 move container to workspace  $ws10
+bindsym $mod+Shift+1 move container to workspace  $ws1
+bindsym $mod+Shift+2 move container to workspace  $ws2
+bindsym $mod+Shift+3 move container to workspace  $ws3
+bindsym $mod+Shift+4 move container to workspace  $ws4
+bindsym $mod+Shift+5 move container to workspace  $ws5
+bindsym $mod+Shift+6 move container to workspace  $ws6
+bindsym $mod+Shift+7 move container to workspace  $ws7
+bindsym $mod+Shift+8 move container to workspace  $ws8
+bindsym $mod+Shift+9 move container to workspace  $ws9
+bindsym $mod+Shift+0 move container to workspace  $ws10
 
 # Move to workspace with focused container
 # 将焦点窗口移动至其他工作空间,并跳转至其他工作空间: $mod+Shift+$num
-bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4; workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws0; workspace $ws0
+bindsym $mod+Control+1 move container to workspace $ws1; workspace $ws1
+bindsym $mod+Control+2 move container to workspace $ws2; workspace $ws2
+bindsym $mod+Control+3 move container to workspace $ws3; workspace $ws3
+bindsym $mod+Control+4 move container to workspace $ws4; workspace $ws4
+bindsym $mod+Control+5 move container to workspace $ws5; workspace $ws5
+bindsym $mod+Control+6 move container to workspace $ws6; workspace $ws6
+bindsym $mod+Control+7 move container to workspace $ws7; workspace $ws7
+bindsym $mod+Control+8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+Control+9 move container to workspace $ws9; workspace $ws9
+bindsym $mod+Control+0 move container to workspace $ws0; workspace $ws0
 
-
-# toggle tiling / floating,将当前container(焦点窗口)在浮动和固定窗口间切换
-bindsym $mod+Shift+space floating toggle
-# change focus between tiling / floating windows,光标聚焦在浮动和固定窗口之间切换
-bindsym $mod+space focus mode_toggle
-
-
-# change container layout (stacked, tabbed, toggle split),mod1为Alt
-# stacking模式(工作空间里只显示一个活动的窗口,在工作空间上方得到一个窗口的列表):
-bindsym $mod+Mod1+s layout stacking
-# tabbed模式(与stacking模式类似,不过是类似浏览器式的标签页):
-bindsym $mod+Mod1+t layout tabbed
-# tiling模式(默认模式,平铺式窗口):
-bindsym $mod+Mod1+c layout toggle split
-
-# change border style
-bindsym $mod+Mod1+u border none
-bindsym $mod+Mod1+n border normal
-bindsym $mod+Mod1+o border 1pixel
-bindsym $mod+Mod1+b border toggle
-
-# focus the parent container
-bindsym $mod+Mod+p focus parent
-
-# focus the child container
-bindsym $mod+Alt+c focus child
-
-# 使当前聚焦的窗口成为便笺簿
-bindsym $mod+Shift+minus move scratchpad
-
-# 显示第一个便笺簿窗口
-bindsym $mod+minus scratchpad show
-#---window focus---
-#以 workspace_auto_back_and_forth 开头的是设置是否启用回到之前的工作区的。
-#workspace_auto_back_and_forth yes|no
-workspace_auto_back_and_forth yes
-
-
-#---switch workspace---
-# 在workspace之间来回切换
-bindsym $mod+Tab workspace next
-bindsym Mod1+Tab workspace prev
-
-# 快速在两个Workspace之间跳转
-bindsym $mod+b workspace back_and_forth
-# 将当前容器(一个界面)快速在两个workspace之间来回移动
-bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
-
-#===window control===
-# enter fullscreen mode for the focused container
-# 全屏
-bindsym $mod+f fullscreen toggle
-
-
+# move focused container to workspace
+bindsym $mod+Shift+exclam move container to workspace 1
+bindsym $mod+Shift+at move container to workspace 2
+bindsym $mod+Shift+numbersign move container to workspace 3
+bindsym $mod+Shift+dollar move container to workspace 4
+bindsym $mod+Shift+percent move container to workspace 5
+bindsym $mod+Shift+asciicircum move container to workspace 6
+bindsym $mod+Shift+ampersand move container to workspace 7
+bindsym $mod+Shift+asterisk move container to workspace 8
+bindsym $mod+Shift+parenleft move container to workspace 9
+bindsym $mod+Shift+parenright move container to workspace 10
 
 # 以 focus_follows_mouse 开头的是设置焦点是否跟随鼠标。
 focus_follows_mouse yes
@@ -486,13 +461,15 @@ popup_during_fullscreen smart
 #force_display_urgency_hint <timeout> ms
 force_display_urgency_hint 500 ms
 
+# 这个选项可以指定窗口标题对齐的方向，默认为 left（左对齐）。
+# 格式：title_align left|center|right
+title_align center
 
 # change focus
 # 移动焦点于其他窗口(左下上右):semicolon为分号
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
 bindsym $mod+semicolon focus right
 # change focus
 bindsym $mod+$left focus left
@@ -509,10 +486,9 @@ bindsym $mod+Right focus right
 # move focused window
 # move floating/tiling window
 # 将焦点窗口移动至其他位置(左下上右):
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
 bindsym $mod+Shift+semicolon move right
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -526,13 +502,13 @@ bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
 
 
-# split in horizontal orientation,新建窗口位于现窗口右方(默认为右方): $mod+g
+# 水平分割窗口,新建窗口位于现窗口右方(默认为右方): $mod+g
 # 需要在按$mod+Return之前按$mod+g
-bindsym $mod+g split h
+bindsym $mod+h split h;exec notify-send 'split horizontally'
 
-# split in vertical orientation,新建窗口位于现窗口下方(默认为右方): $mod+V
+# 垂直分割窗口,新建窗口位于现窗口下方(默认为右方): $mod+V
 # 需要在按$mod+Return之前按$mod+v
-bindsym $mod+v split v
+bindsym $mod+v split v;exec notify-send 'split vertically'
 
 #以 default_orientation 开头的是设置新工作区默认打开方向。
 # default_orientation horizontal|vertical|auto
@@ -542,6 +518,90 @@ default_orientation auto
 # 这个选项决定了工作区级别的容器该用什么布局模式
 # workspace_layout default|stacking|tabbed
 workspace_layout tabbed
+
+
+# toggle tiling / floating,将当前container(焦点窗口)在浮动和固定窗口间切换
+bindsym $mod+Shift+space floating toggle
+# change focus between tiling / floating windows,在浮动和固定窗口之间切换光标聚焦
+bindsym $mod+space focus mode_toggle
+
+
+# change container layout (stacked, tabbed, toggle split),mod1为Alt
+# stacking模式(工作空间里只显示一个活动的窗口,在工作空间上方得到一个窗口的列表):
+bindsym $mod+Mod1+s layout stacking
+# tabbed模式(与stacking模式类似,不过是类似浏览器式的标签页):
+bindsym $mod+Mod1+t layout tabbed
+# tiling模式(默认模式,平铺式窗口):
+bindsym $mod+Mod1+c layout toggle split
+
+
+# # 在堆叠/标签/分割之间切换
+# bindsym $mod+Mod1+x layout toggle
+
+# # 在堆叠/标签/横向分割/纵向分割之间切换
+# bindsym $mod+Mod1+x layout toggle all
+
+# # 在堆叠/标签/横向分割之间切换
+# bindsym $mod+Mod1+x layout toggle stacking tabbed splith
+
+## 在纵向分割/标签之间切换
+# bindsym $mod+Mod1+x layout toggle splitv tabbed
+
+## 在横向分割/标签之间切换
+# bindsym $mod+Mod1+x layout toggle splith tabbed
+
+
+## 在横向分割/纵向分割/标签之间切换
+bindsym $mod+Mod1+x layout toggle  tabbed splith splitv
+
+# change border style
+bindsym $mod+Mod1+u border none
+bindsym $mod+Mod1+n border normal
+bindsym $mod+Mod1+o border 1pixel
+bindsym $mod+Mod1+b border toggle
+
+# focus the parent container
+bindsym $mod+Mod1+p focus parent
+
+# focus the child container
+bindsym $mod+Mod1+d focus child
+
+# 使当前聚焦的窗口成为便笺簿
+bindsym $mod+Shift+minus move scratchpad
+
+# 显示第一个便笺簿窗口
+bindsym $mod+minus scratchpad show
+
+#---window focus---
+#以 workspace_auto_back_and_forth 开头的是设置是否启用回到之前的工作区的。
+#workspace_auto_back_and_forth yes|no
+# 例如：假设你在工作区“1：www”并使用 mod+2 切换到“2：IM”，因为有人向你发送了一条消息。你现在不需要记住你是从哪里切换过来的，你只需再次按 $mod+2 即可切换回“1: www”。
+workspace_auto_back_and_forth yes
+
+
+#---switch workspace---
+# 在workspace之间来回切换
+bindsym $mod+Tab workspace next
+bindsym Mod1+Tab workspace prev
+bindsym $mod+Control+Right workspace next
+bindsym $mod+Control+Left workspace prev
+
+# 快速在两个Workspace之间跳转
+bindsym $mod+b workspace back_and_forth
+# 将当前容器(一个界面)快速在两个workspace之间来回移动
+bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
+
+# 如果你想让一个窗口固定在显示器上，即使你切换到另一个工作区，它还留在屏幕上，那么你可以使用 sticky 命令。例如，这对记事本、媒体播放器或视频聊天窗口很有用。
+# 请注意，虽然任何窗口都可以通过这个命令变成固定的，但只有在窗口是浮动的情况下才会生效。
+bindsym $mod+Shift+s sticky toggle
+
+#===window control===
+# enter fullscreen mode for the focused container
+# 全屏
+bindsym $mod+f fullscreen toggle
+
+
+
 
 #以 mode 开头的是组合模块，可以在快捷键之后选择做的事。
 # resize window (you can also use the mouse for that)
@@ -571,7 +631,46 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
+for_window [class="^.*"] border pixel 2
 
+gaps inner 8
+gaps outer 6
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 1
+        bindsym minus gaps inner current minus 1
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 1
+        bindsym Shift+minus gaps inner all minus 1
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 1
+        bindsym minus gaps outer current minus 1
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 1
+        bindsym Shift+minus gaps outer all minus 1
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
 
 # screen off | sleep | shutdown(time unit: seconds)
 #exec --no-startup-id xset dpms 300 1357 6789
@@ -579,31 +678,55 @@ exec --no-startup-id xset dpms 365 1357
 
 # exit i3 (logs you out of your X session)
 # bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Control+Escape exec "i3-nagbar -t warning -m 'Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Control+Escape exec "i3-nagbar -t warning -m 'Do you really want to exit i3? ' -B 'Yes, exit i3' 'i3-msg exit'"
 
 
 
 # win+c可以调出选项，你可以选择锁屏(L)，注销(O)，重启(R)，关机(S)，退出选项(Esc)。
 #*********************************************电源管理*************************************
-set $mode_system select:  lock(L) logout(O) reboot(R) shutdown(S) exit(Esc)
-bindsym $mod+Control+Escape mode "$mode_system"
+set $mode_system select:[L]slock [x]xscreensaver [I]i3lock [O]logout [R]reboot [S]shutdown [Esc]exit
+bindsym $mod+Control+e mode "$mode_system"
 mode "$mode_system" {
-    bindsym l exec --no-startup-id i3lock -c '#000000', mode "default"
+    bindsym i exec --no-startup-id i3lock -c '#808080', mode "default"
+    bindsym l exec --no-startup-id slock
+    bindsym x exec --no-startup-id xscreensaver-command -lock
     bindsym e  exec --no-startup-id i3-msg exit, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym o exec --no-startup-id systemctl poweroff, mode "default"
     bindsym Escape mode "default"
+    bindsym Return mode "default"
+
 }
 
 
 #===power manager===
-set $mode_system1 select: lock(L) exit(E) reboot(R) poweroff(O) cancel(Esc)
+set $mode_system1 select: [L]slock [x]xscreensaver [I]i3lock [O]logout [R]reboot [S]shutdown [Esc]exit
 bindsym $mod+Shift+Escape mode "$mode_system1"
 mode "$mode_system1" {
-    bindsym l exec --no-startup-id i3lock -c '#000000', mode "default"
+    bindsym i exec --no-startup-id i3lock -c '#808080', mode "default"
+    bindsym l exec --no-startup-id slock
+    bindsym x exec --no-startup-id xscreensaver-command -lock
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym o exec --no-startup-id systemctl poweroff, mode "default"
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+
+# Set shut down, restart and locking features
+bindsym $mod+0 mode "$mode_system3"
+set $mode_system3 (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+mode "$mode_system3" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
