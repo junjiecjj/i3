@@ -566,23 +566,26 @@ bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_
 bindsym $mod+Shift+s sticky toggle
 
 # slash:/   quoteright:'  comma:,  period:.
-# 
+# 将当前容器移动到前/后的工作区并聚焦于前/后工作区
 bindsym $mod+slash             move container to workspace prev; workspace prev
 bindsym $mod+quoteright        move container to workspace next; workspace next
 
+#---switch workspace---
+# 聚焦于前后工作区
 bindsym $mod+comma              workspace prev
 bindsym $mod+period             workspace next
+# 在workspace之间来回切换
+bindsym $mod+Tab               workspace next
+bindsym Mod1+Tab               workspace prev
 
+# 将当前容器移动到前/后的工作区但仍然处于当前工作区
 bindsym $mod+Shift+comma       move container to workspace prev
 bindsym $mod+Shift+period      move container to workspace next
 
+# 将当前容器移动到前/后的工作区并聚焦于前/后工作区
 bindsym $mod+Control+comma             move container to workspace prev; workspace prev
 bindsym $mod+Control+period            move container to workspace next; workspace next
 
-#---switch workspace---
-# 在workspace之间来回切换
-bindsym $mod+Tab workspace next
-bindsym Mod1+Tab workspace prev
 
 #=================================================================================================
 #====================  将容器在工作区之间移动 over ================================
