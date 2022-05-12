@@ -6,7 +6,7 @@ set $mod Mod4
 set $up l
 set $down k
 set $left j
-# set $right semicolon
+set $right semicolon
 # Use Mouse+$mod to drag a floating window,以 floating_modifier 开头的是浮动模式移动组合键，设置之后可以按下这个键和鼠标进行拖动浮动模式的窗口。
 # 你可以按住Mod1,同时鼠标左键点击拖动动窗口到你想要的方位。
 # 当你按住浮动调节器时（Mod1）,你可以通过按住鼠标右键并拖动，来调整那一个窗口的大小。
@@ -38,7 +38,7 @@ exec --no-startup-id xscreensaver -no-splash &
 # exec --no-startup-id conky -c ~/.conkyrc
 
 # 在每次注销或者刷新i3wm时自动执行nitrogen并刷新壁纸
-exec_always nitrogen --restore; sleep 1
+exec_always nitrogen --restore; sleep 2
 # exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 
 # 护眼工具
@@ -46,11 +46,11 @@ exec_always nitrogen --restore; sleep 1
 exec --no-startup-id redshift-gtk
 
 #===autostart parograms只可以同时启用其中一种===
-exec_always --no-startup-id   picom --experimental-backends -b
+exec --no-startup-id   picom --experimental-backends -b
 # exec --no-startup-id  compton -cCGfF -o 0.38 -O 200 -I 200 -t 0 -l 0 -r 3 -D2 -m 0.88
 
 #登录时 启用窗口透明
-exec_always --no-startup-id compton  -b
+# exec --no-startup-id compton  -b
 
 # exec_always --no-startup-id  xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &
 
@@ -69,15 +69,15 @@ exec --no-startup-id copyq
 # 开启小键盘
 exec --no-startup-id copexec_always --no-startup-id numlockx on # 开启小键盘yq &
 
-# 启动i3时执行,重启i3时不执行
-# exec --no-startup-id fcitx
-exec --no-startup-id fcitx-sogoupingyin
 # 无论何时都执行
-exec_always --no-startup-id fcitx
+# exec_always --no-startup-id fcitx
+# 启动i3时执行,重启i3时不执行
+exec --no-startup-id fcitx
+# exec --no-startup-id fcitx-sogoupingyin
 
 
 # fcitx5 输入法
-exec --no-startup-id fcitx5 &
+# exec --no-startup-id fcitx5 &
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -216,9 +216,9 @@ for_window [class="netease-cloud-music"] floating enable
 bar {
     # i3bar_command $HOME/.config/polybar/launch.sh
     # status_command i3status
-    # status_command i3status -c ~/.config/i3/i3status.conf
-    # status_command i3blocks -c ~/.config/i3/i3blocks.conf
-    # i3bar_command i3bar --transparency
+    status_command i3status -c ~/.config/i3/i3status.conf
+    status_command i3blocks -c ~/.config/i3/i3blocks.conf
+    i3bar_command i3bar --transparency
     position top
     #i3bar 有三种显示模式（dock 停靠，hide 隐藏，invisible 无形）
     mode  dock
@@ -226,15 +226,22 @@ bar {
 
 
     #是否显示工作区按钮：
-    workspace_buttons yesnd
+    workspace_buttons yes
     workspace_min_width  40
 
     #指定输出位置，默认是全部显示器都有，单独设置可以启动多个不同的：
     output eDP-1
-    # output HDMI2
+    output primary
 
     #托盘显示位置：tray_output none|primary|<output>
+    ## 在主显示器上显示托盘图标
     tray_output primary
+
+    # 在大显示器上显示托盘图标
+    # tray_output HDMI2
+
+    # 禁用系统托盘
+    # tray_output none
 
     #托盘内容之间的间距：
     tray_padding 0
@@ -309,10 +316,6 @@ bindsym $mod+p exec --no-startup-id polybar-msg cmd toggle
 # 启用基于 rofi 的 powermenu
 bindsym $mod+q exec --no-startup-id "$HOME/.config/rofi/powermenu/powermenu.sh"
 
-# hide | show window(minus is "-" and plus is "+".)
-bindsym $mod+minus move scratchpad
-bindsym $mod+plus scratchpad show
-# 此时执行Win + Shift + Space键即可将其恢复成普通窗口
 
 # Use pactl to adjust volume in PulseAudio.
 # 我使用的是 pulseaudio，所以我使用 pactl 来调节音量
@@ -408,28 +411,32 @@ bindsym $mod+Control+s exec steam
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-# set $ws1 "1"
-# set $ws2 "2"
-# set $ws3 "3"
-# set $ws4 "4"
-# set $ws5 "5"
-# set $ws6 "6"
-# set $ws7 "7"
-# set $ws8 "8"
-# set $ws9 "9"
-# set $ws10 "10"
-
+set $ws1 1:壹
+set $ws2 2:贰
+set $ws3 3:叁
+set $ws4 4:肆
+set $ws5 5:伍
+set $ws6 6:陆
+set $ws7 7:柒
+set $ws8 8:捌
+set $ws9 9:玖
+set $ws10 0:10
 # workspace names
-set $ws1 1:
-set $ws2 2:
-set $ws3 3:
-set $ws4 4:
-set $ws5 5:
-set $ws6 6:
-set $ws7 7:
-set $ws8 8:
-set $ws9 9:
-set $ws10 0:
+# set $ws1 1:
+# set $ws2 2:
+# set $ws3 3:
+# set $ws4 4:
+# set $ws5 5:
+# set $ws6 6:
+# set $ws7 7:
+# set $ws8 8:
+# set $ws9 9:
+# set $ws10 0:
+
+#=======================================================================================
+#================= win+num快速跳转到指定工作区 ===============================
+#=======================================================================================
+
 # switch to workspace
 # 移动至其他工作空间: $mod+$num
 bindsym $mod+1 workspace number $ws1
@@ -442,6 +449,11 @@ bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
+
+#========================================================================================================================================
+#====================  在一个工作区之间聚焦不同容器以及在一个工作区中移动容器，但是不离开此工作区 ================================
+#========================================================================================================================================
+
 
 # change focus 聚焦于左、下、上、右边的容器
 # 移动焦点于其他窗口(左下上右):semicolon为分号
@@ -494,6 +506,18 @@ bindsym $mod+a focus parent
 bindsym $mod+e focus child
 
 
+#========================================================================================================================================
+#====================  在一个工作区之间聚焦不同容器以及在一个工作区中移动容器，但是不离开此工作区over ================================
+#========================================================================================================================================
+
+
+
+
+#============================================================================================================================================
+#====================  将容器在工作区之间移动,以及依次跳转工作区,以及在现在聚焦和之前聚焦的工作区之间跳转 ================================
+#=============================================================================================================================================
+
+
 # move focused container to workspace 
 # 将焦点窗口移动至其他工作空间: $mod+Shift+$num
 bindsym $mod+Shift+1 move container to workspace  $ws1
@@ -541,20 +565,33 @@ bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_
 # 请注意，虽然任何窗口都可以通过这个命令变成固定的，但只有在窗口是浮动的情况下才会生效。
 bindsym $mod+Shift+s sticky toggle
 
+# slash:/   quoteright:'  comma:,  period:.
+# 
+bindsym $mod+slash             move container to workspace prev; workspace prev
+bindsym $mod+quoteright        move container to workspace next; workspace next
 
-bindsym $mod+slash     move container to workspace prev; workspace prev
-bindsym $mod+quoteright    move container to workspace next; workspace next
-bindsym $mod+comma     move container to workspace prev
-bindsym $mod+period    move container to workspace next
+bindsym $mod+comma              workspace prev
+bindsym $mod+period             workspace next
 
+bindsym $mod+Shift+comma       move container to workspace prev
+bindsym $mod+Shift+period      move container to workspace next
+
+bindsym $mod+Control+comma             move container to workspace prev; workspace prev
+bindsym $mod+Control+period            move container to workspace next; workspace next
 
 #---switch workspace---
 # 在workspace之间来回切换
 bindsym $mod+Tab workspace next
 bindsym Mod1+Tab workspace prev
-bindsym $mod+Control+Right workspace next
-bindsym $mod+Control+Left workspace prev
 
+#=================================================================================================
+#====================  将容器在工作区之间移动 over ================================
+#=================================================================================================
+
+
+#================================================================================================================================
+# =========================  在显示器之间移动工作区,在显示器之间移动窗口container,
+#================================================================================================================================
 # 在显示器之间移动工作区workspace,移动整个工作间到右边的显示输出
 # 移动目前工作区到下一个输出（如果你只有两个输出，相当于在两个输出之间切换）
 # Strangely, I'd expect the $mod+Ctrl+greater to require me to hit Ctrl and Shift at the same time, since you need to press Shift to type < and >. However, pressing just mod, Ctrl, and , works, which is very nice.
@@ -589,6 +626,9 @@ bindsym $mod+bracketright focus output right
 # 聚焦于主显示输出
 # bindsym $mod+braceleft focus output primary
 
+#================================================================================================================================
+# =========================  在显示器之间移动工作区,在显示器之间移动窗口container
+#================================================================================================================================
 
 
 # 以 focus_follows_mouse 开头的是设置焦点是否跟随鼠标。
@@ -632,7 +672,6 @@ mouse_warping output
 
 #全屏模式下的弹出窗口,popup_during_fullscreen smart|ignore|leave_fullscreen
 popup_during_fullscreen smart
-,
 
 # change container layout (stacked, tabbed, toggle split),mod1为Alt
 # stacking模式(工作空间里只显示一个活动的窗口,在工作空间上方得到一个窗口的列表):
@@ -674,6 +713,8 @@ bindsym $mod+Shift+minus move scratchpad
 
 # 显示第一个便笺簿窗口
 bindsym $mod+minus scratchpad show
+# hide | show window(minus is "-" and plus is "+".)
+# 此时执行Win + Shift + Space键即可将其恢复成普通窗口
 
 #---window focus---
 #以 workspace_auto_back_and_forth 开头的是设置是否启用回到之前的工作区的。
