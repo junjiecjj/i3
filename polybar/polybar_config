@@ -1,0 +1,175 @@
+[bar/my_polybar]
+...
+font-2 = Weather Icons:size=12;1
+...
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+format-underline = #BF616A
+
+label-open = ""
+label-open-foreground = #ECEFF4
+label-close = " X "
+label-close-foreground = #EBCB8B
+label-separator = |
+label-separator-foreground = #A3BE8C
+
+menu-0-0 = "Reboot"
+menu-0-0-exec = menu-open-1
+menu-0-1 = "Power off"
+menu-0-1-exec = menu-open-2
+menu-0-2 = "Log out"
+menu-0-2-exec = menu-open-3
+
+menu-1-0 = "Reboot"
+menu-1-0-exec = ~/.config/i3/powermanager.sh reboot
+menu-1-1 = "Cancel "
+menu-1-1-exec = menu-open-0
+
+menu-2-0 = "Power off"
+menu-2-0-exec = ~/.config/i3/powermanager.sh poweroff
+menu-2-1 = "Cancel "
+menu-2-1-exec = menu-open-0
+
+menu-3-0 = "Log out"
+menu-3-0-exec = ~/.config/i3/powermanager.sh exit
+menu-3-1 = "Cancel "
+menu-3-1-exec = menu-open-0
+
+[module/time]
+type = custom/script
+exec = ~/.config/polybar/script/time.sh
+label =  %output%
+label-font = 5
+label-foreground = #ccffcc
+interval = 10
+click-left = zenity --calendar
+click-right = tzclock
+format-underline = #ccffcc
+
+
+
+[module/weather]
+type = custom/script
+exec = ~/.config/polybar/script/weather.sh
+exec-if = [ $(($(date +%s) - $(cat /tmp/polybar.tmp))) -gt 30 ]
+interval = 10
+click-left = google-chrome https://openweathermap.org/city/1808926 >/dev/null 2>&1
+label-font = 8
+format-foreground = #09edd3
+format-underline = #09edd3
+
+
+
+[module/openweathermap-fullfeatured]
+type = custom/script
+exec = ~/polybar-scripts/openweathermap-fullfeatured.sh
+interval = 600
+label-font = 3
+
+
+
+
+[module/player-mpris-tail]
+type = custom/script
+exec = $HOME/.config/polybar/script/player-mpris-tail.py -f '{icon} {title}'
+tail = true
+label = %output:0:15:..%
+label-foreground = #00ff99
+label-font = 5
+double-click-left = $HOME/.config/polybar/script/player-mpris-tail.py previous
+click-left = $HOME/.config/polybar/script/player-mpris-tail.py play-pause
+click-right = $HOME/.config/polybar/script/player-mpris-tail.py next
+click-middle = $HOME/.config/polybar/script/player-mpris-tail.py play-pause
+scroll-up = $HOME/.config/polybar/script/player-mpris-tail.py previous
+scroll-down = $HOME/.config/polybar/script/player-mpris-tail.py next
+interval = 2
+
+
+
+[module/bright]
+type = custom/script
+exec = $HOME/.config/polybar/script/bright.sh
+scroll-up = "$HOME/.config/polybar/script/bright.sh +"
+scroll-down = "$HOME/.config/polybar/script/bright.sh -"
+interval = 2
+format-prefix = 
+format-prefix-foreground = #00cc00
+format-underline = #00cc00
+format-foreground = #00cc00
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
