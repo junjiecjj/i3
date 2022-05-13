@@ -230,13 +230,13 @@ for_window [class="(?i)googlechrome"]        title_format "<span foreground='red
 for_window [class="(?i)nm"]                  title_format "<span foreground='red'>%title</span>"
 for_window [class="(?i)st"]                  title_format "<span foreground='#ff3333'>%title</span>"
 
-for_window [class="(?i)firefox"] title_format "<span foreground='red'>%title</span>"
-for_window [class="(?i)spyder"] title_format "<span foreground='blue'>%title</span>"
-for_window [class="(?i)wps"] title_format "<span foreground='purple'>%title</span>"
-for_window [class="(?i)wt"] title_format "<span foreground='purple'>%title</span>"
-for_window [class="(?i)wpp"] title_format "<span foreground='purple'>%title</span>"
-for_window [class="(?i)latex"] title_format "<span foreground='#6600cc'>%title</span>"
-for_window [class="(?i)netease-cloud-music"] title_format "<span foreground='#4ce600'>%title</span>"
+for_window [class="(?i)firefox"]                title_format "<span foreground='red'>%title</span>"
+for_window [class="(?i)spyder"]                 title_format "<span foreground='blue'>%title</span>"
+for_window [class="(?i)wps"]                    title_format "<span foreground='purple'>%title</span>"
+for_window [class="(?i)wt"]                     title_format "<span foreground='purple'>%title</span>"
+for_window [class="(?i)wpp"]                    title_format "<span foreground='purple'>%title</span>"
+for_window [class="(?i)latex"]                  title_format "<span foreground='#6600cc'>%title</span>"
+for_window [class="(?i)netease-cloud-music"]    title_format "<span foreground='#4ce600'>%title</span>"
 
 
 # 以粗体打印所有窗口标题

@@ -222,6 +222,7 @@ for_window [class="netease-cloud-music"] floating enable sticky normal
 # bindsym $mod+x [class="(?i)firefox"] kill
 # 以红色打印 Firefox 窗口的窗口标题
 for_window [class="(?i)google-chrome-stable"] title_format "<span foreground='red'>%title</span>"
+for_window [class="(?i)google-chrome"]        title_format "<span foreground='red'>%title</span>"
 for_window [class="(?i)H[google-chrome]"]        title_format "<span foreground='red'>%title</span>"
 for_window [class="(?i)google chrome"]        title_format "<span foreground='red'>%title</span>"
 for_window [class="(?i)Google Chrome"]        title_format "<span foreground='red'>%title</span>"
@@ -1044,18 +1045,17 @@ exec --no-startup-id xinput --set-prop 'Synaptics TM3072-003' 'Coordinate Transf
 # $  ./j4-make-config -i
 
 # class                 border  backgr. text    indicator
-client.focused          #0088CC #0088CC #ffffff #dddddd
-#client.focused_inactive #0C2D3C #0C2D3C #888888 #484e50 # I don't like it that way
-client.focused_inactive #333333 #333333 #888888 #292d2e
-client.unfocused        #333333 #333333 #888888 #292d2e
+client.focused          #383838 #8CFF00 #383838 #EFEFEF
+client.focused_inactive #333333 #333333 #ffffff #EFEFEF
+client.unfocused        #333333 #333333 #888888 #EFEFEF
 client.urgent           #2f343a #900000 #ffffff #900000
 colors {
-	background #222222
-	statusline #dddddd
+	background #0D0D0D
+	statusline #EFEFEF
 	separator #666666
-	focused_workspace #0088CC #0088CC #ffffff
-	active_workspace #333333 #333333 #888888
-	inactive_workspace #333333 #333333 #888888
+	focused_workspace  #4F4F4F #4F4F4F #8CFF00
+	active_workspace   #0D0D0D #0D0D0D #EFEFEF
+	inactive_workspace #0D0D0D #0D0D0D #EFEFEF
 	urgent_workspace   #2f343a #900000 #ffffff
 }
 
