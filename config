@@ -198,9 +198,9 @@ for_window [class="netease-cloud-music"] floating enable
 
 bar {
     # i3bar_command $HOME/.config/polybar/launch.sh
-    # status_command i3status
+    status_command i3status
     status_command i3blocks
-    # status_command i3status -c  /home/jack/.config/i3/i3status.conf
+    status_command i3status --config  /home/jack/.config/i3/i3status.conf
     status_command i3blocks -c  /home/jack/.config/i3/i3blocks.conf
     i3bar_command i3bar --transparency
 
