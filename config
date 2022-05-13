@@ -3,10 +3,11 @@
 
 # 设置win键为mod键
 set $mod Mod4
-set $up l
-set $down k
-set $left j
-set $right semicolon
+set $up k
+set $down j
+set $left h
+set $right l
+# set $right semicolon
 # Use Mouse+$mod to drag a floating window,以 floating_modifier 开头的是浮动模式移动组合键，设置之后可以按下这个键和鼠标进行拖动浮动模式的窗口。
 # 你可以按住Mod1,同时鼠标左键点击拖动动窗口到你想要的方位。
 # 当你按住浮动调节器时（Mod1）,你可以通过按住鼠标右键并拖动，来调整那一个窗口的大小。
@@ -457,20 +458,27 @@ bindsym $mod+0 workspace number $ws10
 
 # change focus 聚焦于左、下、上、右边的容器
 # 移动焦点于其他窗口(左下上右):semicolon为分号
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h      focus left
+bindsym $mod+j      focus down
+bindsym $mod+k      focus up
+bindsym $mod+l      focus right
 # change focus
-bindsym $mod+$left focus left
-bindsym $mod+$down focus down
-bindsym $mod+$up focus up
-bindsym $mod+$right focus right
+bindsym $mod+$left   focus left
+bindsym $mod+$down   focus down
+bindsym $mod+$up     focus up
+bindsym $mod+$right  focus right
 # alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+bindsym $mod+Left    focus left
+bindsym $mod+Down    focus down
+bindsym $mod+Up      focus up
+bindsym $mod+Right   focus right
+
+
+bindsym $mod+comma         focus left
+# bindsym $mod+period        focus down
+# bindsym $mod+Shift+comma   focus up
+bindsym $mod+period   focus right
+
 
 # toggle tiling / floating,将当前container(焦点窗口)在浮动和固定窗口间切换
 bindsym $mod+Shift+space floating toggle
@@ -482,10 +490,10 @@ bindsym $mod+space focus mode_toggle
 # move focused window
 # move floating/tiling window
 # 将容器向左、下、上、右边移动
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
@@ -567,24 +575,24 @@ bindsym $mod+Shift+s sticky toggle
 
 # slash:/   quoteright:'  comma:,  period:.
 # 将当前容器移动到前/后的工作区并聚焦于前/后工作区
-bindsym $mod+slash             move container to workspace prev; workspace prev
-bindsym $mod+quoteright        move container to workspace next; workspace next
+# bindsym $mod+slash             move container to workspace prev; workspace prev
+# bindsym $mod+quoteright        move container to workspace next; workspace next
 
 #---switch workspace---
 # 聚焦于前后工作区
-bindsym $mod+comma              workspace prev
-bindsym $mod+period             workspace next
+bindsym $mod+semicolon              workspace prev
+bindsym $mod+quoteright             workspace next
 # 在workspace之间来回切换
-bindsym $mod+Tab               workspace next
-bindsym Mod1+Tab               workspace prev
+bindsym $mod+Tab                    workspace next
+bindsym Mod1+Tab                    workspace prev
 
 # 将当前容器移动到前/后的工作区但仍然处于当前工作区
-bindsym $mod+Shift+comma       move container to workspace prev
-bindsym $mod+Shift+period      move container to workspace next
+bindsym $mod+Shift+semicolon        move container to workspace prev
+bindsym $mod+Shift+quoteright       move container to workspace next
 
 # 将当前容器移动到前/后的工作区并聚焦于前/后工作区
-bindsym $mod+Control+comma             move container to workspace prev; workspace prev
-bindsym $mod+Control+period            move container to workspace next; workspace next
+bindsym $mod+Control+semicolon      move container to workspace prev; workspace prev
+bindsym $mod+Control+quoteright     move container to workspace next; workspace next
 
 
 #=================================================================================================
@@ -653,7 +661,7 @@ title_align center
 
 # 水平分割窗口,新建窗口位于现窗口右方(默认为右方): $mod+g
 # 需要在按$mod+Return之前按$mod+g
-bindsym $mod+h split h;exec notify-send 'split horizontally'
+bindsym $mod+g split h;exec notify-send 'split horizontally'
 
 # 垂直分割窗口,新建窗口位于现窗口下方(默认为右方): $mod+V
 # 需要在按$mod+Return之前按$mod+v
