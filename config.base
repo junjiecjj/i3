@@ -211,7 +211,7 @@ bar {
     status_command i3blocks
     status_command i3status -c  /home/jack/.config/i3/i3status.conf
     status_command i3blocks -c  /home/jack/.config/i3/i3blocks.conf
-    i3bar_command i3bar --transparency
+    # i3bar_command i3bar --transparency
 
     status_command  /home/jack/.config/i3/i3script/net-speed.sh
 
@@ -882,30 +882,6 @@ mode "$mode_system" {
     # bindsym p exec --no-startup-id halt, mode "default"
     # bindsym p exec --no-startup-id poweroff, mode "default"
 
-    # 待机/挂起/睡眠
-    bindsym h exec --no-startup-id $Locker && systemctl suspend, mode "default"  #挂起/待机
-
-    # 注销,关闭电源,一般用不到，慎用
-    # bindsym Shift+h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
-
-    bindsym Escape mode "default"
-    bindsym Return mode "default"
-
-}
-
-
-set $mode_system1 select: [L]slock [x]xscreensaver [I]i3lock [E]离开i3  [O]logout [R]reboot [S]shutdown [Esc]exit
-bindsym $mod+Shift+Escape mode "$mode_system1"
-mode "$mode_system1" {
-    bindsym i exec --no-startup-id i3lock -c '#808080', mode "default"
-    bindsym l exec --no-startup-id slock
-    bindsym x exec --no-startup-id xscreensaver-command -lock
-    bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym o exec --no-startup-id systemctl poweroff, mode "default"
-    bindsym Escape mode "default"
-    bindsym Return mode "default"
-}
 
 # Set shut down, restart and locking features
 bindsym $mod+0 mode "$mode_system3"
@@ -930,22 +906,6 @@ mode "$mode_system3" {
 # reboot	直接重新启动
 # suspend	系统挂起，进入休眠模式
 
-# 关机，重启和锁屏的键位绑定可以添加到 ~/.config/i3/config。接下来的例子假定你已经安装了 polkit 来允许非特权用户执行电源管理 命令。
-set $Locker i3lock && sleep 1
-set $mode_system2 System (l)lock, (e)logout, (s)suspend, (h)hibernate, (r)reboot, (Shift+s)shutdown
-mode "$mode_system2" {
-    bindsym l exec --no-startup-id $Locker, mode "default"
-    bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"  #挂起/待机
-    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default" #休眠
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  #进入系统关机模式，电源切断
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+Pause mode "$mode_system2"
 
 #*********************************************电源管理over*************************************
 
