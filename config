@@ -26,6 +26,19 @@ font pango:CaskaydiaCove Nerd Font Mono 8
 # =================== 设置一些需要自启的软件，下面是我的示例
 #===================================================================================
 
+# tray icons(eDP1 is the display device's name, use the command "xrandr" to see the display device name.)
+# 其中的eDP1便是我的显示设备名称。如果你的显示设备名称不是eDP1 ，那么需要修改
+exec --no-startup-id xrandr --output eDP-1 --primary
+
+# 如果为笔记本外接两个显示器，关闭笔记本的显示器
+# exec --no-startup-id xrandr --output DP-1-8 --mode 1920x1080 --primary
+# exec --no-startup-id  xrandr --output DP-1-9 --mode 1920x1080  --right-of DP-1-8  --auto
+# exec --no-startup-id xrandr  --output eDP-1 --off
+
+#exec --no-startup-id xrandr --output HDMI1 1920*1080 --right-of eDP1
+
+
+
 #以 exec 和 exec_always 开头的是设置自动启动程序，exec_always 会在重启 i3 时跟着重启。
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
@@ -89,17 +102,9 @@ exec --no-startup-id fcitx
 # exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 
-# tray icons(eDP1 is the display device's name, use the command "xrandr" to see the display device name.)
-# 其中的eDP1便是我的显示设备名称。如果你的显示设备名称不是eDP1 ，那么需要修改
-exec --no-startup-id xrandr --output eDP-1 --primary
 
-# 如果为笔记本外接两个显示器，关闭笔记本的显示器
-# exec --no-startup-id xrandr --output DP-1-8 --mode 1920x1080 --primary
-# exec --no-startup-id  xrandr --output DP-1-9 --mode 1920x1080  --right-of DP-1-8  --auto
-# exec --no-startup-id xrandr  --output eDP-1 --off
-
-#exec --no-startup-id xrandr --output HDMI1 1920*1080 --right-of eDP1
-
+exec_always --no-startup-id  i3status -c  /home/jack/.config/i3/i3status.conf
+exec_always --no-startup-id  i3blocks -c  /home/jack/.config/i3/i3blocks.conf
 
 # 下面的例子是一个有VGA和HDMI输出的笔记本使用一个菜单来切换显示输出的开关：
 ## Manual management of external displays
@@ -200,7 +205,7 @@ bar {
     # i3bar_command $HOME/.config/polybar/launch.sh
     status_command i3status
     status_command i3blocks
-    status_command i3status --config  /home/jack/.config/i3/i3status.conf
+    status_command i3status -c  /home/jack/.config/i3/i3status.conf
     status_command i3blocks -c  /home/jack/.config/i3/i3blocks.conf
     i3bar_command i3bar --transparency
 
