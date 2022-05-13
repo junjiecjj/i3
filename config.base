@@ -146,13 +146,14 @@ new_float  pixel  3
 default_border pixel  1
 
 # 新的浮动窗口的边界宽度，同上。
-default_floating_border pixel 1
+default_floating_border pixel 2
 
 #=======================================设置一下颜色主题==================================================
 # 设置一下颜色主题，这个比较重要，建议根据自己的配色来微调。 依次是边框颜色、背景色、文本颜色、焦点指示顔色和子窗口的边框颜色。
 # 以 client.focused client.focused_inactive client.unfocused client.urgent client.placeholder client.background 开头的是设置对应的东西的颜色的。
 # #  class                 border   backgr.  text  indicator  child_border
 # client.focused          #4c7899  #285577  #ffffff  #2e9ef4   #285577
+# client.focused          #00ffff  #00ffff  #ffffff  #2e9ef4   #285577
 # client.focused_inactive #81c2d6  #5f676a  #ffffff  #484e50   #0b6e48
 # client.unfocused        #c9cabb  #222222  #888888  #292d2e   #222222
 # client.urgent           #2f343a  #900000  #ffffff  #199475   #900000
@@ -786,7 +787,8 @@ smart_gaps on
 # 在只有一个窗口的情况下自动最大化当前的窗口，不处理窗口的Gap。
 smart_borders on
 
-# 你可以使用hide_edge_borders来隐藏与屏幕边缘靠近的边框。如果你使用滚动条的话这很有用，或者不想浪费甚至两像素的显示空间。"smart"选项是在工作区内只有一个可见窗口时才隐藏边框，而在工作去内有多个窗口，他不会隐藏边框。
+# 你可以使用hide_edge_borders来隐藏与屏幕边缘靠近的边框。如果你使用滚动条的话这很有用，或者不想浪费甚至两像素的显示空间。
+#  "smart"选项是在工作区内只有一个可见窗口时才隐藏边框，而在工作去内有多个窗口，他不会隐藏边框。
 # 语法
 # hide_edge_borders none|vertical|horizontal|both|smart
 #以 hide_edge_borders 开头的是设置是否隐藏相接的两个窗口之间的边框。hide_edge_borders none|vertical|horizontal|both
