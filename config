@@ -103,9 +103,6 @@ exec --no-startup-id fcitx
 
 
 
-exec_always --no-startup-id  i3status -c  /home/jack/.config/i3/i3status.conf
-exec_always --no-startup-id  i3blocks -c  /home/jack/.config/i3/i3blocks.conf
-
 # 下面的例子是一个有VGA和HDMI输出的笔记本使用一个菜单来切换显示输出的开关：
 ## Manual management of external displays
 # Set the shortcuts and what they do
