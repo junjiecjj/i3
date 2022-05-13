@@ -209,7 +209,6 @@ bar {
     status_command i3status -c  /home/jack/.config/i3/i3status.conf
     status_command i3blocks -c  /home/jack/.config/i3/i3blocks.conf
     # i3bar_command i3bar --transparency
-
     status_command  /home/jack/.config/i3/i3script/net-speed.sh
 
     position top
@@ -925,19 +924,59 @@ exec --no-startup-id xinput --set-prop 'Synaptics TM3072-003' 'Coordinate Transf
 # 交互式选择
 # $  ./j4-make-config -i 
 
-# class                 border  backgr. text    indicator
-client.focused #81a2be #81a2be #1d1f21 #282a2e
-client.focused_inactive #373b41 #373b41 #969896 #282a2e
-client.unfocused #282a2e #282a2e #969896 #282a2e
-client.urgent #373b41 #cc6666 #ffffff #cc6666
+# tango dark
+set $darkblue 		#204A87
+set $darkbrown		#8F5902
+set $darkgreen 		#4E9A06
+set $darkmagenta 	#5C3566
+set $darkred 		#A40000
+set $darkyellow 	#C4A000
+set $darkorange		#CE5C00
+
+# tango light
+set $lightblue 		#729FCF
+set $lightbrown		#E9B96E
+set $lightgreen 	#8AE234
+set $lightmagenta 	#AD7FA8
+set $lightred 		#EF2929
+set $lightyellow 	#FCE94F
+set $lightorange	#FCAF3E
+
+# tango normal
+set $blue 			#3465A4
+set $brown			#C17D11
+set $green 			#73D216
+set $magenta 		#75507B
+set $red 			#CC0000
+set $yellow 		#EDD400
+set $orange			#F57900
+
+# tango mono
+set $black 			#555753
+set $grey			#BABDB6
+set $white 			#EEEEEC
+set $darkblack 		#2E3436
+set $darkgrey 		#888A85
+set $darkwhite 		#D3D7CF
+
+# $i3-background
+exec_always --no-startup-id xsetroot -solid '#2E3436'
+
+# tango jungle <clientclass> <border> <backg> <text> <indicator>
+client.focused          $green $darkgreen $white $lightgreen
+client.focused_inactive $darkgrey $black $grey $darkgrey
+client.unfocused        $black $darkblack $grey $darkgrey
+client.urgent           $yellow $darkyellow $white $lightyellow
+
 colors {
-    separator #969896
-    background #1d1f21
-    statusline #c5c8c6
-    focused_workspace #81a2be #81a2be #1d1f21
-    active_workspace #373b41 #373b41 #ffffff
-    inactive_workspace #282a2e #282a2e #969896
-    urgent_workspace #cc6666 #cc6666 #ffffff
+    # tango jungle <workclass> <border> <backg> <text>
+    focused_workspace 	$green $darkgreen $white
+    active_workspace 	$brown $darkbrown $grey
+    inactive_workspace	$black $darkblack $grey
+    urgent_workspace 	$yellow $darkyellow $white
+  	background #222222
+	separator  #444444
+	statusline $darkgrey
 }
 
 

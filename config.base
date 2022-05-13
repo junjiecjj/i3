@@ -209,7 +209,6 @@ bar {
     status_command i3status -c  /home/jack/.config/i3/i3status.conf
     status_command i3blocks -c  /home/jack/.config/i3/i3blocks.conf
     # i3bar_command i3bar --transparency
-
     status_command  /home/jack/.config/i3/i3script/net-speed.sh
 
     position top
