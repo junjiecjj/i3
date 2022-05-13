@@ -3,7 +3,7 @@
 
 # i3 config file (v4)
 
-# 设置win键为mod键
+# 设置win键为mod键,解析时直接替换文件中的变量。变量扩展不是递归的，因此不可能使用包含另一个变量的值来定义变量。 没有花哨的处理，也绝对没有改变这一点的计划。
 set $mod Mod4
 set $up k
 set $down j
@@ -121,21 +121,28 @@ mode "$mode_display" {
 bindsym $mod+Control+d mode "$mode_display"
 
 #===================================================================================
-# =================== 设置一些需要自启的软件，
+# =================== 设置一些需要自启的软件over
 #===================================================================================
 
 
 
-# 此选项决定新窗口拥有什么样的边框风格。默认是normal。注意，new_float 仅应用于作为浮动窗口呼出的窗口。例如对话窗口，而不是到后来才被设置成浮动窗口的窗口。
+
+#======================================================================================================
+### 边框，窗口间距，  ###
+#======================================================================================================
+
+# 这个选项决定了新窗口的边框样式。 默认值是 normal。 default_floating_border 仅对于新创建的浮动窗口有效（例如某些对话框）， 而不对那些创建时不是浮动窗口，而在之后才被调整为浮动的窗口有效。
 # 如果被设置为 pixel，新窗口将会保留边框，而不显示标题栏。 如果被设置为 normal，新窗口将同时具有边框和标题栏。 同时，你还可以指定边框的宽度。
-# 语法
-# new_window normal|none|pixel
-# new_window normal|pixel <px>
-# new_float normal|none|pixel
-# new_float normal|pixel <px>
+
+# 格式：
+# default_border normal|none|pixel
+# default_border normal|pixel <边框宽度>
+# default_floating_border normal|none|pixel
+# default_floating_border normal|pixel <边框宽度>
+# 请注意，new_window 和 new_float 已经被弃用，他们将在未来的更新中被移除。 我们强烈建议你使用新的选项。
 
 new_window pixel  3
-new_float  pixel  5
+new_float  pixel  3
 
 # 设置新的窗口的边界宽度，效果是不显示窗口的title。
 default_border pixel  3
@@ -143,35 +150,37 @@ default_border pixel  3
 # 新的浮动窗口的边界宽度，同上。
 default_floating_border pixel 3
 
-#=======================================设置一下颜色主题==================================================
-# 设置一下颜色主题，这个比较重要，建议根据自己的配色来微调。 依次是边框颜色、背景色、文本颜色、焦点指示顔色和子窗口的边框颜色。
-# 以 client.focused client.focused_inactive client.unfocused client.urgent client.placeholder client.background 开头的是设置对应的东西的颜色的。
-# #  class                 border   backgr.  text  indicator  child_border
-# client.focused          #4c7899  #285577  #ffffff  #2e9ef4   #285577
-# client.focused          #00ffff  #00ffff  #ffffff  #2e9ef4   #285577
-# client.focused_inactive #81c2d6  #5f676a  #ffffff  #484e50   #0b6e48
-# client.unfocused        #c9cabb  #222222  #888888  #292d2e   #222222
-# client.urgent           #2f343a  #900000  #ffffff  #199475   #900000
-# client.placeholder      #a2b4ba  #0c0c0c  #ffffff  #1793d0   #0c0c0c
-# client.background       #82abba
+# 你可以使用hide_edge_borders来隐藏与屏幕边缘靠近的边框。如果你使用滚动条的话这很有用，或者不想浪费甚至两像素的显示空间。
+#  "smart"选项是在工作区内只有一个可见窗口时才隐藏边框，而在工作去内有多个窗口，他不会隐藏边框。
+# 语法
+# hide_edge_borders none|vertical|horizontal|both|smart
+#以 hide_edge_borders 开头的是设置是否隐藏相接的两个窗口之间的边框。hide_edge_borders none|vertical|horizontal|both
+hide_edge_borders smart_no_gaps
+# hide_edge_borders smart
+
+# 如果一个窗口被激活，例如，通过 google-chrome www.google.com，它可能会请求获得焦点。 这可能不是优选的，你可以配置不同的反应。
+# 请注意，这可能不会影响正在打开的窗口。要防止新窗口被聚焦，请参阅 no_focus。
+# 语法： focus_on_window_activation smart|urgent|focus|none
+# 不同模式的作用如下：
+# smart 这是默认行为。如果请求焦点的窗口位于活动工作区上，它将获得焦点。否则，将设置紧急提示。
+# urgent 窗口将始终标记为紧急，但焦点不会被窃取。
+# focus 该窗口将始终处于焦点状态，不会被标记为紧急。
+# none 该窗口既不会被聚焦，也不会被标记为紧急。
+focus_on_window_activation smart
+
+# 给焦点窗口一个前缀
+bindsym $mod+p title_format "重要 | %title"
 
 
+# change border style
+# 既不使用窗口标题也不使用边框
+bindsym $mod+Mod1+u border none
+# 使用窗口标题，有边框2
+bindsym $mod+Mod1+n border normal 2
+# 不使用窗口标题和粗边框
+bindsym $mod+Mod1+o border pixel 8
+bindsym $mod+Mod1+b border toggle
 
-
-#set $background #10101000
-#set $foreground #ffffff
-#set $gray       #d0d0d0
-#set $secondary  #79D4D5
-#set $additional #26CE8D
-#set $warning    #E7176A
-
-##set $primary    #F58E8E
-##set $tertiary   #7AABD4
-
-#set $primary    #F99157
-#set $tertiary   #5c4d4d
-
-#=======================================设置一下颜色主题==================================================
 
 # popups
 for_window [window_role="pop-up"] floating enable
@@ -206,12 +215,31 @@ for_window [class="obs"] floating enable sticky normal
 for_window [class="Gvim"] floating enable sticky normal
 for_window [class="netease-cloud-music"] floating enable sticky normal
 
+
+# 如果你想杀死所有 class 是 Firefox 的窗口，使用：
+# bindsym $mod+x [class="Firefox"] kill
+# 同上，除了匹配时忽略大小写
+# bindsym $mod+x [class="(?i)firefox"] kill
 # 以红色打印 Firefox 窗口的窗口标题
 for_window [class="(?i)google-chrome-stable"] title_format "<span foreground='red'>%title</span>"
+for_window [class="(?i)H[google-chrome]"]        title_format "<span foreground='red'>%title</span>"
+for_window [class="(?i)google chrome"]        title_format "<span foreground='red'>%title</span>"
+for_window [class="(?i)Google Chrome"]        title_format "<span foreground='red'>%title</span>"
+for_window [class="(?i)googlechrome"]        title_format "<span foreground='red'>%title</span>"
+for_window [class="(?i)nm"]                  title_format "<span foreground='red'>%title</span>"
+for_window [class="(?i)st"]                  title_format "<span foreground='#ff3333'>%title</span>"
+
+for_window [class="(?i)firefox"] title_format "<span foreground='red'>%title</span>"
+for_window [class="(?i)spyder"] title_format "<span foreground='blue'>%title</span>"
+for_window [class="(?i)wps"] title_format "<span foreground='purple'>%title</span>"
+for_window [class="(?i)wt"] title_format "<span foreground='purple'>%title</span>"
+for_window [class="(?i)wpp"] title_format "<span foreground='purple'>%title</span>"
+for_window [class="(?i)latex"] title_format "<span foreground='#6600cc'>%title</span>"
+for_window [class="(?i)netease-cloud-music"] title_format "<span foreground='#4ce600'>%title</span>"
 
 
-
-
+# 以粗体打印所有窗口标题
+for_window [class=".*"] title_format "<b>%title</b>"
 #############################
 ### settings for i3-gaps: ###
 #############################
@@ -226,13 +254,6 @@ smart_gaps on
 # 在只有一个窗口的情况下自动最大化当前的窗口，不处理窗口的Gap。
 smart_borders on
 
-# 你可以使用hide_edge_borders来隐藏与屏幕边缘靠近的边框。如果你使用滚动条的话这很有用，或者不想浪费甚至两像素的显示空间。
-#  "smart"选项是在工作区内只有一个可见窗口时才隐藏边框，而在工作去内有多个窗口，他不会隐藏边框。
-# 语法
-# hide_edge_borders none|vertical|horizontal|both|smart
-#以 hide_edge_borders 开头的是设置是否隐藏相接的两个窗口之间的边框。hide_edge_borders none|vertical|horizontal|both
-hide_edge_borders smart_no_gaps
-# hide_edge_borders smart
 
 
 set $mode_gaps Gaps: (o) outer, (i) inner
@@ -277,6 +298,56 @@ mode "$mode_gaps_outer" {
 exec --no-startup-id xset dpms 0 0 0
 
 
+
+
+#=======================================设置一下颜色主题==================================================
+# 设置一下颜色主题，这个比较重要，建议根据自己的配色来微调。 依次是边框颜色、背景色、文本颜色、焦点指示顔色和子窗口的边框颜色。
+# 以 client.focused client.focused_inactive client.unfocused client.urgent client.placeholder client.background 开头的是设置对应的东西的颜色的。
+# #  class                 border   backgr.  text  indicator  child_border
+# client.focused          #4c7899  #285577  #ffffff  #2e9ef4   #285577
+# client.focused          #00ffff  #00ffff  #ffffff  #2e9ef4   #285577
+# client.focused_inactive #81c2d6  #5f676a  #ffffff  #484e50   #0b6e48
+# client.unfocused        #c9cabb  #222222  #888888  #292d2e   #222222
+# client.urgent           #2f343a  #900000  #ffffff  #199475   #900000
+# client.placeholder      #a2b4ba  #0c0c0c  #ffffff  #1793d0   #0c0c0c
+# client.background       #82abba
+
+
+set_from_resource $term_background background
+set_from_resource $term_foreground foreground
+set_from_resource $term_color0     color0
+set_from_resource $term_color1     color1
+set_from_resource $term_color2     color2
+set_from_resource $term_color3     color3
+set_from_resource $term_color4     color4
+set_from_resource $term_color5     color5
+set_from_resource $term_color6     color6
+set_from_resource $term_color7     color7
+set_from_resource $term_color8     color8
+set_from_resource $term_color9     color9
+set_from_resource $term_color10    color10
+set_from_resource $term_color11    color11
+set_from_resource $term_color12    color12
+set_from_resource $term_color13    color13
+set_from_resource $term_color14    color14
+set_from_resource $term_color15    color15
+
+#set $background #10101000
+#set $foreground #ffffff
+#set $gray       #d0d0d0
+#set $secondary  #79D4D5
+#set $additional #26CE8D
+#set $warning    #E7176A
+
+##set $primary    #F58E8E
+##set $tertiary   #7AABD4
+
+#set $primary    #F99157
+#set $tertiary   #5c4d4d
+
+#=======================================颜色主题over==================================================
+
+
 #=================================================================================================================
 #==============================================bar =====================================================
 #=================================================================================================================
@@ -316,6 +387,9 @@ bar {
 
     #托盘内容之间的间距：
     tray_padding 0
+
+    # 绑定模式指示器
+    binding_mode_indicator yes
 
     #设置字体：
     font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -372,7 +446,9 @@ bindsym $mod+y exec yakuake
 bindsym $mod+i exec --no-startup-id i3-dmenu-desktop
 
 # printscreen--scrot(Print=PrtSc/PrintScreen)
-bindsym $mod+Print exec scrot
+# bindsym $mod+Print exec scrot
+#快速截图
+bindsym --release $mod+Print exec scrot -q 100 -s $HOME/图片/`date +%Y-%m-%d_%H:%M:%S`.png
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
@@ -384,13 +460,11 @@ bindsym $mod+F1 exec amixer set Master toggle
 
 
 # 设置快捷键来显示隐藏 polybar
-bindsym $mod+p exec --no-startup-id polybar-msg cmd toggle
+# bindsym $mod+p exec --no-startup-id polybar-msg cmd toggle
 
 # 启用基于 rofi 的 powermenu
 # bindsym $mod+q exec --no-startup-id "$HOME/.config/rofi/powermenu/powermenu.sh"
 
-#快速截图
-bindsym --release $mod+Print exec scrot -q 100 -s $HOME/图片/`date +%Y-%m-%d_%H:%M:%S`.png
 
 # Use pactl to adjust volume in PulseAudio.
 # 我使用的是 pulseaudio，所以我使用 pactl 来调节音量
@@ -794,11 +868,6 @@ bindsym $mod+Mod1+c layout toggle split
 ## 在横向分割/纵向分割/标签之间切换
 bindsym $mod+Mod1+x layout toggle  tabbed splith splitv
 
-# change border style
-bindsym $mod+Mod1+u border none
-bindsym $mod+Mod1+n border normal
-bindsym $mod+Mod1+o border 1pixel
-bindsym $mod+Mod1+b border toggle
 
 
 # 使当前聚焦的窗口成为便笺簿
@@ -975,17 +1044,18 @@ exec --no-startup-id xinput --set-prop 'Synaptics TM3072-003' 'Coordinate Transf
 # $  ./j4-make-config -i
 
 # class                 border  backgr. text    indicator
-client.focused          #383838 #8CFF00 #383838 #EFEFEF
-client.focused_inactive #333333 #333333 #ffffff #EFEFEF
-client.unfocused        #333333 #333333 #888888 #EFEFEF
+client.focused          #0088CC #0088CC #ffffff #dddddd
+#client.focused_inactive #0C2D3C #0C2D3C #888888 #484e50 # I don't like it that way
+client.focused_inactive #333333 #333333 #888888 #292d2e
+client.unfocused        #333333 #333333 #888888 #292d2e
 client.urgent           #2f343a #900000 #ffffff #900000
 colors {
-	background #0D0D0D
-	statusline #EFEFEF
+	background #222222
+	statusline #dddddd
 	separator #666666
-	focused_workspace  #4F4F4F #4F4F4F #8CFF00
-	active_workspace   #0D0D0D #0D0D0D #EFEFEF
-	inactive_workspace #0D0D0D #0D0D0D #EFEFEF
+	focused_workspace #0088CC #0088CC #ffffff
+	active_workspace #333333 #333333 #888888
+	inactive_workspace #333333 #333333 #888888
 	urgent_workspace   #2f343a #900000 #ffffff
 }
 
