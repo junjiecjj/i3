@@ -21,7 +21,7 @@ floating_modifier $mod
 floating_maximum_size -1 x -1
 floating_minimum_size 75 x 50
 #font pango:monospace 8
-font pango:CaskaydiaCove Nerd Font Mono 8
+font pango:CaskaydiaCove Nerd Font Mono 10
 
 
 #===================================================================================
@@ -97,11 +97,6 @@ exec --no-startup-id fcitx
 # fcitx5 输入法
 # exec --no-startup-id fcitx5 &
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-# bar {
-#         status_command i3status
-# }
 # 登陆时启动polybar,与bar{}别同时使用
 # exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
@@ -123,7 +118,7 @@ mode "$mode_display" {
     bindsym Escape mode "default"
 }
 # Declare here the shortcut to bring the display selection menu
-# bindsym $mod+Control+x mode "$mode_display"
+bindsym $mod+Control+d mode "$mode_display"
 
 #===================================================================================
 # =================== 设置一些需要自启的软件，
@@ -140,13 +135,13 @@ mode "$mode_display" {
 # new_float normal|pixel <px>
 
 new_window pixel  3
-new_float  pixel  3
+new_float  pixel  5
 
 # 设置新的窗口的边界宽度，效果是不显示窗口的title。
-default_border pixel  1
+default_border pixel  3
 
 # 新的浮动窗口的边界宽度，同上。
-default_floating_border pixel 2
+default_floating_border pixel 3
 
 #=======================================设置一下颜色主题==================================================
 # 设置一下颜色主题，这个比较重要，建议根据自己的配色来微调。 依次是边框颜色、背景色、文本颜色、焦点指示顔色和子窗口的边框颜色。
@@ -198,12 +193,93 @@ for_window [class="Xfce4-appfinder"] floating enable
 for_window [class="google-chrome-stable"] floating enable
 for_window [class="google-chrome"] floating enable
 for_window [class="typora"] floating enable
-for_window [class="nautilus"] floating enable
-for_window [class="spyder"] floating enable
+for_window [class="nautilus"] floating enable sticky enable border normal
+for_window [class="spyder"] floating enable   sticky enable
 for_window [class="netease-cloud-music"] floating enable
 
 
-#---bar---
+for_window [class="Nitrogen"] floating enable sticky enable border normal
+for_window [class="(?i)virtualbox"] floating enable normal
+for_window [class="TelegramDesktop"] floating enable normal
+for_window [class="Lxappearance"] floating enable sticky normal
+for_window [class="obs"] floating enable sticky normal
+for_window [class="Gvim"] floating enable sticky normal
+for_window [class="netease-cloud-music"] floating enable sticky normal
+
+# 以红色打印 Firefox 窗口的窗口标题
+for_window [class="(?i)google-chrome-stable"] title_format "<span foreground='red'>%title</span>"
+
+
+
+
+#############################
+### settings for i3-gaps: ###
+#############################
+
+# 把所有的窗口边框设为 2 像素
+for_window [class="^.*"] border pixel 2
+# 设置窗口间距,参数根据自己屏幕尺寸微调就行
+gaps inner 5
+gaps outer 5
+smart_gaps on
+
+# 在只有一个窗口的情况下自动最大化当前的窗口，不处理窗口的Gap。
+smart_borders on
+
+# 你可以使用hide_edge_borders来隐藏与屏幕边缘靠近的边框。如果你使用滚动条的话这很有用，或者不想浪费甚至两像素的显示空间。
+#  "smart"选项是在工作区内只有一个可见窗口时才隐藏边框，而在工作去内有多个窗口，他不会隐藏边框。
+# 语法
+# hide_edge_borders none|vertical|horizontal|both|smart
+#以 hide_edge_borders 开头的是设置是否隐藏相接的两个窗口之间的边框。hide_edge_borders none|vertical|horizontal|both
+hide_edge_borders smart_no_gaps
+# hide_edge_borders smart
+
+
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 1
+        bindsym minus gaps inner current minus 1
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 1
+        bindsym Shift+minus gaps inner all minus 1
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 1
+        bindsym minus gaps outer current minus 1
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 1
+        bindsym Shift+minus gaps outer all minus 1
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+# screen off | sleep | shutdown(time unit: seconds)
+#exec --no-startup-id xset dpms 300 1357 6789
+exec --no-startup-id xset dpms 0 0 0
+
+
+#=================================================================================================================
+#==============================================bar =====================================================
+#=================================================================================================================
 
 bar {
     # i3bar_command $HOME/.config/polybar/launch.sh
@@ -211,9 +287,9 @@ bar {
     status_command i3blocks
     status_command i3status -c   /home/jack/.config/i3/i3status.conf
     status_command i3blocks -c   /home/jack/.config/i3/i3blocks.conf
-    status_command conky    -c   ~/.config/i3/conkyrc
+    status_command conky    -c   ~/.config/i3/conkyrc_bar/conkyrc
 
-    # i3bar_command i3bar --transparency
+    i3bar_command i3bar --transparency
     status_command  /home/jack/.config/i3/i3script/net-speed.sh
 
     position top
@@ -243,7 +319,7 @@ bar {
 
     #设置字体：
     font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-    font pango:CaskaydiaCove Nerd Font Mono SemiLight 10
+    font pango:CaskaydiaCove Nerd Font Mono SemiLight 10;Monaco for Powerline 10;wqy-zenhei 10
 
     #分隔符：
     separator_symbol "|"
@@ -313,6 +389,8 @@ bindsym $mod+p exec --no-startup-id polybar-msg cmd toggle
 # 启用基于 rofi 的 powermenu
 # bindsym $mod+q exec --no-startup-id "$HOME/.config/rofi/powermenu/powermenu.sh"
 
+#快速截图
+bindsym --release $mod+Print exec scrot -q 100 -s $HOME/图片/`date +%Y-%m-%d_%H:%M:%S`.png
 
 # Use pactl to adjust volume in PulseAudio.
 # 我使用的是 pulseaudio，所以我使用 pactl 来调节音量
@@ -343,7 +421,7 @@ bindsym $mod+Control+l exec slock
 bindsym $mod+Control+x exec xscreensaver-command  -lock
 
 # 常用应用
-set $mode_launcher Launch:[g]谷歌浏览器 [n]文件夹 [t]Typora [p]Spyder [q]QQ [c]微信
+set $mode_launcher 应用:[g]谷歌浏览器 [n]文件夹 [t]Typora [p]Spyder [q]QQ [c]微信
 bindsym $mod+o mode "$mode_launcher"
 
 mode "$mode_launcher" {
@@ -361,7 +439,7 @@ mode "$mode_launcher" {
     bindsym w exec VBoxManage startvm "win10"  --type gui
     bindsym m exec --no-startup-id netease-cloud-music
 
-
+    bindsym $mod+o mode "default"
     bindsym Escape mode "default"
     bindsym Return mode "default"
 }
@@ -509,7 +587,7 @@ bindsym $mod+Control+period       move right
 
 
 # 移动容器到当前光标的位置
-bindsym $mod+m move position mouse
+# bindsym $mod+m focus floating ;move position mouse
 
 # focus the parent container聚焦父容器
 bindsym $mod+a focus parent
@@ -743,25 +821,25 @@ workspace_auto_back_and_forth yes
 # 全屏
 bindsym $mod+f fullscreen toggle
 
-# 以红色打印 Firefox 窗口的窗口标题
-for_window [class="(?i)google-chrome-stable"] title_format "<span foreground='red'>%title</span>"
+
 
 
 #以 mode 开头的是组合模块，可以在快捷键之后选择做的事。
 # resize window (you can also use the mouse for that)
 # resize模式(用于在tiling模式下调整各窗口的占用空间,使用J/K/L/;调整): $mod+R
-bindsym $mod+r mode "resize"
-mode "resize" {
+set $resizew 调整窗口大小:[H/Left]变窄 [L/Right]变宽 [K/Up]变矮 [J/Down]变长长
+bindsym $mod+r mode "$resizew"
+mode "$resizew" {
         # These bindings trigger as soon as you enter the resize mode
 
         # Pressing left will shrink the window’s width.
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -775,68 +853,34 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
-#############################
-### settings for i3-gaps: ###
-#############################
+
+# move floating window
+set $movefw   快速移动浮动窗口:[k]向上 [j]向下 [h]左 [l]右
+mode "$movefw" {
+    bindsym k    move up 30px
+    bindsym h    move left 30px
+    bindsym j    move down 30px
+    bindsym l    move right 30px
+
+    bindsym Up     move up 20px
+    bindsym Left   move left 20px
+    bindsym Down   move down 20px
+    bindsym Right  move right 20px
+
+    bindsym Shift+Up     move up   40px
+    bindsym Shift+Left   move left 40px
+    bindsym Shift+Down   move down 40px
+    bindsym Shift+Right  move right 40px
 
 
-for_window [class="^.*"] border pixel 2
-# 设置窗口间距,参数根据自己屏幕尺寸微调就行
-gaps inner 3
-gaps outer 3
-smart_gaps on
+    bindsym $mod+m mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 
-# 在只有一个窗口的情况下自动最大化当前的窗口，不处理窗口的Gap。
-smart_borders on
-
-# 你可以使用hide_edge_borders来隐藏与屏幕边缘靠近的边框。如果你使用滚动条的话这很有用，或者不想浪费甚至两像素的显示空间。
-#  "smart"选项是在工作区内只有一个可见窗口时才隐藏边框，而在工作去内有多个窗口，他不会隐藏边框。
-# 语法
-# hide_edge_borders none|vertical|horizontal|both|smart
-#以 hide_edge_borders 开头的是设置是否隐藏相接的两个窗口之间的边框。hide_edge_borders none|vertical|horizontal|both
-hide_edge_borders smart_no_gaps
-
-
-set $mode_gaps Gaps: (o) outer, (i) inner
-set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
-bindsym $mod+Shift+g mode "$mode_gaps"
-
-mode "$mode_gaps" {
-        bindsym o      mode "$mode_gaps_outer"
-        bindsym i      mode "$mode_gaps_inner"
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
 }
+bindsym $mod+m focus floating; mode "$movefw"
 
-mode "$mode_gaps_inner" {
-        bindsym plus  gaps inner current plus 1
-        bindsym minus gaps inner current minus 1
-        bindsym 0     gaps inner current set 0
 
-        bindsym Shift+plus  gaps inner all plus 1
-        bindsym Shift+minus gaps inner all minus 1
-        bindsym Shift+0     gaps inner all set 0
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_outer" {
-        bindsym plus  gaps outer current plus 1
-        bindsym minus gaps outer current minus 1
-        bindsym 0     gaps outer current set 0
-
-        bindsym Shift+plus  gaps outer all plus 1
-        bindsym Shift+minus gaps outer all minus 1
-        bindsym Shift+0     gaps outer all set 0
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-
-# screen off | sleep | shutdown(time unit: seconds)
-#exec --no-startup-id xset dpms 300 1357 6789
-exec --no-startup-id xset dpms 0 0 0
 
 #*********************************************电源管理*************************************
 # exit i3 (logs you out of your X session)
@@ -927,23 +971,22 @@ exec --no-startup-id xinput --set-prop 'Synaptics TM3072-003' 'Coordinate Transf
 
 #*********************************************电源管理j4-make-config配色*************************************
 
-# 交互式选择
-# $  ./j4-make-config -i 
+# 交互式选择  goole, greenish, tango-jungle
+# $  ./j4-make-config -i
 
 # class                 border  backgr. text    indicator
-client.focused          #4E9C00 #4E9C00 #FFFFFF #FFFFFF
-client.focused_inactive #1B3600 #1B3600 #888888 #FFFFFF
-client.unfocused        #333333 #333333 #888888 #FFFFFF
-client.urgent           #C20000 #C20000 #FFFFFF #FFFFFF
-
+client.focused          #383838 #8CFF00 #383838 #EFEFEF
+client.focused_inactive #333333 #333333 #ffffff #EFEFEF
+client.unfocused        #333333 #333333 #888888 #EFEFEF
+client.urgent           #2f343a #900000 #ffffff #900000
 colors {
-	separator  #888888
-	background #333333
-	statusline #FFFFFF
-	focused_workspace  #4E9C00 #4E9C00 #FFFFFF
-	active_workspace   #333333 #333333 #FFFFFF
-	inactive_workspace #333333 #333333 #888888
-	urgent_workspace   #C20000 #C20000 #FFFFFF
+	background #0D0D0D
+	statusline #EFEFEF
+	separator #666666
+	focused_workspace  #4F4F4F #4F4F4F #8CFF00
+	active_workspace   #0D0D0D #0D0D0D #EFEFEF
+	inactive_workspace #0D0D0D #0D0D0D #EFEFEF
+	urgent_workspace   #2f343a #900000 #ffffff
 }
 
 
