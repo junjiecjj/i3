@@ -198,8 +198,8 @@ for_window [class="netease-cloud-music"] floating enable
 
 bar {
     # i3bar_command $HOME/.config/polybar/launch.sh
-    status_command i3status
-    status_command i3status -c  /home/jack/.config/i3/i3status.conf
+    # status_command i3status
+    # status_command i3status -c  /home/jack/.config/i3/i3status.conf
     status_command i3blocks -c  /home/jack/.config/i3/i3blocks.conf
     i3bar_command i3bar --transparency
 
@@ -278,6 +278,7 @@ bar {
 # bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec st
 bindsym $mod+x exec xterm
+bindsym $mod+y exec yakuake
 
 # dmenu (a program launcher)
 bindsym $mod+i exec --no-startup-id i3-dmenu-desktop
@@ -404,7 +405,7 @@ set $ws6 6:陆
 set $ws7 7:柒
 set $ws8 8:捌
 set $ws9 9:玖
-set $ws10 0:10
+set $ws10 0:拾
 # workspace names
 # set $ws1 1:
 # set $ws2 2:
