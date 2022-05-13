@@ -139,6 +139,8 @@ mode "$mode_display" {
 # new_float normal|none|pixel
 # new_float normal|pixel <px>
 
+new_window pixel  3
+new_float  pixel  3
 
 # 设置新的窗口的边界宽度，效果是不显示窗口的title。
 default_border pixel  1
@@ -835,7 +837,7 @@ exec --no-startup-id xset dpms 0 0 0
 #*********************************************电源管理*************************************
 # exit i3 (logs you out of your X session)
 # bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Control+Escape exec "i3-nagbar -t warning -m 'Do you really want to exit i3? ' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Control+Escape exec "i3-nagbar -t warning -m '您确定离开i3吗? ' -B '是的,离开i3' 'i3-msg exit'"
 
 
 
