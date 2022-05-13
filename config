@@ -64,7 +64,7 @@ exec_always nitrogen --restore; sleep 2
 exec --no-startup-id redshift-gtk
 
 #===autostart parograms只可以同时启用其中一种===
-exec --no-startup-id   picom --experimental-backends -b
+exec_always --no-startup-id   picom --experimental-backends -b
 # exec --no-startup-id  compton -cCGfF -o 0.38 -O 200 -I 200 -t 0 -l 0 -r 3 -D2 -m 0.88
 
 #登录时 启用窗口透明
@@ -209,8 +209,10 @@ bar {
     # i3bar_command $HOME/.config/polybar/launch.sh
     status_command i3status
     status_command i3blocks
-    status_command i3status -c  /home/jack/.config/i3/i3status.conf
-    status_command i3blocks -c  /home/jack/.config/i3/i3blocks.conf
+    status_command i3status -c   /home/jack/.config/i3/i3status.conf
+    status_command i3blocks -c   /home/jack/.config/i3/i3blocks.conf
+    status_command conky    -c   ~/.config/i3/conkyrc
+
     # i3bar_command i3bar --transparency
     status_command  /home/jack/.config/i3/i3script/net-speed.sh
 
@@ -929,18 +931,19 @@ exec --no-startup-id xinput --set-prop 'Synaptics TM3072-003' 'Coordinate Transf
 # $  ./j4-make-config -i 
 
 # class                 border  backgr. text    indicator
-client.focused          #383838 #8CFF00 #383838 #EFEFEF
-client.focused_inactive #333333 #333333 #ffffff #EFEFEF
-client.unfocused        #333333 #333333 #888888 #EFEFEF
-client.urgent           #2f343a #900000 #ffffff #900000
+client.focused          #4E9C00 #4E9C00 #FFFFFF #FFFFFF
+client.focused_inactive #1B3600 #1B3600 #888888 #FFFFFF
+client.unfocused        #333333 #333333 #888888 #FFFFFF
+client.urgent           #C20000 #C20000 #FFFFFF #FFFFFF
+
 colors {
-	background #0D0D0D
-	statusline #EFEFEF
-	separator #666666
-	focused_workspace  #4F4F4F #4F4F4F #8CFF00
-	active_workspace   #0D0D0D #0D0D0D #EFEFEF
-	inactive_workspace #0D0D0D #0D0D0D #EFEFEF
-	urgent_workspace   #2f343a #900000 #ffffff
+	separator  #888888
+	background #333333
+	statusline #FFFFFF
+	focused_workspace  #4E9C00 #4E9C00 #FFFFFF
+	active_workspace   #333333 #333333 #FFFFFF
+	inactive_workspace #333333 #333333 #888888
+	urgent_workspace   #C20000 #C20000 #FFFFFF
 }
 
 
