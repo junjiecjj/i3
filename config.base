@@ -100,6 +100,9 @@ exec --no-startup-id fcitx
 # 登陆时启动polybar,与bar{}别同时使用
 # exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
+exec --no-startup-id xautolock -time 5 -locker '/usr/bin/betterlockscreen -l' -corners ---- -cornersize 30 &
+exec --no-startup-id betterlockscreen -w dim
+exec --no-startup-id source ~/.fehbg
 
 
 # 下面的例子是一个有VGA和HDMI输出的笔记本使用一个菜单来切换显示输出的开关：
@@ -221,14 +224,14 @@ for_window [class="netease-cloud-music"] floating enable sticky normal
 # 同上，除了匹配时忽略大小写
 # bindsym $mod+x [class="(?i)firefox"] kill
 # 以红色打印 Firefox 窗口的窗口标题
-for_window [class="(?i)google-chrome-stable"] title_format "<span foreground='red'>%title</span>"
-for_window [class="(?i)google-chrome"]        title_format "<span foreground='red'>%title</span>"
+for_window [class="(?i)google-chrome-stable"]    title_format "<span foreground='red'>%title</span>"
+for_window [class="(?i)google-chrome"]           title_format "<span foreground='red'>%title</span>"
 for_window [class="(?i)H[google-chrome]"]        title_format "<span foreground='red'>%title</span>"
-for_window [class="(?i)google chrome"]        title_format "<span foreground='red'>%title</span>"
-for_window [class="(?i)Google Chrome"]        title_format "<span foreground='red'>%title</span>"
-for_window [class="(?i)googlechrome"]        title_format "<span foreground='red'>%title</span>"
-for_window [class="(?i)nm"]                  title_format "<span foreground='red'>%title</span>"
-for_window [class="(?i)st"]                  title_format "<span foreground='#ff3333'>%title</span>"
+for_window [class="(?i)google chrome"]           title_format "<span foreground='red'>%title</span>"
+for_window [class="(?i)Google Chrome"]           title_format "<span foreground='red'>%title</span>"
+for_window [class="(?i)googlechrome"]            title_format "<span foreground='red'>%title</span>"
+for_window [class="(?i)nm"]                      title_format "<span foreground='red'>%title</span>"
+for_window [class="(?i)st"]                      title_format "<span foreground='#ff3333'>%title</span>"
 
 for_window [class="(?i)firefox"]                title_format "<span foreground='red'>%title</span>"
 for_window [class="(?i)spyder"]                 title_format "<span foreground='blue'>%title</span>"
@@ -241,6 +244,7 @@ for_window [class="(?i)netease-cloud-music"]    title_format "<span foreground='
 
 # 以粗体打印所有窗口标题
 for_window [class=".*"] title_format "<b>%title</b>"
+
 #############################
 ### settings for i3-gaps: ###
 #############################
@@ -449,7 +453,7 @@ bindsym $mod+i exec --no-startup-id i3-dmenu-desktop
 # printscreen--scrot(Print=PrtSc/PrintScreen)
 # bindsym $mod+Print exec scrot
 #快速截图
-bindsym --release $mod+Print exec scrot -q 100 -s $HOME/图片/`date +%Y-%m-%d_%H:%M:%S`.png
+bindsym --release $mod+Print exec scrot -cd 5 -q 100 -s $HOME/图片/`date +%Y-%m-%d_%H:%M:%S`.png
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
@@ -960,7 +964,7 @@ bindsym $mod+Control+Escape exec "i3-nagbar -t warning -m '您确定离开i3吗?
 
 
 # win+c可以调出选项，你可以选择锁屏(I/L/X) (E)注销,离开i3 (R)重启 (S)关机 退出选项(Esc)。
-set $mode_system select:[L]slock [X]xscreensaver [I]i3lock [E]离开i3,注销 [R]重启 [S]关机 [H]睡眠 [Esc]exit
+set $mode_system select:[L]slock [X]xscreens [B]betterlock [I]i3lock [E]离开i3,注销 [R]重启 [S]关机 [H]睡眠 [Esc]exit
 bindsym $mod+Control+e mode "$mode_system"
 mode "$mode_system" {
 
@@ -968,7 +972,7 @@ mode "$mode_system" {
     bindsym i exec --no-startup-id i3lock -c '#808080', mode "default"
     bindsym l exec --no-startup-id slock
     bindsym x exec --no-startup-id xscreensaver-command -lock
-
+    bindsym b exec --no-startup-id betterlockscreen -l
     #离开i3,
     bindsym e  exec --no-startup-id i3-msg exit, mode "default"
 
