@@ -5,6 +5,7 @@
 
 # 设置win键为mod键,解析时直接替换文件中的变量。变量扩展不是递归的，因此不可能使用包含另一个变量的值来定义变量。 没有花哨的处理，也绝对没有改变这一点的计划。
 set $mod Mod4
+set $mod1 Mod1
 set $up k
 set $down j
 set $left h
@@ -454,6 +455,12 @@ bindsym $mod+i exec --no-startup-id i3-dmenu-desktop
 # bindsym $mod+Print exec scrot
 #快速截图
 bindsym --release $mod+Print exec scrot -cd 5 -q 100 -s $HOME/图片/`date +%Y-%m-%d_%H:%M:%S`.png
+# Take a full screenshot store in file
+bindsym Print exec --no-startup-id "scrot 'Screenshot_%Y-%m-%d-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES) ; viewnior $$(xdg-user-dir PICTURES)/$f'"
+# Take a screenshot after 5 seconds
+bindsym Mod1+Print exec --no-startup-id "scrot -d 5 'Screenshot_%Y-%m-%d-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES) ; viewnior $$(xdg-user-dir PICTURES)/$f'"
+# Take a full screenshot to clipboard(need xclip installed)
+bindsym control+Print exec --no-startup-id "scrot '/tmp/%F_%T_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'"
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
