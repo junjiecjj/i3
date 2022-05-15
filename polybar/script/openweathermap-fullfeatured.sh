@@ -1,17 +1,8 @@
-#! /usr/bin/env bash
-#########################################################################
-# File Name: openweathermap-fullfeatures.sh
-# Author:陈俊杰
-# mail: 2716705056@qq.com
-# Created Time: 2022年05月12日 星期四 23时14分45秒
-
-# 此程序的功能是：
-#########################################################################
+#!/bin/sh
 
 
 get_icon() {
     case $1 in
-        # Icons for weather-icons
         01d) icon="";;
         01n) icon="";;
         02d) icon="";;
@@ -29,22 +20,6 @@ get_icon() {
         50d) icon="";;
         50n) icon="";;
         *) icon="";
-
-        # Icons for Font Awesome 5 Pro
-        #01d) icon="";;
-        #01n) icon="";;
-        #02d) icon="";;
-        #02n) icon="";;
-        #03d) icon="";;
-        #03n) icon="";;
-        #04*) icon="";;
-        #09*) icon="";;
-        #10d) icon="";;
-        #10n) icon="";;
-        #11*) icon="";;
-        #13*) icon="";;
-        #50*) icon="";;
-        #*) icon="";
     esac
 
     echo $icon
@@ -61,8 +36,8 @@ get_duration() {
 
 }
 
-KEY=""
-CITY=""
+KEY="62628c16e6247d2c1caf0cb398a3dffa"
+CITY="Beijing"
 UNITS="metric"
 SYMBOL="°"
 

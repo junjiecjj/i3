@@ -303,6 +303,9 @@ mode "$mode_gaps_outer" {
 #exec --no-startup-id xset dpms 300 1357 6789
 exec --no-startup-id xset dpms 0 0 0
 
+#======================================================================================================
+### 边框，窗口间距，  over
+#======================================================================================================
 
 
 
@@ -358,16 +361,25 @@ set_from_resource $term_color15    color15
 #==============================================bar =====================================================
 #=================================================================================================================
 
+# Polybar reload
+bindsym $mod1+p exec "$HOME/.config/i3/polybar/i3bar"
+
+bindsym --release Caps_Lock exec pkill -SIGRTMIN+10 i3blocks
+
 bar {
     # i3bar_command $HOME/.config/polybar/launch.sh
-    status_command i3status
-    status_command i3blocks
-    status_command i3status -c   /home/jack/.config/i3/i3status.conf
+    # status_command i3status
+    # status_command i3blocks
+    # status_command i3status -c   /home/jack/.config/i3/i3status.conf
     status_command i3blocks -c   /home/jack/.config/i3/i3blocks.conf
-    status_command conky    -c   ~/.config/i3/conkyrc_bar/conkyrc
+    # status_command conky    -c   ~/.config/i3/conkyrc_bar/conkyrc
+
+    # i3bar_command ~/.config/i3/i3_lemonbar/i3_lemonbar.py
 
     i3bar_command i3bar --transparency
-    status_command  /home/jack/.config/i3/i3script/net-speed.sh
+    # status_command  /home/jack/.config/i3/i3script/net-speed.sh
+    #状态栏实时显示网速
+    # status_command exec  bash ~/.config/i3/i3script/net-speed.sh
 
     position top
     #i3bar 有三种显示模式（dock 停靠，hide 隐藏，invisible 无形）
@@ -404,8 +416,6 @@ bar {
     #分隔符：
     separator_symbol "|"
 
-    #状态栏实时显示网速
-    status_command exec ~/.config/i3/net-speed.sh
     #清除工作区号码，如果指定了名字，清除了挺好的：
     strip_workspace_numbers yes
 
@@ -462,7 +472,7 @@ bindsym Mod1+Print exec --no-startup-id "scrot -d 5 'Screenshot_%Y-%m-%d-%S_$wx$
 # Take a full screenshot to clipboard(need xclip installed)
 bindsym control+Print exec --no-startup-id "scrot '/tmp/%F_%T_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'"
 
-# start dmenu (a program launcher)
+# rofi和dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
 bindsym $mod+s exec --no-startup-id rofi  -show combi
 # amixer
@@ -964,14 +974,16 @@ bindsym $mod+m focus floating; mode "$movefw"
 
 # redshift modes
 bindsym $mod1+r mode "$mode_redshift"
-set $mode_redshift Set colour temperature: (a)uto, (r)eset, (2)500K, (3)000K, (4)000K, (5)000K
+set $mode_redshift 设置色温: (a)uto, (r)重置, (2)500K, (3)000K, (35)00, (4)000K, (45)00, (5)000K
 set $kill_redshift pkill -9 redshift;
 mode "$mode_redshift" {
     bindsym a exec --no-startup-id "$kill_redshift redshift -P -t 5000:4000", mode "default"
     bindsym r exec --no-startup-id "$kill_redshift redshift -x", mode "default"
     bindsym 2 exec --no-startup-id "$kill_redshift redshift -P -O 2500", mode "default"
     bindsym 3 exec --no-startup-id "$kill_redshift redshift -P -O 3000", mode "default"
+    bindsym 4 exec --no-startup-id "$kill_redshift redshift -P -O 3500", mode "default"
     bindsym 4 exec --no-startup-id "$kill_redshift redshift -P -O 4000", mode "default"
+    bindsym 4 exec --no-startup-id "$kill_redshift redshift -P -O 4500", mode "default"
     bindsym 5 exec --no-startup-id "$kill_redshift redshift -P -O 5000", mode "default"
  
     # exit mode: "Enter" or "Escape"
@@ -1077,21 +1089,6 @@ exec --no-startup-id xinput --set-prop 'Synaptics TM3072-003' 'Coordinate Transf
 # 交互式选择  goole, greenish, tango-jungle
 # $  ./j4-make-config -i
 
-# class                 border  backgr. text    indicator
-client.focused          #0088CC #0088CC #ffffff #dddddd
-#client.focused_inactive #0C2D3C #0C2D3C #888888 #484e50 # I don't like it that way
-client.focused_inactive #333333 #333333 #888888 #292d2e
-client.unfocused        #333333 #333333 #888888 #292d2e
-client.urgent           #2f343a #900000 #ffffff #900000
-colors {
-	background #222222
-	statusline #dddddd
-	separator #666666
-	focused_workspace #0088CC #0088CC #ffffff
-	active_workspace #333333 #333333 #888888
-	inactive_workspace #333333 #333333 #888888
-	urgent_workspace   #2f343a #900000 #ffffff
-}
 
 
 
