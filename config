@@ -100,6 +100,9 @@ exec --no-startup-id fcitx
 # 登陆时启动polybar,与bar{}别同时使用
 # exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
+exec --no-startup-id xautolock -time 5 -locker '/usr/bin/betterlockscreen -l' -corners ---- -cornersize 30 &
+exec --no-startup-id betterlockscreen -w dim
+exec --no-startup-id source ~/.fehbg
 
 
 # 下面的例子是一个有VGA和HDMI输出的笔记本使用一个菜单来切换显示输出的开关：
@@ -961,7 +964,7 @@ bindsym $mod+Control+Escape exec "i3-nagbar -t warning -m '您确定离开i3吗?
 
 
 # win+c可以调出选项，你可以选择锁屏(I/L/X) (E)注销,离开i3 (R)重启 (S)关机 退出选项(Esc)。
-set $mode_system select:[L]slock [X]xscreensaver [I]i3lock [E]离开i3,注销 [R]重启 [S]关机 [H]睡眠 [Esc]exit
+set $mode_system select:[L]slock [X]xscreens [B]betterlock [I]i3lock [E]离开i3,注销 [R]重启 [S]关机 [H]睡眠 [Esc]exit
 bindsym $mod+Control+e mode "$mode_system"
 mode "$mode_system" {
 
@@ -969,7 +972,7 @@ mode "$mode_system" {
     bindsym i exec --no-startup-id i3lock -c '#808080', mode "default"
     bindsym l exec --no-startup-id slock
     bindsym x exec --no-startup-id xscreensaver-command -lock
-
+    bindsym b exec --no-startup-id betterlockscreen -l
     #离开i3,
     bindsym e  exec --no-startup-id i3-msg exit, mode "default"
 
