@@ -559,8 +559,8 @@ bindsym $mod+Control+b exec feh --recursive --randomize --bg-fill /home/jack/图
 bindsym $mod+Control+r restart
 
 #开启/关闭触摸板
-# bindsym $mod+Control+t exec --no-startup-id $HOME/.config/i3/i3script/touchpad.sh
-bindsym $mod+Control+t exec --no-startup-id $HOME/.config/i3/i3script/toggletouchpad.sh
+bindsym $mod+Control+t exec --no-startup-id bash $HOME/.config/i3/i3script/touchpad.sh
+# bindsym $mod+Control+t exec --no-startup-id $HOME/.config/i3/i3script/toggletouchpad.sh
 
 # wps, et, wpp
 bindsym $mod+Shift+w exec wps
@@ -962,6 +962,28 @@ mode "$movefw" {
 bindsym $mod+m focus floating; mode "$movefw"
 
 
+# redshift modes
+bindsym $mod1+r mode "$mode_redshift"
+set $mode_redshift Set colour temperature: (a)uto, (r)eset, (2)500K, (3)000K, (4)000K, (5)000K
+set $kill_redshift pkill -9 redshift;
+mode "$mode_redshift" {
+    bindsym a exec --no-startup-id "$kill_redshift redshift -P -t 5000:4000", mode "default"
+    bindsym r exec --no-startup-id "$kill_redshift redshift -x", mode "default"
+    bindsym 2 exec --no-startup-id "$kill_redshift redshift -P -O 2500", mode "default"
+    bindsym 3 exec --no-startup-id "$kill_redshift redshift -P -O 3000", mode "default"
+    bindsym 4 exec --no-startup-id "$kill_redshift redshift -P -O 4000", mode "default"
+    bindsym 5 exec --no-startup-id "$kill_redshift redshift -P -O 5000", mode "default"
+ 
+    # exit mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+
+# kill focused window
+bindsym --release $mod1+q exec --no-startup-id xkill
+
+
 
 #*********************************************电源管理*************************************
 # exit i3 (logs you out of your X session)
@@ -1056,17 +1078,18 @@ exec --no-startup-id xinput --set-prop 'Synaptics TM3072-003' 'Coordinate Transf
 # $  ./j4-make-config -i
 
 # class                 border  backgr. text    indicator
-client.focused          #383838 #8CFF00 #383838 #EFEFEF
-client.focused_inactive #333333 #333333 #ffffff #EFEFEF
-client.unfocused        #333333 #333333 #888888 #EFEFEF
+client.focused          #0088CC #0088CC #ffffff #dddddd
+#client.focused_inactive #0C2D3C #0C2D3C #888888 #484e50 # I don't like it that way
+client.focused_inactive #333333 #333333 #888888 #292d2e
+client.unfocused        #333333 #333333 #888888 #292d2e
 client.urgent           #2f343a #900000 #ffffff #900000
 colors {
-	background #0D0D0D
-	statusline #EFEFEF
+	background #222222
+	statusline #dddddd
 	separator #666666
-	focused_workspace  #4F4F4F #4F4F4F #8CFF00
-	active_workspace   #0D0D0D #0D0D0D #EFEFEF
-	inactive_workspace #0D0D0D #0D0D0D #EFEFEF
+	focused_workspace #0088CC #0088CC #ffffff
+	active_workspace #333333 #333333 #888888
+	inactive_workspace #333333 #333333 #888888
 	urgent_workspace   #2f343a #900000 #ffffff
 }
 
