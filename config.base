@@ -94,7 +94,7 @@ exec --no-startup-id copexec_always --no-startup-id numlockx on # 开启小键�
 exec --no-startup-id fcitx
 # exec --no-startup-id fcitx-sogoupingyin
 
-
+exec --no-startup-id "setxkbmap -layout us,ru -option 'grp:ctrl_alt_toggle'"
 # fcitx5 输入法
 # exec --no-startup-id fcitx5 &
 
@@ -370,8 +370,8 @@ bar {
     # i3bar_command $HOME/.config/polybar/launch.sh
     # status_command i3status
     # status_command i3blocks
-    status_command i3status -c   /home/jack/.config/i3/i3status.conf
-    # status_command i3blocks -c   /home/jack/.config/i3/i3blocks.conf
+    # status_command i3status -c   /home/jack/.config/i3/i3status.conf
+    status_command i3blocks -c   /home/jack/.config/i3/i3blocks.conf
     # status_command conky    -c   ~/.config/i3/conkyrc_bar/conkyrc
 
     # i3bar_command ~/.config/i3/i3_lemonbar/i3_lemonbar.py
