@@ -370,8 +370,8 @@ bar {
     # i3bar_command $HOME/.config/polybar/launch.sh
     # status_command i3status
     # status_command i3blocks
-    # status_command i3status -c   /home/jack/.config/i3/i3status.conf
-    status_command i3blocks -c   /home/jack/.config/i3/i3blocks.conf
+    status_command i3status -c   /home/jack/.config/i3/i3status.conf
+    # status_command i3blocks -c   /home/jack/.config/i3/i3blocks.conf
     # status_command conky    -c   ~/.config/i3/conkyrc_bar/conkyrc
 
     # i3bar_command ~/.config/i3/i3_lemonbar/i3_lemonbar.py
@@ -592,7 +592,7 @@ set $ws7 7:柒
 set $ws8 8:捌
 set $ws9 9:玖
 set $ws10 0:拾
-# workspace names
+# workspace names e "
 # set $ws1 1:
 # set $ws2 2:
 # set $ws3 3:
@@ -1089,6 +1089,20 @@ exec --no-startup-id xinput --set-prop 'Synaptics TM3072-003' 'Coordinate Transf
 # 交互式选择  goole, greenish, tango-jungle
 # $  ./j4-make-config -i
 
+# class                 border  backgr. text    indicator
+client.focused          #383838 #8CFF00 #383838 #EFEFEF
+client.focused_inactive #333333 #333333 #ffffff #EFEFEF
+client.unfocused        #333333 #333333 #888888 #EFEFEF
+client.urgent           #2f343a #900000 #ffffff #900000
+colors {
+	background #0D0D0D
+	statusline #EFEFEF
+	separator #666666
+	focused_workspace  #4F4F4F #4F4F4F #8CFF00
+	active_workspace   #0D0D0D #0D0D0D #EFEFEF
+	inactive_workspace #0D0D0D #0D0D0D #EFEFEF
+	urgent_workspace   #2f343a #900000 #ffffff
+}
 
 
 
