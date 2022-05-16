@@ -481,13 +481,16 @@ bindsym $mod+y exec yakuake
 # printscreen--scrot(Print=PrtSc/PrintScreen)
 # bindsym $mod+Print exec scrot
 #快速截图
-bindsym --release $mod+Print exec scrot -cd 5 -q 100 -s $HOME/图片/`date +%Y-%m-%d_%H:%M:%S`.png
+bindsym --release $mod+Print exec "scrot -cd 5 -q 100 -s $HOME/图片/`date +%Y-%m-%d_%H:%M:%S`.png"
 # Take a full screenshot store in file
 bindsym Print exec --no-startup-id "scrot 'Screenshot_%Y-%m-%d-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES) ; viewnior $$(xdg-user-dir PICTURES)/$f'"
-# Take a screenshot after 5 seconds
-bindsym Mod1+Print exec --no-startup-id "scrot -d 5 'Screenshot_%Y-%m-%d-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES) ; viewnior $$(xdg-user-dir PICTURES)/$f'"
+# Take a screenshot after 5 seconds,ScrollLock在i3wm中为Scroll_Lock
+bindsym $mod+Scroll_Lock exec --no-startup-id "scrot -cd 5 'Screenshot_%Y-%m-%d-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES) ; viewnior $$(xdg-user-dir PICTURES)/$f'"
 # Take a full screenshot to clipboard(need xclip installed)
 bindsym control+Print exec --no-startup-id "scrot '/tmp/%F_%T_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'"
+
+# win+shift+Print深度截图
+bindsym $mod+Shift+Print exec  --no-startup-id deepin-screenshot
 
 # dmenu (a program launcher)
 bindsym $mod+i exec --no-startup-id i3-dmenu-desktop
@@ -524,6 +527,24 @@ bindsym $mod+Control+p exec amixer set Master playback 5+
 # 我使用 xbacklight 来调节亮度，你也可以选择安装其他的
 bindsym XF86MonBrightnessUp exec xbacklight -inc 5
 bindsym XF86MonBrightnessDown exec xbacklight -dec 5
+
+
+# 音乐播放器 controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# 更换壁纸
+bindsym $mod+Control+b exec feh --recursive --randomize --bg-fill /home/jack/图片/Wallpapers/
+
+
+
+#开启/关闭触摸板
+bindsym XF86TouchpadToggle exec  exec --no-startup-id bash $HOME/.config/i3/i3script/touchpad.sh
+bindsym $mod+Control+t exec --no-startup-id bash $HOME/.config/i3/i3script/touchpad.sh
+
+
 
 
 # 常用应用
@@ -566,15 +587,6 @@ mode "$mode_launcher" {
 
 
 
-
-# 更换壁纸
-bindsym $mod+Control+b exec feh --recursive --randomize --bg-fill /home/jack/图片/Wallpapers/
-
-
-
-#开启/关闭触摸板
-bindsym $mod+Control+t exec --no-startup-id bash $HOME/.config/i3/i3script/touchpad.sh
-# bindsym $mod+Control+t exec --no-startup-id $HOME/.config/i3/i3script/toggletouchpad.sh
 
 # wps, et, wpp
 bindsym $mod+Shift+w exec wps
