@@ -94,7 +94,6 @@ exec --no-startup-id copexec_always --no-startup-id numlockx on # 开启小键�
 exec --no-startup-id fcitx
 # exec --no-startup-id fcitx-sogoupingyin
 
-exec --no-startup-id "setxkbmap -layout us,ru -option 'grp:ctrl_alt_toggle'"
 # fcitx5 输入法
 # exec --no-startup-id fcitx5 &
 
@@ -362,9 +361,17 @@ set_from_resource $term_color15    color15
 #=================================================================================================================
 
 # Polybar reload
-bindsym $mod1+p exec "$HOME/.config/i3/polybar/i3bar"
+bindsym mod1+p exec "$HOME/.config/i3/polybar/i3bar"
 
+
+
+
+exec --no-startup-id "setxkbmap -layout us,ru -option 'grp:ctrl_alt_toggle'"
+
+#i3block插件需要的信号配置 kbdd_layout
 bindsym --release Caps_Lock exec pkill -SIGRTMIN+10 i3blocks
+bindsym --release Num_Lock  exec pkill -SIGRTMIN+10 i3blocks
+bindsym --release Scroll_Lock  exec pkill -SIGRTMIN+10 i3blocks
 
 bar {
     # i3bar_command $HOME/.config/polybar/launch.sh
@@ -403,6 +410,7 @@ bar {
     # 禁用系统托盘
     # tray_output none
 
+    # 遵循费兹法则
     #托盘内容之间的间距：
     tray_padding 0
 
@@ -411,7 +419,9 @@ bar {
 
     #设置字体：
     font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-    font pango:CaskaydiaCove Nerd Font Mono SemiLight 10;Monaco for Powerline 10;wqy-zenhei 10
+    font pango:CaskaydiaCove Nerd Font Mono SemiLight 10, Icons 8
+    font pango:Monaco for Powerline 10, Icons 8
+    font pango:wqy-zenhei 10 , Icons 8
 
     #分隔符：
     separator_symbol "|"
@@ -554,19 +564,12 @@ mode "$mode_launcher" {
 # bindsym $mod+Shift+v exec VBoxManage startvm "win10" --type gui
 
 
-# kill focused window 关闭窗口: $mod+Shift+Q
-bindsym $mod+Shift+q kill
 
-# reload the configuration file
-bindsym $mod+Control+c reload
 
 # 更换壁纸
 bindsym $mod+Control+b exec feh --recursive --randomize --bg-fill /home/jack/图片/Wallpapers/
 
 
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-# 重启i3: $mod+Shift+R
-bindsym $mod+Control+r restart
 
 #开启/关闭触摸板
 bindsym $mod+Control+t exec --no-startup-id bash $HOME/.config/i3/i3script/touchpad.sh
@@ -992,6 +995,16 @@ mode "$mode_redshift" {
 }
 
 
+# kill focused window 关闭窗口: $mod+Shift+Q
+bindsym $mod+Shift+q kill
+
+# reload the configuration file
+bindsym $mod+Control+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+# 重启i3: $mod+Shift+R
+bindsym $mod+Control+r restart
+
+
 # kill focused window
 bindsym --release $mod1+q exec --no-startup-id xkill
 
@@ -1002,7 +1015,8 @@ bindsym --release $mod1+q exec --no-startup-id xkill
 # bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 bindsym $mod+Control+Escape exec "i3-nagbar -t warning -m '您确定离开i3吗? ' -B '是的,离开i3' 'i3-msg exit'"
 
-
+#配合i3block使用
+bindsym Control+Mod1+Delete exec  bash  ~/.config/i3/i3blockScripts/shutdown_menu.sh
 
 # win+c可以调出选项，你可以选择锁屏(I/L/X) (E)注销,离开i3 (R)重启 (S)关机 退出选项(Esc)。
 set $mode_system select:[L]slock [X]xscreens [B]betterlock [I]i3lock [E]离开i3,注销 [R]重启 [S]关机 [H]睡眠 [Esc]exit
@@ -1045,7 +1059,7 @@ mode "$mode_system" {
 
 
 # Set shut down, restart and locking features
-bindsym $mod+0 mode "$mode_system3"
+bindsym $mod+Mod1+Escape mode "$mode_system3"
 set $mode_system3 (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system3" {
     bindsym l exec --no-startup-id i3exit lock, mode "default"
