@@ -38,8 +38,16 @@ exec --no-startup-id xrandr --output eDP-1 --primary
 # exec --no-startup-id  xrandr --output DP-1-9 --mode 1920x1080  --right-of DP-1-8  --auto
 # exec --no-startup-id xrandr  --output eDP-1 --off
 
+
+# 如果为笔记本外接1个显示器
+# exec --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --primary
 #exec --no-startup-id xrandr --output HDMI1 1920*1080 --right-of eDP1
 
+
+
+# 如果为台式机外接2个显示器
+# exec --no-startup-id xrandr --output HDM-1 --mode 1920x1080 --primary
+# exec --no-startup-id xrandr --output HDMI-2  1920*1080 --right-of HDM-1
 
 # $i3-background
 exec_always --no-startup-id xsetroot -solid '#005577'
@@ -419,9 +427,10 @@ bar {
 
     #设置字体：
     font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-    font pango:CaskaydiaCove Nerd Font Mono SemiLight 10, Icons 8
-    font pango:Monaco for Powerline 10, Icons 8
-    font pango:wqy-zenhei 10 , Icons 8
+    # font pango:CaskaydiaCove Nerd Font Mono SemiLight 10
+    font pango:System San Francisco Display 11
+    # font pango:Monaco for Powerline 10
+    # font pango:wqy-zenhei 10
 
     #分隔符：
     separator_symbol "|"
@@ -468,8 +477,6 @@ bindsym $mod+Return exec st
 bindsym $mod+x exec xterm
 bindsym $mod+y exec yakuake
 
-# dmenu (a program launcher)
-bindsym $mod+i exec --no-startup-id i3-dmenu-desktop
 
 # printscreen--scrot(Print=PrtSc/PrintScreen)
 # bindsym $mod+Print exec scrot
@@ -482,20 +489,18 @@ bindsym Mod1+Print exec --no-startup-id "scrot -d 5 'Screenshot_%Y-%m-%d-%S_$wx$
 # Take a full screenshot to clipboard(need xclip installed)
 bindsym control+Print exec --no-startup-id "scrot '/tmp/%F_%T_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'"
 
+# dmenu (a program launcher)
+bindsym $mod+i exec --no-startup-id i3-dmenu-desktop
 # rofi和dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
-bindsym $mod+s exec --no-startup-id rofi  -show combi
-# amixer
-bindsym $mod+F3 exec amixer set Master 5%+
-bindsym $mod+F2 exec amixer set Master 5%-
+bindsym $mod+r exec --no-startup-id rofi  -show combi
+
 bindsym $mod+F1 exec amixer set Master toggle
 
 
 # 设置快捷键来显示隐藏 polybar
 # bindsym $mod+p exec --no-startup-id polybar-msg cmd toggle
 
-# 启用基于 rofi 的 powermenu
-# bindsym $mod+q exec --no-startup-id "$HOME/.config/rofi/powermenu/powermenu.sh"
 
 
 # Use pactl to adjust volume in PulseAudio.
@@ -506,6 +511,11 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+
+
+# 音量调节
+bindsym $mod+F3 exec amixer set Master 5%+
+bindsym $mod+F2 exec amixer set Master 5%-
 bindsym $mod+Control+o exec amixer set Master playback 5-
 bindsym $mod+Control+p exec amixer set Master playback 5+
 #bindsym $mod+o exec amixer set Master toggle
@@ -515,19 +525,27 @@ bindsym $mod+Control+p exec amixer set Master playback 5+
 bindsym XF86MonBrightnessUp exec xbacklight -inc 5
 bindsym XF86MonBrightnessDown exec xbacklight -dec 5
 
-#锁屏等 i3lock
-mode "i3lock: Return to lock/Escape to Cancel" {
-            bindsym Return mode "default" exec i3lock -I 600 -i ~/图片/1.jpg
-            bindsym Escape mode "default"
-    }
 
-bindsym $mod+F12 mode "i3lock: Return to lock/Escape to Cancel"
-# bindsym $mod+Control+l mode "i3lock: Return to lock/Escape to Cancel"
-bindsym $mod+Control+l exec slock
-bindsym $mod+Control+x exec xscreensaver-command  -lock
+# 音乐播放器 controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# 更换壁纸
+bindsym $mod+Control+b exec feh --recursive --randomize --bg-fill /home/jack/图片/Wallpapers/
+
+
+
+#开启/关闭触摸板
+bindsym XF86TouchpadToggle exec  exec --no-startup-id bash $HOME/.config/i3/i3script/touchpad.sh
+bindsym $mod+Control+t exec --no-startup-id bash $HOME/.config/i3/i3script/touchpad.sh
+
+
+
 
 # 常用应用
-set $mode_launcher 应用:[g]谷歌浏览器 [n]文件夹 [t]Typora [p]Spyder [q]QQ [c]微信
+set $mode_launcher [g]谷歌浏览器 [n]文件夹[s]flameshot [t]Typora [p]Spyder [q]QQ [c]微信
 bindsym $mod+o mode "$mode_launcher"
 
 mode "$mode_launcher" {
@@ -536,6 +554,7 @@ mode "$mode_launcher" {
     bindsym g exec google-chrome-stable
     bindsym n exec nautilus
     bindsym t exec typora
+    bindsym Shift+t exec thunar
     bindsym p exec spyder
     bindsym q exec /usr/local/bin/qq
     bindsym c exec /opt/deepinwine/apps/Deepin-WeChat/run.sh
@@ -565,15 +584,6 @@ mode "$mode_launcher" {
 
 
 
-
-# 更换壁纸
-bindsym $mod+Control+b exec feh --recursive --randomize --bg-fill /home/jack/图片/Wallpapers/
-
-
-
-#开启/关闭触摸板
-bindsym $mod+Control+t exec --no-startup-id bash $HOME/.config/i3/i3script/touchpad.sh
-# bindsym $mod+Control+t exec --no-startup-id $HOME/.config/i3/i3script/toggletouchpad.sh
 
 # wps, et, wpp
 bindsym $mod+Shift+w exec wps
@@ -707,7 +717,7 @@ bindsym $mod+e focus child
 #=============================================================================================================================================
 
 
-# move focused container to workspace 
+# move focused container to workspace
 # 将焦点窗口移动至其他工作空间: $mod+Shift+$num
 bindsym $mod+Shift+1 move container to workspace  $ws1
 bindsym $mod+Shift+2 move container to workspace  $ws2
@@ -896,10 +906,12 @@ bindsym $mod+Mod1+x layout toggle  tabbed splith splitv
 
 
 # 使当前聚焦的窗口成为便笺簿
-bindsym $mod+Shift+minus move scratchpad
+# bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+Insert move scratchpad
 
 # 显示第一个便笺簿窗口
-bindsym $mod+minus scratchpad show
+# bindsym $mod+minus scratchpad show
+bindsym $mod+Delete scratchpad show
 # hide | show window(minus is "-" and plus is "+".)
 # 此时执行Win + Shift + Space键即可将其恢复成普通窗口
 
@@ -922,7 +934,7 @@ bindsym $mod+f fullscreen toggle
 # resize window (you can also use the mouse for that)
 # resize模式(用于在tiling模式下调整各窗口的占用空间,使用J/K/L/;调整): $mod+R
 set $resizew 调整窗口大小:[H/Left]变窄 [L/Right]变宽 [K/Up]变矮 [J/Down]变长长
-bindsym $mod+r mode "$resizew"
+bindsym $mod+s mode "$resizew"
 mode "$resizew" {
         # These bindings trigger as soon as you enter the resize mode
 
@@ -948,23 +960,33 @@ mode "$resizew" {
 }
 
 
+bindsym  $mod+minus    resize   shrink width 5 px or 5 ppt
+bindsym  $mod+equal    resize   grow   width 5 px or 5 ppt
+
+
 # move floating window
 set $movefw   快速移动浮动窗口:[k]向上 [j]向下 [h]左 [l]右
 mode "$movefw" {
-    bindsym k    move up 30px
-    bindsym h    move left 30px
-    bindsym j    move down 30px
-    bindsym l    move right 30px
+    bindsym k           move up     20px
+    bindsym h           move left   20px
+    bindsym j           move down   20px
+    bindsym l           move right  20px
 
-    bindsym Up     move up 20px
-    bindsym Left   move left 20px
-    bindsym Down   move down 20px
-    bindsym Right  move right 20px
+    bindsym Shift+k     move up   40px
+    bindsym Shift+h     move left 40px
+    bindsym Shift+j     move down 40px
+    bindsym Shift+l     move right40px
 
-    bindsym Shift+Up     move up   40px
-    bindsym Shift+Left   move left 40px
-    bindsym Shift+Down   move down 40px
-    bindsym Shift+Right  move right 40px
+    bindsym Up          move up 40px
+    bindsym Left        move left 40px
+    bindsym Down        move down 40px
+    bindsym Right       move right 40px
+
+    bindsym Shift+Up     move up   50px
+    bindsym Shift+Left   move left 50px
+    bindsym Shift+Down   move down 50px
+    bindsym Shift+Right  move right 50px
+
 
 
     bindsym $mod+m mode "default"
@@ -988,7 +1010,7 @@ mode "$mode_redshift" {
     bindsym 4 exec --no-startup-id "$kill_redshift redshift -P -O 4000", mode "default"
     bindsym 4 exec --no-startup-id "$kill_redshift redshift -P -O 4500", mode "default"
     bindsym 5 exec --no-startup-id "$kill_redshift redshift -P -O 5000", mode "default"
- 
+
     # exit mode: "Enter" or "Escape"
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -1009,6 +1031,17 @@ bindsym $mod+Control+r restart
 bindsym --release $mod1+q exec --no-startup-id xkill
 
 
+#********************************************* 锁屏等 *************************************
+#锁屏等 i3lock
+mode "i3lock: Return to lock/Escape to Cancel" {
+            bindsym Return mode "default" exec i3lock -I 600 -i ~/图片/Wallpapers/wallhaven-nzmm3g.jpg
+            bindsym Escape mode "default"
+    }
+
+bindsym $mod+F12 mode "i3lock: Return to lock/Escape to Cancel"
+# bindsym $mod+Control+l mode "i3lock: Return to lock/Escape to Cancel"
+bindsym $mod+Control+l exec slock
+bindsym $mod+Control+x exec xscreensaver-command  -lock
 
 #*********************************************电源管理*************************************
 # exit i3 (logs you out of your X session)
@@ -1056,11 +1089,11 @@ mode "$mode_system" {
     # bindsym p exec --no-startup-id systemctl poweroff, mode "default"
     # bindsym p exec --no-startup-id halt, mode "default"
     # bindsym p exec --no-startup-id poweroff, mode "default"
-
+}
 
 # Set shut down, restart and locking features
+set $mode_system3 [l]ock [e]xit switch_[u]ser [s]uspend [h]ibernate [r]eboot [Shift+s]hutdown
 bindsym $mod+Mod1+Escape mode "$mode_system3"
-set $mode_system3 (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system3" {
     bindsym l exec --no-startup-id i3exit lock, mode "default"
     bindsym s exec --no-startup-id i3exit suspend, mode "default"
