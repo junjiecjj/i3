@@ -515,28 +515,28 @@ bindsym $mod+r exec --no-startup-id rofi  -show combi
 
 
 
-# Use pactl to adjust volume in PulseAudio.
+# Use pactl to adjust volume in PulseAudio. && pkill -RTMIN+1 i3blocks是为了配合使用i3block状态栏[volume-pulseaudio]加的
 # 我使用的是 pulseaudio，所以我使用 pactl 来调节音量
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym   $mod+Control+equal         exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +8% && $refresh_i3status
-bindsym   $mod+Control+minus         exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -8% && $refresh_i3status
-bindsym   $mod+Control+BackSpace     exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym   $mod+Control+equal         exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +8% && $refresh_i3status  && pkill -RTMIN+1 i3blocks
+bindsym   $mod+Control+minus         exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -8% && $refresh_i3status  && pkill -RTMIN+1 i3blocks
+bindsym   $mod+Control+BackSpace     exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status  && pkill -RTMIN+1 i3blocks
 
 
-bindsym XF86AudioRaiseVolume       exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +8% && $refresh_i3status
-bindsym XF86AudioLowerVolume       exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -8% && $refresh_i3status
-bindsym XF86AudioMute              exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute           exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86AudioRaiseVolume       exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +8% && $refresh_i3status  && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioLowerVolume       exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -8% && $refresh_i3status  && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioMute              exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status  && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioMicMute           exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status  && pkill -RTMIN+1 i3blocks
 
 
 
 # 音量调节
-bindsym $mod+F3                exec amixer set Master 5%+                    umute && $refresh_i3status
-bindsym $mod+F2                exec amixer set Master 5%-                    umute && $refresh_i3status
-bindsym $mod+F1                exec amixer -D pulse set Master 1+ toggle     umute && $refresh_i3status
-bindsym $mod+Shift+minus       exec amixer set Master playback 5-            umute && $refresh_i3status
-bindsym $mod+Shift+equal       exec amixer set Master playback 5+            umute && $refresh_i3status
-bindsym $mod+Shift+BackSpace   exec amixer -D pulse set Master 1+ toggle     umute && $refresh_i3status
+bindsym $mod+F3                exec amixer set Master 5%+                    umute && $refresh_i3status  && pkill -RTMIN+1 i3blocks
+bindsym $mod+F2                exec amixer set Master 5%-                    umute && $refresh_i3status  && pkill -RTMIN+1 i3blocks
+bindsym $mod+F1                exec amixer -D pulse set Master 1+ toggle     umute && $refresh_i3status  && pkill -RTMIN+1 i3blocks
+bindsym $mod+Shift+minus       exec amixer set Master playback 5-            umute && $refresh_i3status  && pkill -RTMIN+1 i3blocks
+bindsym $mod+Shift+equal       exec amixer set Master playback 5+            umute && $refresh_i3status  && pkill -RTMIN+1 i3blocks
+bindsym $mod+Shift+BackSpace   exec amixer -D pulse set Master 1+ toggle     umute && $refresh_i3status  && pkill -RTMIN+1 i3blocks
 #bindsym $mod+o exec amixer set Master toggle
 #bindsym $mod+p exec amixer set PCM toggle
 
@@ -1083,7 +1083,7 @@ bindsym $mod+Control+x exec xscreensaver-command  -lock
 bindsym $mod+Control+Escape exec "i3-nagbar -t warning -m '您确定离开i3吗? ' -B '是的,离开i3' 'i3-msg exit'"
 
 #配合i3block使用
-bindsym Control+Mod1+Delete exec  bash  ~/.config/i3/i3blockScripts/shutdown_menu.sh
+bindsym $mod+Control+Delete exec  bash  ~/.config/i3/i3blockScripts/shutdown_menu.sh
 
 # win+c可以调出选项，你可以选择锁屏(I/L/X) (E)注销,离开i3 (R)重启 (S)关机 退出选项(Esc)。
 set $mode_system select:[L]slock [X]xscreens [B]betterlock [I]i3lock [E]离开i3,注销 [R]重启 [S]关机 [H]睡眠 [Esc]exit
