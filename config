@@ -518,19 +518,25 @@ bindsym $mod+r exec --no-startup-id rofi  -show combi
 # Use pactl to adjust volume in PulseAudio.
 # 我使用的是 pulseaudio，所以我使用 pactl 来调节音量
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume       exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume       exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym   $mod+Control+equal         exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +8% && $refresh_i3status
+bindsym   $mod+Control+minus         exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -8% && $refresh_i3status
+bindsym   $mod+Control+BackSpace     exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+
+
+bindsym XF86AudioRaiseVolume       exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +8% && $refresh_i3status
+bindsym XF86AudioLowerVolume       exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -8% && $refresh_i3status
 bindsym XF86AudioMute              exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute           exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 
 
 # 音量调节
-bindsym $mod+F3        exec amixer set Master 5%+ && $refresh_i3status
-bindsym $mod+F2        exec amixer set Master 5%- && $refresh_i3status
-bindsym $mod+F1        exec amixer set Master toggle && $refresh_i3status
-bindsym $mod+Control+o exec amixer set Master playback 5- && $refresh_i3status
-bindsym $mod+Control+p exec amixer set Master playback 5+ && $refresh_i3status
+bindsym $mod+F3                exec amixer set Master 5%+                    umute && $refresh_i3status
+bindsym $mod+F2                exec amixer set Master 5%-                    umute && $refresh_i3status
+bindsym $mod+F1                exec amixer -D pulse set Master 1+ toggle     umute && $refresh_i3status
+bindsym $mod+Shift+minus       exec amixer set Master playback 5-            umute && $refresh_i3status
+bindsym $mod+Shift+equal       exec amixer set Master playback 5+            umute && $refresh_i3status
+bindsym $mod+Shift+BackSpace   exec amixer -D pulse set Master 1+ toggle     umute && $refresh_i3status
 #bindsym $mod+o exec amixer set Master toggle
 #bindsym $mod+p exec amixer set PCM toggle
 
@@ -551,8 +557,8 @@ bindsym $mod+Control+b exec feh --recursive --randomize --bg-fill /home/jack/图
 
 
 #开启/关闭触摸板
-bindsym XF86TouchpadToggle exec  exec --no-startup-id bash $HOME/.config/i3/i3script/touchpad.sh
-bindsym $mod+Control+t exec --no-startup-id bash $HOME/.config/i3/i3script/touchpad.sh
+bindsym XF86TouchpadToggle   exec --no-startup-id bash $HOME/.config/i3/i3script/touchpad.sh
+bindsym $mod+Control+t       exec --no-startup-id bash $HOME/.config/i3/i3script/touchpad.sh
 
 
 
@@ -955,16 +961,30 @@ mode "$resizew" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+        bindsym h resize shrink   width     50  px or 50  ppt
+        bindsym j resize grow     height    50  px or 50  ppt
+        bindsym k resize shrink   height    50  px or 50  ppt
+        bindsym l resize grow     width     50  px or 50  ppt
+
+        bindsym Shift+h resize shrink   width     20 px or 20 ppt
+        bindsym Shift+j resize grow     height    20 px or 20 ppt
+        bindsym Shift+k resize shrink   height    20 px or 20 ppt
+        bindsym Shift+l resize grow     width     20 px or 20 ppt
+
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Left   resize    shrink    width    30 px or 30 ppt
+        bindsym Down   resize    grow      height   30 px or 30 ppt
+        bindsym Up     resize    shrink    height   30 px or 30 ppt
+        bindsym Right  resize    grow      width    30 px or 30 ppt
+
+        bindsym Shift+Left   resize    shrink    width    40  px or 40  ppt
+        bindsym Shift+Down   resize    grow      height   40  px or 40  ppt
+        bindsym Shift+Up     resize    shrink    height   40  px or 40  ppt
+        bindsym Shift+Right  resize    grow      width    40  px or 40  ppt
+
+
+
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
@@ -973,32 +993,33 @@ mode "$resizew" {
 }
 
 
+# win+-/= 改变窗口的宽度
 bindsym  $mod+minus    resize   shrink width 5 px or 5 ppt
 bindsym  $mod+equal    resize   grow   width 5 px or 5 ppt
 
 
 # move floating window
-set $movefw   快速移动浮动窗口:[k]向上 [j]向下 [h]左 [l]右
+set $movefw   快速移动窗口:[上]k/K/up/Up  [下]j/J/down/Down [左]h/H/left/Left [右]l/L/right/Right
 mode "$movefw" {
-    bindsym k           move up     20px
-    bindsym h           move left   20px
-    bindsym j           move down   20px
-    bindsym l           move right  20px
+    bindsym k           move up     50px
+    bindsym h           move left   50px
+    bindsym j           move down   50px
+    bindsym l           move right  50px
 
-    bindsym Shift+k     move up   40px
-    bindsym Shift+h     move left 40px
-    bindsym Shift+j     move down 40px
-    bindsym Shift+l     move right40px
+    bindsym Shift+k     move up      20px
+    bindsym Shift+h     move left    20px
+    bindsym Shift+j     move down    20px
+    bindsym Shift+l     move right   20px
 
-    bindsym Up          move up 40px
-    bindsym Left        move left 40px
-    bindsym Down        move down 40px
-    bindsym Right       move right 40px
+    bindsym Up          move up      30px
+    bindsym Left        move left    30px
+    bindsym Down        move down    30px
+    bindsym Right       move right   30px
 
-    bindsym Shift+Up     move up   50px
-    bindsym Shift+Left   move left 50px
-    bindsym Shift+Down   move down 50px
-    bindsym Shift+Right  move right 50px
+    bindsym Shift+Up     move up     40px
+    bindsym Shift+Left   move left   40px
+    bindsym Shift+Down   move down   40px
+    bindsym Shift+Right  move right  40px
 
 
 
