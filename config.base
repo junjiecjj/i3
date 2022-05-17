@@ -428,7 +428,7 @@ bar {
     #设置字体：
     font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
     # font pango:CaskaydiaCove Nerd Font Mono SemiLight 10
-    font pango:System San Francisco Display 11
+    font pango:System San Francisco Display 10.5
     # font pango:Monaco for Powerline 10
     # font pango:wqy-zenhei 10
 
