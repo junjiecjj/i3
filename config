@@ -102,6 +102,16 @@ exec --no-startup-id copexec_always --no-startup-id numlockx on # 开启小键�
 exec --no-startup-id fcitx
 # exec --no-startup-id fcitx-sogoupingyin
 
+#音频相关的托盘
+# 系统托盘图标：pasystray
+exec  --no-startup-id  pasystray  &
+# KMix — KDE 音量控制应用程序支持多个平台，包括 PulseAudio、可配置的系统托盘小程序。
+exec --no-startup-id  kmix &
+# pa-applet — 带有音量条的 PulseAudio 系统托盘小程序。
+exec --no-startup-id  /foo/bar/bin/pa-applet  &
+#轻量级系统托盘应用程序，可让您使用 PulseAudio 控制麦克风状态和音量,上下滚轮调节输入音大小。
+exec --no-startup-id  mictray  &
+
 # fcitx5 输入法
 # exec --no-startup-id fcitx5 &
 
@@ -498,7 +508,6 @@ bindsym $mod+i exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+d exec dmenu_run
 bindsym $mod+r exec --no-startup-id rofi  -show combi
 
-bindsym $mod+F1 exec amixer set Master toggle
 
 
 # 设置快捷键来显示隐藏 polybar
@@ -509,18 +518,19 @@ bindsym $mod+F1 exec amixer set Master toggle
 # Use pactl to adjust volume in PulseAudio.
 # 我使用的是 pulseaudio，所以我使用 pactl 来调节音量
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86AudioRaiseVolume       exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume       exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute              exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute           exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 
 
 # 音量调节
-bindsym $mod+F3 exec amixer set Master 5%+
-bindsym $mod+F2 exec amixer set Master 5%-
-bindsym $mod+Control+o exec amixer set Master playback 5-
-bindsym $mod+Control+p exec amixer set Master playback 5+
+bindsym $mod+F3        exec amixer set Master 5%+ && $refresh_i3status
+bindsym $mod+F2        exec amixer set Master 5%- && $refresh_i3status
+bindsym $mod+F1        exec amixer set Master toggle && $refresh_i3status
+bindsym $mod+Control+o exec amixer set Master playback 5- && $refresh_i3status
+bindsym $mod+Control+p exec amixer set Master playback 5+ && $refresh_i3status
 #bindsym $mod+o exec amixer set Master toggle
 #bindsym $mod+p exec amixer set PCM toggle
 

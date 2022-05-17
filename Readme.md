@@ -356,15 +356,15 @@ exec_always variety -b
 
 ## 声音控制
 
+### Advanced Linux Sound Architecture (简体中文)
+
 ` sudo apt install pulseaudio    alsa-utils   asmixer`
 
-
+https://wiki.archlinux.org/title/Advanced_Linux_Sound_Architecture_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
 
 [高级 Linux 声音体系](https://en.wikipedia.org/wiki/zh:ALSA)（Advanced Linux Sound Architecture，**ALSA**）提供声卡的内核驱动，代替了原来的开放声音系统（Open Sound System，OSS）。
 
 除了声音设备驱动，**ALSA**还捆绑了一个用户空间驱动的库用于应用开发。开发者可以使用这些 ALSA 驱动进行高级 API 开发，可以通过 ALSA 库达成与声音设备的内核（直接）交互。
-
-### ALSA 实用程序
 
 [安装](https://wiki.archlinux.org/title/Help:Reading_(简体中文)#安装软件包) 软件包 [alsa-utils](https://archlinux.org/packages/?name=alsa-utils)。其包含 `alsamixer` 、 `amixer` 等实用程序。*amixer*是一个用于更改音频设置的shell命令，而*alsamixer*则提供了一个较为直观的，基于[ncurses](https://en.wikipedia.org/wiki/Ncurses)的界面，用于配置声音设备。
 
@@ -392,7 +392,9 @@ $ alsamixer
 
 ### PulseAudio (简体中文)
 
+`sudo apt install pulseaudio  `
 
+https://wiki.archlinux.org/title/PulseAudio_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
 
 [PulseAudio](https://en.wikipedia.org/wiki/PulseAudio) 是在[GNOME](https://wiki.archlinux.org/title/GNOME) 或 [KDE](https://wiki.archlinux.org/title/KDE)等桌面环境中广泛使用的音频服务。它在内核音频组件（比如[ALSA](https://wiki.archlinux.org/title/ALSA) 和 [OSS](https://wiki.archlinux.org/title/OSS)）和应用程序之间充当代理的角色。由于Arch Linux默认包含ALSA，PulseAudio经常和ALSA协同使用。
 
@@ -469,20 +471,30 @@ $ alsamixer
 安装：
 
 ```bash
+#============================================================================================
 # pasystray: PulseAudio 的系统托盘小程序。
 # KMix — KDE 音量控制应用程序支持多个平台，包括 PulseAudio、可配置的系统托盘小程序。
 # 控制台 (curses) 混合器：pulsemixer
 # GTK GUI：paprefs 和 pavucontrol
+#============================================================================================
 sudo apt install  paprefs pavucontrol  pulsemixer   pasystray  kmix
+启动：  pasystray &
+kmix &
 
 
+#============================================================================================
 #micty MicTray — 轻量级系统托盘应用程序，可让您使用 PulseAudio 控制麦克风状态和音量。
+#============================================================================================
 sudo add-apt-repository ppa:mictray/mictray
 sudo apt-get update
 sudo apt-get install mictray
 
 
+启动：  mictray &
+
+#============================================================================================
 #pa-applet  pa-applet — 带有音量条的 PulseAudio 系统托盘小程序
+#============================================================================================
 git clone https://github.com/fernandotcl/pa-applet.git
 
 cd pa-applet
@@ -495,8 +507,11 @@ $ ./configure --prefix=/foo/bar
 $ make
 $ make install
 
+安装后启动：/foo/bar/bin/pa-applet &
 
-#PulseAudio Graph Control：
+#============================================================================================
+#PulseAudio Graph Control：  — PulseAudio 图形化控制器
+#============================================================================================
 sudo apt install npm python
 sudo npm install -g yarn
 
@@ -506,9 +521,21 @@ cd pagraphcontrol
 yarn install
 yarn build
 
+启动：~/tmp/pagraphcontrol/dist/pagraphcontrol-linux-x64/pagraphcontrol
+
+#To see audio peaks build papeaks and put it on your PATH.
+cd ~/tmp
+
+git clone https://github.com/futpib/papeaks.git
+
+cd  papeaks
+
+cargo build --release
 
 
-#Volctl — PulseAudio 的每个应用程序系统托盘小程序音量控制。
+#============================================================================================
+#== Volctl — PulseAudio 的每个应用程序系统托盘小程序音量控制。
+#============================================================================================
 #https://buzz.github.io/volctl/ || volctlAUR
 # https://github.com/buzz/volctl
 git clone  https://github.com/buzz/volctl.git
