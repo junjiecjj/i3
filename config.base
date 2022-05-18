@@ -627,7 +627,8 @@ bindsym $mod+Control+s exec steam
 # set $ws8 8:捌
 # set $ws9 9:玖
 # set $ws10 0:拾
-# workspace names e "
+
+# workspace names e 🐧"
 # set $ws1 1:
 # set $ws2 2:
 # set $ws3 3:
@@ -638,16 +639,29 @@ bindsym $mod+Control+s exec steam
 # set $ws8 8:
 # set $ws9 9:
 # set $ws10 0:
-set $ws1         1:🐧Browser
-set $ws2         2:Code
-set $ws3         3:Terminal
+
+# set $ws1         1:Browser
+# set $ws2         2:Code
+# set $ws3         3:Terminal
+# set $ws4         4:File
+# set $ws5         5:Chat
+# set $ws6         6:Video
+# set $ws7         7:Music
+# set $ws8         8:Graphic
+# set $ws9         9:Game
+# set $ws10        10:Fullscreen
+
+
+set $ws1         1:浏览器
+set $ws2         2:code
+set $ws3         3:终端
 set $ws4         4:File
 set $ws5         5:Chat
 set $ws6         6:Video
 set $ws7         7:Music
 set $ws8         8:Graphic
 set $ws9         9:Game
-set $ws10        10:Fullscreen
+set $ws10        10:全屏
 
 
 # # 设置启动对应应用之后的默认工作空间，获取对应app应用对应类的方式为xprop
