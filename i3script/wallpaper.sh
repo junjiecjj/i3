@@ -10,6 +10,17 @@
 
 
 while true; do
-	feh --recursive --randomize --bg-fill ~/图片/Wallpapers/
-	sleep 3600
+
+    results=$(ps ax|grep -v grep|grep wallpaper)
+    # echo  $results
+    if [ "${results}" == "" ];then
+        echo  "没有正在运行的autochange Wallpaper程序"
+        feh --recursive --randomize --bg-fill ~/图片/Wallpapers/
+    else
+        echo  "有正在运行的自动更改壁纸程序，先杀掉已有的，再重启一个..."
+        echo   "当前脚本的进程id: $$"
+        ps -ef | grep wallpaper | grep -v grep |grep -v nvim | grep -v $$ |  awk '{print $2}' | xargs kill -9
+        feh --recursive --randomize --bg-fill ~/图片/Wallpapers/
+    fi
+	sleep 7200
 done

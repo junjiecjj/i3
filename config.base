@@ -70,7 +70,7 @@ exec_always nitrogen --restore; sleep 2
 
 # 护眼工具
 # exec --no-startup-id redshift
-exec --no-startup-id redshift-gtk
+exec --no-startup-id redshift-gtk &
 
 #===autostart parograms只可以同时启用其中一种===
 exec_always --no-startup-id   picom --experimental-backends -b
@@ -85,22 +85,24 @@ exec_always --no-startup-id   picom --experimental-backends -b
 exec_always --no-startup-id feh --recursive --randomize --bg-fill /home/jack/图片/Wallpapers/
 
 # random mode
-exec_always --no-startup-id bash  ~/.config/i3/i3script/wallpaper.sh &
+# exec --no-startup-id bash  ~/.config/i3/i3script/wallpaper.sh &
 
 # 桌面通知
 exec --no-startup-id dunst &
 
 # 剪切板管理器
-exec --no-startup-id copyq
+exec --no-startup-id copyq &
 
 # 开启小键盘
-exec --no-startup-id copexec_always --no-startup-id numlockx on # 开启小键盘yq &
+exec_always --no-startup-id numlockx on # 开启小键盘yq &
 
 # 无论何时都执行
 # exec_always --no-startup-id fcitx
 # 启动i3时执行,重启i3时不执行
-exec --no-startup-id fcitx
+exec --no-startup-id fcitx  &
 # exec --no-startup-id fcitx-sogoupingyin
+# fcitx5 输入法
+# exec --no-startup-id fcitx5 &
 
 #音频相关的托盘
 # 系统托盘图标：pasystray
@@ -112,8 +114,6 @@ exec --no-startup-id  /foo/bar/bin/pa-applet  &
 #轻量级系统托盘应用程序，可让您使用 PulseAudio 控制麦克风状态和音量,上下滚轮调节输入音大小。
 exec --no-startup-id  mictray  &
 
-# fcitx5 输入法
-# exec --no-startup-id fcitx5 &
 
 # 登陆时启动polybar,与bar{}别同时使用
 # exec_always --no-startup-id $HOME/.config/polybar/launch.sh
