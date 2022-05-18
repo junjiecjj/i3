@@ -652,9 +652,9 @@ bindsym $mod+Control+s exec steam
 # set $ws10        10:Fullscreen
 
 
-set $ws1         1:浏览器
+set $ws1         1:Browser
 set $ws2         2:code
-set $ws3         3:终端
+set $ws3         3:Term
 set $ws4         4:File
 set $ws5         5:Chat
 set $ws6         6:Video
