@@ -638,16 +638,16 @@ bindsym $mod+Control+s exec steam
 # set $ws8 8:
 # set $ws9 9:
 # set $ws10 0:
-set $ws1         1: Browser
-set $ws2         2: Code
-set $ws3         3: Terminal
-set $ws4         4: File
-set $ws5         5: Chat
-set $ws6         6: Video
-set $ws7         7: Music
-set $ws8         8: Graphic
-set $ws9         9: Game
-set $ws0         0: Fullscreen
+set $ws1         1:🐧Browser
+set $ws2         2:Code
+set $ws3         3:Terminal
+set $ws4         4:File
+set $ws5         5:Chat
+set $ws6         6:Video
+set $ws7         7:Music
+set $ws8         8:Graphic
+set $ws9         9:Game
+set $ws10        10:Fullscreen
 
 
 # # 设置启动对应应用之后的默认工作空间，获取对应app应用对应类的方式为xprop
@@ -986,10 +986,10 @@ mode "$resizew" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym h resize shrink   width     50  px or 50  ppt
-        bindsym j resize grow     height    50  px or 50  ppt
-        bindsym k resize shrink   height    50  px or 50  ppt
-        bindsym l resize grow     width     50  px or 50  ppt
+        bindsym h    resize shrink   width     50  px or 50  ppt
+        bindsym j    resize grow     height    50  px or 50  ppt
+        bindsym k    resize shrink   height    50  px or 50  ppt
+        bindsym l    resize grow     width     50  px or 50  ppt
 
         bindsym Shift+h resize shrink   width     20 px or 20 ppt
         bindsym Shift+j resize grow     height    20 px or 20 ppt
