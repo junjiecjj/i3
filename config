@@ -615,16 +615,16 @@ bindsym $mod+Control+s exec steam
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 1:壹
-set $ws2 2:贰
-set $ws3 3:叁
-set $ws4 4:肆
-set $ws5 5:伍
-set $ws6 6:陆
-set $ws7 7:柒
-set $ws8 8:捌
-set $ws9 9:玖
-set $ws10 0:拾
+# set $ws1 1:壹
+# set $ws2 2:贰
+# set $ws3 3:叁
+# set $ws4 4:肆
+# set $ws5 5:伍
+# set $ws6 6:陆
+# set $ws7 7:柒
+# set $ws8 8:捌
+# set $ws9 9:玖
+# set $ws10 0:拾
 # workspace names e "
 # set $ws1 1:
 # set $ws2 2:
@@ -636,6 +636,28 @@ set $ws10 0:拾
 # set $ws8 8:
 # set $ws9 9:
 # set $ws10 0:
+set $ws1         1: Browser
+set $ws2         2: Code
+set $ws3         3: Terminal
+set $ws4         4: File
+set $ws5         5: Chat
+set $ws6         6: Video
+set $ws7         7: Music
+set $ws8         8: Graphic
+set $ws9         9: Game
+set $ws0         0: Fullscreen
+
+
+# # 设置启动对应应用之后的默认工作空间，获取对应app应用对应类的方式为xprop
+# assign [class="Rhythmbox"] $ws4
+# assign [class="Google-chrome"] $ws3
+# assign [class="Firefox-esr"]$ws3
+# assign [class="jetbrains-studio"]$ws2
+# assign [class="Thunar"]$ws6
+# assign [class="Postman"]$ws7
+# assign [class="Wireshark"]$ws8
+# assign [class="DBeaver"]$ws9
+# assign [class="kdesvn"]$ws10
 
 #=======================================================================================
 #================= win+num快速跳转到指定工作区 ===============================
@@ -1063,7 +1085,7 @@ bindsym $mod+Control+r restart
 
 
 # kill focused window
-bindsym --release $mod1+q exec --no-startup-id xkill
+bindsym --release $mod+$mod1+q exec --no-startup-id xkill
 
 
 #********************************************* 锁屏等 *************************************
