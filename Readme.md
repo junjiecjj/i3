@@ -261,8 +261,10 @@ sudo apt install xautolock
 
 ```bash
 
-## 背光灯调整工具
+#PDF阅读zathura, 文件管理器pcmanfm,thunar
+sudo apt install zathura  pcmanfm  thunar
 
+## 背光灯调整工具
 sudo  apt install -y light
 
 ## 安装数字键盘工具, 用于进入dwm桌面后自动开启数字键盘 #
