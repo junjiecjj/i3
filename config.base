@@ -27,6 +27,9 @@ font pango:CaskaydiaCove Nerd Font Mono 10
 
 #===================================================================================
 # =================== 设置一些需要自启的软件，下面是我的示例
+#   启动不支持启动提醒的脚本或程序时，鼠标指针会逗留在忙碌状态，为排除此现象，可用`--no-startup-id`指令。
+# exec XXX	# i3在初始化时执行的命令或脚本,重启i3时，exec不会执行
+# exec_always XXX # 重启i3时执行的命令或脚本
 #===================================================================================
 
 # tray icons(eDP1 is the display device's name, use the command "xrandr" to see the display device name.)
@@ -69,7 +72,7 @@ exec_always nitrogen --restore; sleep 2
 
 # 护眼工具
 # exec --no-startup-id redshift
-exec --no-startup-id redshift-gtk &
+exec --no-startup-id  redshift-gtk &
 
 #===autostart parograms只可以同时启用其中一种===
 exec_always --no-startup-id   picom --experimental-backends -b
@@ -568,22 +571,22 @@ set $mode_launcher [g]谷歌浏览器 [n]文件夹[s]flameshot [t]Typora [p]Spyd
 bindsym $mod+o mode "$mode_launcher"
 
 mode "$mode_launcher" {
-    bindsym f exec firefox
+    bindsym f exec firefox, mode "default"
     # bindsym t exec thunderbird
-    bindsym g exec google-chrome-stable
-    bindsym n exec nautilus
-    bindsym Shift+p exec pcmanfm
-    bindsym Shift+t exec thunar
-    bindsym z exec zathura
-    bindsym t exec typora
-    bindsym p exec spyder
-    bindsym q exec /usr/local/bin/qq
-    bindsym c exec /opt/deepinwine/apps/Deepin-WeChat/run.sh
-    bindsym d exec  /opt/baidunetdisk/baidunetdisk
-    bindsym b exec blueman-manager
-    bindsym s exec --no-startup-id flameshot gui -p  ~/图片/
-    bindsym w exec VBoxManage startvm "win10"  --type gui
-    bindsym m exec --no-startup-id netease-cloud-music
+    bindsym g exec google-chrome-stable, mode "default"
+    bindsym n exec nautilus, mode "default"
+    bindsym Shift+p exec pcmanfm, mode "default"
+    bindsym Shift+t exec thunar, mode "default"
+    bindsym z exec zathura, mode "default"
+    bindsym t exec typora, mode "default"
+    bindsym p exec spyder, mode "default"
+    bindsym q exec /usr/local/bin/qq, mode "default"
+    bindsym c exec /opt/deepinwine/apps/Deepin-WeChat/run.sh, mode "default"
+    bindsym d exec  /opt/baidunetdisk/baidunetdisk, mode "default"
+    bindsym b exec blueman-manager, mode "default"
+    bindsym s exec --no-startup-id flameshot gui -p  ~/图片/, mode "default"
+    bindsym w exec VBoxManage startvm "win10"  --type gui, mode "default"
+    bindsym m exec --no-startup-id netease-cloud-music, mode "default"
 
     bindsym $mod+o mode "default"
     bindsym Escape mode "default"
@@ -1070,12 +1073,12 @@ bindsym $mod+m focus floating; mode "$movefw"
 
 
 # redshift modes
-bindsym $mod1+r mode "$mode_redshift"
+bindsym $mod+Shift+r mode "$mode_redshift"
 set $mode_redshift 设置色温: (a)uto, (r)重置, (2)500K, (3)000K, (35)00, (4)000K, (45)00, (5)000K
 set $kill_redshift pkill -9 redshift;
 mode "$mode_redshift" {
     bindsym a exec --no-startup-id "$kill_redshift redshift -P -t 5000:4000", mode "default"
-    bindsym r exec --no-startup-id "$kill_redshift redshift -x", mode "default"
+    bindsym r exec --no-startup-id "$kill_redshift redshift -x",              mode "default"
     bindsym 2 exec --no-startup-id "$kill_redshift redshift -P -O 2500", mode "default"
     bindsym 3 exec --no-startup-id "$kill_redshift redshift -P -O 3000", mode "default"
     bindsym 4 exec --no-startup-id "$kill_redshift redshift -P -O 3500", mode "default"
@@ -1130,9 +1133,9 @@ mode "$mode_system" {
 
     # 锁屏
     bindsym i exec --no-startup-id i3lock -c '#808080', mode "default"
-    bindsym l exec --no-startup-id slock
-    bindsym x exec --no-startup-id xscreensaver-command -lock
-    bindsym b exec --no-startup-id betterlockscreen -l
+    bindsym l exec --no-startup-id slock, mode "default"
+    bindsym x exec --no-startup-id xscreensaver-command -lock, mode "default"
+    bindsym b exec --no-startup-id betterlockscreen -l, mode "default"
     #离开i3,
     bindsym e  exec --no-startup-id i3-msg exit, mode "default"
 
@@ -1167,12 +1170,12 @@ mode "$mode_system" {
 set $mode_system3 [l]ock [e]xit switch_[u]ser [s]uspend [h]ibernate [r]eboot [Shift+s]hutdown
 bindsym $mod+Mod1+Escape mode "$mode_system3"
 mode "$mode_system3" {
-    bindsym l exec --no-startup-id i3exit lock, mode "default"
-    bindsym s exec --no-startup-id i3exit suspend, mode "default"
-    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
-    bindsym e exec --no-startup-id i3exit logout, mode "default"
-    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym l exec --no-startup-id i3exit lock,           mode "default"
+    bindsym s exec --no-startup-id i3exit suspend,        mode "default"
+    bindsym u exec --no-startup-id i3exit switch_user,    mode "default"
+    bindsym e exec --no-startup-id i3exit logout,         mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate,      mode "default"
+    bindsym r exec --no-startup-id i3exit reboot,         mode "default"
     bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
 
     # exit system mode: "Enter" or "Escape"
