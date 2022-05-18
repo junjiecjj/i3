@@ -573,8 +573,10 @@ mode "$mode_launcher" {
     # bindsym t exec thunderbird
     bindsym g exec google-chrome-stable
     bindsym n exec nautilus
-    bindsym t exec typora
+    bindsym Shift+p exec pcmanfm
     bindsym Shift+t exec thunar
+    bindsym z exec zathura
+    bindsym t exec typora
     bindsym p exec spyder
     bindsym q exec /usr/local/bin/qq
     bindsym c exec /opt/deepinwine/apps/Deepin-WeChat/run.sh
