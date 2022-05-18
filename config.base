@@ -216,13 +216,14 @@ for_window [class="Xarchiver"] floating enable
 for_window [class="Genymotion"] floating enable
 for_window [class="Vlc"] floating enable
 for_window [class="VirtualBox"] floating enable
-for_window [class="Thunar"] floating enable
+
 for_window [class="shadowsocks-qt5"] floating enable
 for_window [class="Catfish"] floating enable
 for_window [class="Xfce4-appfinder"] floating enable
 for_window [class="google-chrome-stable"] floating enable
 for_window [class="google-chrome"] floating enable
 for_window [class="typora"] floating enable
+for_window [class="Thunar"]  sticky enable border normal
 for_window [class="nautilus"] floating enable sticky enable border normal
 for_window [class="spyder"] floating enable   sticky enable
 for_window [class="netease-cloud-music"] floating enable
@@ -636,6 +637,19 @@ set $ws10 0:拾
 # set $ws9 9:
 # set $ws10 0:
 
+
+
+# # 设置启动对应应用之后的默认工作空间，获取对应app应用对应类的方式为xprop
+# assign [class="Rhythmbox"] $ws4
+# assign [class="Google-chrome"] $ws3
+# assign [class="Firefox-esr"]$ws3
+# assign [class="jetbrains-studio"]$ws2
+# assign [class="Thunar"]$ws6
+# assign [class="Postman"]$ws7
+# assign [class="Wireshark"]$ws8
+# assign [class="DBeaver"]$ws9
+# assign [class="kdesvn"]$ws10
+
 #=======================================================================================
 #================= win+num快速跳转到指定工作区 ===============================
 #=======================================================================================
@@ -895,11 +909,11 @@ mouse_warping output
 popup_during_fullscreen smart
 
 # change container layout (stacked, tabbed, toggle split),mod1为Alt
-# stacking模式(工作空间里只显示一个活动的窗口,在工作空间上方得到一个窗口的列表):
+# stacking模式(工作空间里只显示一个活动的窗口,在工作空间上方得到一个窗口的列表):堆叠式
 bindsym $mod+Mod1+s layout stacking
-# tabbed模式(与stacking模式类似,不过是类似浏览器式的标签页):
+# tabbed模式(与stacking模式类似,不过是类似浏览器式的标签页):标签化
 bindsym $mod+Mod1+t layout tabbed
-# tiling模式(默认模式,平铺式窗口):
+# tiling模式(默认模式,平铺式窗口):使用 splith/splitv（重复按下可在两者间切换）
 bindsym $mod+Mod1+c layout toggle split
 
 
