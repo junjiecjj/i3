@@ -66,7 +66,6 @@ exec --no-startup-id xscreensaver -no-splash &
 
 # 在每次注销或者刷新i3wm时自动执行nitrogen并刷新壁纸
 exec_always nitrogen --restore; sleep 2
-# exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 
 # 护眼工具
 # exec --no-startup-id redshift
@@ -82,10 +81,10 @@ exec_always --no-startup-id   picom --experimental-backends -b
 # exec_always --no-startup-id  xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &
 
 #登陆时 随机选择壁纸 ，~/Pictures/DesktopBackground 下要放几张图片
-# exec_always --no-startup-id feh --recursive --randomize --bg-fill /home/jack/图片/Wallpapers/
+exec_always --no-startup-id feh --recursive --randomize --bg-fill /home/jack/图片/Wallpapers/
 
 # 登陆时 随机选择壁纸,并每隔一段时间就更改壁纸 ，~/Pictures/DesktopBackground 下要放几张图片
-exec --no-startup-id bash  ~/.config/i3/i3script/wallpaper.sh &
+# exec --no-startup-id bash  ~/.config/i3/i3script/wallpaper.sh &
 
 # 桌面通知
 exec --no-startup-id dunst &
