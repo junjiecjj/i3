@@ -803,6 +803,7 @@ bindsym $mod+Shift+parenleft    move container to workspace 9
 bindsym $mod+Shift+parenright   move container to workspace 10
 
 # Move to workspace with focused container
+# 多个命令可以用 ;（分号）连接。所以，如果想要将一个窗口移动到一个工作区中并立即切换到这个工作区，你可以配置如下的按键绑定：
 # 将焦点窗口移动至其他工作空间,并跳转至其他工作空间: $mod+Shift+$num
 bindsym $mod+Control+1 move container to workspace $ws1; workspace $ws1
 bindsym $mod+Control+2 move container to workspace $ws2; workspace $ws2
@@ -1132,25 +1133,25 @@ bindsym $mod+Control+e mode "$mode_system"
 mode "$mode_system" {
 
     # 锁屏
-    bindsym i exec --no-startup-id i3lock -c '#808080', mode "default"
-    bindsym l exec --no-startup-id slock, mode "default"
+    bindsym i exec --no-startup-id i3lock -c '#808080',        mode "default"
+    bindsym l exec --no-startup-id slock,                      mode "default"
     bindsym x exec --no-startup-id xscreensaver-command -lock, mode "default"
-    bindsym b exec --no-startup-id betterlockscreen -l, mode "default"
+    bindsym b exec --no-startup-id betterlockscreen -l,        mode "default"
     #离开i3,
-    bindsym e  exec --no-startup-id i3-msg exit, mode "default"
+    bindsym e  exec --no-startup-id i3-msg exit,               mode "default"
 
     # 重启
     # bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym r exec --no-startup-id  reboot, mode "default"
+    bindsym r exec --no-startup-id  reboot,                    mode "default"
     # bindsym r exec --no-startup-id  init 6, mode "default"
     # bindsym s exec --no-startup-id shutdown -r now, mode "default"
 
     #关机
-    bindsym s exec --no-startup-id shutdown -h now, mode "default"
+    bindsym s exec --no-startup-id shutdown -h now,            mode "default"
     # bindsym s exec --no-startup-id init 0, mode "default"
 
     # 注销
-    bindsym o exec --no-startup-id logout, mode "default"
+    bindsym o exec --no-startup-id logout,                     mode "default"
 
     #停止设备运行
     # bindsym h exec --no-startup-id systemctl halt, mode "default"
