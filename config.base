@@ -986,11 +986,11 @@ bindsym $mod+Mod1+t layout tabbed
 bindsym $mod+Mod1+c layout toggle split
 
 
-# # 在堆叠/标签/分割之间切换
+## 在横向分割/纵向分割/标签之间切换
 # bindsym $mod+Mod1+x layout toggle
 
 # # 在堆叠/标签/横向分割/纵向分割之间切换
-# bindsym $mod+Mod1+x layout toggle all
+bindsym $mod+Mod1+x layout toggle all
 
 # # 在堆叠/标签/横向分割之间切换
 # bindsym $mod+Mod1+x layout toggle stacking tabbed splith
