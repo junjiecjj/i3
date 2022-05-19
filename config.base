@@ -59,7 +59,7 @@ exec_always --no-startup-id xsetroot -solid '#005577'
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # 把 nm-applet 开起来，用于显示网络托盘图标，需要安装 gnome-extra/nm-applet
-exec --no-startup-id nm-applet
+exec --no-startup-id nm-applet  &
 
 # 锁屏工具
 exec --no-startup-id xscreensaver -no-splash &
@@ -69,6 +69,10 @@ exec --no-startup-id xscreensaver -no-splash &
 
 # 在每次注销或者刷新i3wm时自动执行nitrogen并刷新壁纸
 exec_always nitrogen --restore; sleep 2
+#variety设置壁纸时候，普通用户必须有权限
+exec  --no-startup-id nohup  variety   >  /dev/null  2>&1 &
+
+
 
 # 护眼工具
 # exec --no-startup-id redshift
@@ -127,6 +131,9 @@ exec --no-startup-id xautolock -time 5 -locker '/usr/bin/betterlockscreen -l' -c
 exec --no-startup-id betterlockscreen -w dim
 exec --no-startup-id source ~/.fehbg
 
+
+#或者以上都取消，设置自动启动脚本
+# exec  bash  ./i3script/autostart.sh
 
 # 下面的例子是一个有VGA和HDMI输出的笔记本使用一个菜单来切换显示输出的开关：
 ## Manual management of external displays
@@ -649,7 +656,7 @@ bindsym $mod+Control+s exec steam
 # set $ws9 9:玖
 # set $ws10 0:拾
 
-# workspace names e 🐧"
+# workspace names e 🐧"
 # set $ws1 1:
 # set $ws2 2:
 # set $ws3 3:
@@ -673,7 +680,7 @@ bindsym $mod+Control+s exec steam
 # set $ws10        10:Fullscreen
 
 
-set $ws1         1:🐧Browser
+set $ws1         1:Browser
 set $ws2         2:code
 set $ws3         3:Term
 set $ws4         4:File

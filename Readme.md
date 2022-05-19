@@ -331,6 +331,8 @@ sudo apt install xautolock
 ## 配套小工具
 
 ```bash
+# Viewnior是一个图像查看器应用程序，它被创建为简单，快速且优雅。
+sudo apt install viewnior
 
 #PDF阅读zathura, 文件管理器pcmanfm,thunar
 sudo apt install zathura  pcmanfm  thunar

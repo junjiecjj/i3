@@ -649,7 +649,7 @@ bindsym $mod+Control+s exec steam
 # set $ws9 9:玖
 # set $ws10 0:拾
 
-# workspace names e 🐧"
+# workspace names e 🐧"
 # set $ws1 1:
 # set $ws2 2:
 # set $ws3 3:
@@ -673,7 +673,7 @@ bindsym $mod+Control+s exec steam
 # set $ws10        10:Fullscreen
 
 
-set $ws1         1:🐧Browser
+set $ws1         1:Browser
 set $ws2         2:code
 set $ws3         3:Term
 set $ws4         4:File
