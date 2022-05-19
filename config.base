@@ -497,13 +497,22 @@ bindsym $mod+y exec yakuake
 # printscreen--scrot(Print=PrtSc/PrintScreen)
 # bindsym $mod+Print exec scrot
 #快速截图,自己选则截图区域，5s延时，并保存至 ~/图片
-bindsym --release $mod+Print exec "scrot -cd 5 -q 1 -s $(xdg-user-dir PICTURES)/`date +%Y-%m-%d_%H:%M:%S`.png"
-#  截取全屏，无GUI，保存指定路径
-bindsym Print exec --no-startup-id "scrot 'Scrot_%Y-%m-%d-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES) ; viewnior $$(xdg-user-dir PICTURES)/$f'";exec notify-send 'Scrot截图 截取全屏，无GUI，保存指定路径'
-#  截取全屏，无GUI，保存指定路径,延迟3s,  ScrollLock在i3wm中为Scroll_Lock
-bindsym $mod+Scroll_Lock exec --no-startup-id "scrot -cd 3 'Scrot_%Y-%m-%d-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES) ; viewnior $$(xdg-user-dir PICTURES)/$f'";exec notify-send 'Scrot截图 截取全屏 无GUI 保存指定路径 延迟3s'
-# 截取全屏，无GUI， 保存指定路径,延迟3s,复制到剪切板
-bindsym Scroll_Lock exec --no-startup-id "scrot -cd 3 $(xdg-user-dir PICTURES)'/Scrot_%F_%T_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'";exec notify-send 'Scrot截图 截取全屏 无GUI 保存指定路径 延迟3s 复制到剪切板'
+bindsym --release $mod+Print exec "scrot -cd 3 -q 1 -s $(xdg-user-dir PICTURES)/'Scrot_%Y-%m-%d_%H:%M:%S_$wx$h.png' -e 'viewnior $f'";exec notify-send 'Scrot截图 选择区域 保存指定路径 打开查看'
+
+# #  截取全屏，无GUI，无延时，保存指定路径,打开查看
+# bindsym Print exec --no-startup-id "scrot 'Scrot_%Y-%m-%d-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES) ; viewnior $$(xdg-user-dir PICTURES)/$f'";exec notify-send 'Scrot截图 截取全屏，无GUI，保存指定路径'
+# #  截取全屏，无GUI，保存指定路径,延迟3s,打开查看  ScrollLock在i3wm中为Scroll_Lock
+# bindsym $mod+Scroll_Lock exec --no-startup-id "scrot -cd 3 'Scrot_%Y-%m-%d-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES) ; viewnior $$(xdg-user-dir PICTURES)/$f'";exec notify-send 'Scrot截图 截取全屏 无GUI 保存指定路径 延迟3s'
+# # 截取全屏，无GUI， 保存指定路径,延迟3s,复制到剪切板,打开查看
+# bindsym Scroll_Lock exec --no-startup-id "scrot -cd 3 $(xdg-user-dir PICTURES)'/Scrot_%F_%T_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f; viewnior $$(xdg-user-dir PICTURES)/$f'";exec notify-send 'Scrot截图 截取全屏 无GUI 保存指定路径 延迟3s 复制到剪切板'
+
+#  截取全屏，无GUI，无延时，保存指定路径, 打开查看
+bindsym Scroll_Lock     exec --no-startup-id "scrot $(xdg-user-dir PICTURES)/'Scrot_%Y-%m-%d_%H:%M:%S_$wx$h.png' -e 'viewnior $f'";exec notify-send 'Scrot截图 截取全屏，无GUI，保存指定路径 打开查看'
+#  截取全屏，无GUI，延迟3s,保存指定路径,打开查看  ScrollLock在i3wm中为Scroll_Lock
+bindsym $mod+Scroll_Lock exec --no-startup-id "scrot -cd 3 $(xdg-user-dir PICTURES)/'Scrot_%Y-%m-%d_%H:%M:%S_$wx$h.png' -e 'viewnior $f'";exec notify-send 'Scrot截图 截取全屏 无GUI 保存指定路径 延迟3s 打开查看'
+# 截取全屏，无GUI，延迟3s, 保存指定路径,复制到剪切板,打开查看
+bindsym Print      exec --no-startup-id "scrot -cd 3 $(xdg-user-dir PICTURES)/'Scrot_%Y-%m-%d_%H:%M:%S_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f; viewnior $f'";exec notify-send 'Scrot截图 截取全屏 无GUI 保存指定路径 延迟3s 复制到剪切板 打开查看'
+
 
 # win+shift+Print深度截图,自己选择截图区域
 bindsym $mod+Shift+Print exec  --no-startup-id deepin-screenshot;exec notify-send '深度截图'
@@ -1013,27 +1022,27 @@ mode "$resizew" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym h    resize shrink   width     50  px or 50  ppt
-        bindsym j    resize grow     height    50  px or 50  ppt
-        bindsym k    resize shrink   height    50  px or 50  ppt
-        bindsym l    resize grow     width     50  px or 50  ppt
+        bindsym h    resize shrink   width     20  px or 20  ppt
+        bindsym k    resize grow     height    20  px or 20  ppt
+        bindsym j    resize shrink   height    20  px or 20  ppt
+        bindsym l    resize grow     width     20  px or 20  ppt
 
-        bindsym Shift+h resize shrink   width     20 px or 20 ppt
-        bindsym Shift+j resize grow     height    20 px or 20 ppt
-        bindsym Shift+k resize shrink   height    20 px or 20 ppt
-        bindsym Shift+l resize grow     width     20 px or 20 ppt
+        bindsym Shift+h resize shrink   width     10  px or 10  ppt
+        bindsym Shift+k resize grow     height    10  px or 10  ppt
+        bindsym Shift+j resize shrink   height    10  px or 10  ppt
+        bindsym Shift+l resize grow     width     10  px or 10  ppt
 
 
         # same bindings, but for the arrow keys
-        bindsym Left   resize    shrink    width    30 px or 30 ppt
-        bindsym Down   resize    grow      height   30 px or 30 ppt
-        bindsym Up     resize    shrink    height   30 px or 30 ppt
-        bindsym Right  resize    grow      width    30 px or 30 ppt
+        bindsym Left   resize    shrink    width    5 px or 5 ppt
+        bindsym Up     resize    grow      height   5 px or 5 ppt
+        bindsym Down   resize    shrink    height   5 px or 5 ppt
+        bindsym Right  resize    grow      width    5 px or 5 ppt
 
-        bindsym Shift+Left   resize    shrink    width    40  px or 40  ppt
-        bindsym Shift+Down   resize    grow      height   40  px or 40  ppt
-        bindsym Shift+Up     resize    shrink    height   40  px or 40  ppt
-        bindsym Shift+Right  resize    grow      width    40  px or 40  ppt
+        bindsym Shift+Left   resize    shrink    width    15   px or 15   ppt
+        bindsym Shift+Up     resize    grow      height   15   px or 15   ppt
+        bindsym Shift+Down   resize    shrink    height   15   px or 15   ppt
+        bindsym Shift+Right  resize    grow      width    15   px or 15   ppt
 
 
 
@@ -1046,8 +1055,10 @@ mode "$resizew" {
 
 
 # win+-/= 改变窗口的宽度
-bindsym  $mod+minus    resize   shrink width 5 px or 5 ppt
-bindsym  $mod+equal    resize   grow   width 5 px or 5 ppt
+bindsym  $mod+minus          resize   shrink width 5   px or 5 ppt
+bindsym  $mod+equal          resize   grow   width 5   px or 5 ppt
+bindsym  $mod+$mod1+minus    resize   shrink height5   px or 5 ppt
+bindsym  $mod+$mod1+equal    resize   grow   height5   px or 5 ppt
 
 
 # move floating window
