@@ -89,6 +89,9 @@ exec_always --no-startup-id feh --recursive --randomize --bg-fill /home/jack/图
 # 登陆时 随机选择壁纸,并每隔一段时间就更改壁纸 ，~/Pictures/DesktopBackground 下要放几张图片
 # exec --no-startup-id bash  ~/.config/i3/i3script/wallpaper.sh &
 
+# 火焰截图
+exec --no-startup-id flameshot  &
+
 # 桌面通知
 exec --no-startup-id dunst &
 
