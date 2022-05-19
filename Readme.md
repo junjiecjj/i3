@@ -14,9 +14,11 @@ i3wm、DWM、Awesome、Xmond、Bspwm等都是Linux系统上的平铺式窗口管
 
 + 界面美观。
 
++ 适合于热衷按照使用习惯、喜好定制化自己桌面，有较强掌控欲的用户。
+
 + 不需要鼠标。当只用neovim(类vim编辑器)、ST(终端)、ranger(终端文件管理器)、zathura(PDF阅读器)等类vim软件时，完全不需要鼠标就可以使用；但对于需要使用wps，VSCode，PyCharm等或者其他专业领域的IDE的用户来说，当熟悉IDE快捷键时，也不需要鼠标，但是不熟悉IDE快捷键时还是需要鼠标会比较方便。
 
-+ 可以定制状态栏，比如我的配置文件中就有I3block或者i3status两种状态栏，用的时候只需要选择一种即可，如下图我的i3blocks状态栏就依次显示：
++ 可以定制状态栏，比如我的配置文件中就有I3block或者i3status两种状态栏，用的时候只需要选择一种即可，如下图我的i3blocks(配置文件为 **i3blocks.conf** )状态栏就依次显示：
 
   + 上下行网速
   + wifi名称，IP，信号强度
@@ -34,7 +36,7 @@ i3wm、DWM、Awesome、Xmond、Bspwm等都是Linux系统上的平铺式窗口管
 
   
 
-具体的快捷键和配置文件请看，config和config.base文件，这两个配置文件一致，config是config.base生成的，只是多了配色设置，具体啥区别，请看 [j4-make-config](https://article.itxueyuan.com/wAbPE)的介绍。
+具体的快捷键和配置文件请看，**config** 和 **config.base** 文件，这两个配置文件一致，config是config.base生成的，只是多了配色设置，具体啥区别，请看 [j4-make-config](https://article.itxueyuan.com/wAbPE)的介绍。
 
 
 
