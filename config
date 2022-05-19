@@ -802,6 +802,10 @@ bindsym $mod+Shift+$right  move right
 bindsym $mod+Control+comma        move left
 bindsym $mod+Control+period       move right
 
+#---switch workspace---
+# 聚焦于前后工作区
+bindsym $mod+Control+j              workspace prev
+bindsym $mod+Control+k             workspace next
 
 
 # 移动容器到当前光标的位置
@@ -874,7 +878,7 @@ bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_
 # 请注意，虽然任何窗口都可以通过这个命令变成固定的，但只有在窗口是浮动的情况下才会生效。
 bindsym $mod+Shift+s sticky toggle
 
-# slash:/   quoteright:'  comma:,  period:.
+# slash:/   quoteright:'  comma:,  period:.  semicolon:;   quoteright:'
 # 将当前容器移动到前/后的工作区并聚焦于前/后工作区
 # bindsym $mod+slash             move container to workspace prev; workspace prev
 # bindsym $mod+quoteright        move container to workspace next; workspace next
