@@ -59,7 +59,7 @@ exec_always --no-startup-id xsetroot -solid '#005577'
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # 把 nm-applet 开起来，用于显示网络托盘图标，需要安装 gnome-extra/nm-applet
-exec --no-startup-id nm-applet
+exec --no-startup-id nm-applet  &
 
 # 锁屏工具
 exec --no-startup-id xscreensaver -no-splash &
@@ -69,6 +69,10 @@ exec --no-startup-id xscreensaver -no-splash &
 
 # 在每次注销或者刷新i3wm时自动执行nitrogen并刷新壁纸
 exec_always nitrogen --restore; sleep 2
+#variety设置壁纸时候，普通用户必须有权限
+exec  --no-startup-id nohup  variety   >  /dev/null  2>&1 &
+
+
 
 # 护眼工具
 # exec --no-startup-id redshift
@@ -127,6 +131,9 @@ exec --no-startup-id xautolock -time 5 -locker '/usr/bin/betterlockscreen -l' -c
 exec --no-startup-id betterlockscreen -w dim
 exec --no-startup-id source ~/.fehbg
 
+
+#或者以上都取消，设置自动启动脚本
+# exec  bash  ./i3script/autostart.sh
 
 # 下面的例子是一个有VGA和HDMI输出的笔记本使用一个菜单来切换显示输出的开关：
 ## Manual management of external displays
@@ -453,6 +460,27 @@ bar {
 
     #清除工作区号码，如果指定了名字，清除了挺好的：
     strip_workspace_numbers yes
+
+
+colors {
+    background #073642
+    statusline #eee8d5
+    focused_workspace #cb4b16 #cb4b16 #eee8d5
+    active_workspace #cb4b16 #cb4b16 #eee8d5
+    inactive_workspace #b58900 #b58900 #eee8d5
+}
+
+    ## greenish
+    # colors {
+    #     background #0D0D0D
+    #     statusline #EFEFEF
+    #     separator #666666
+    #     focused_workspace  #4F4F4F #4F4F4F #8CFF00
+    #     active_workspace   #0D0D0D #0D0D0D #EFEFEF
+    #     inactive_workspace #0D0D0D #0D0D0D #EFEFEF
+    #     urgent_workspace   #2f343a #900000 #ffffff
+    # }
+
 
 
     # colors {
@@ -1230,23 +1258,15 @@ exec --no-startup-id xinput --set-prop 'Synaptics TM3072-003' 'Coordinate Transf
 
 #*********************************************电源管理j4-make-config配色*************************************
 
-# 交互式选择  goole, greenish, tango-jungle
+# 交互式选择  archlinux, base16-tomorrow, bear2, *goole, greenish, grvbox,   okraits, *seti,
+# ,*solarized_dark,  *solarized_light, *solarized_mod, *tango-jungle, tomorrow-night-80s,*ubntu
 # $  ./j4-make-config -i
 
 # class                 border  backgr. text    indicator
-client.focused          #383838 #8CFF00 #383838 #EFEFEF
-client.focused_inactive #333333 #333333 #ffffff #EFEFEF
-client.unfocused        #333333 #333333 #888888 #EFEFEF
-client.urgent           #2f343a #900000 #ffffff #900000
-colors {
-	background #0D0D0D
-	statusline #EFEFEF
-	separator #666666
-	focused_workspace  #4F4F4F #4F4F4F #8CFF00
-	active_workspace   #0D0D0D #0D0D0D #EFEFEF
-	inactive_workspace #0D0D0D #0D0D0D #EFEFEF
-	urgent_workspace   #2f343a #900000 #ffffff
-}
+client.focused          #859900 #859900 #fdf6e3 #2e9ef4
+client.focused_inactive #268bd2 #268bd2 #fdf6e3 #484e50
+client.unfocused        #333333 #93a1a1 #fdf6e3 #292d2e
+#client.urgent not defined yet
 
 
 

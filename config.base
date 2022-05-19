@@ -462,6 +462,21 @@ bar {
     strip_workspace_numbers yes
 
 
+    # $i3-theme-bar
+
+    ## greenish
+    # colors {
+    #     background #0D0D0D
+    #     statusline #EFEFEF
+    #     separator #666666
+    #     focused_workspace  #4F4F4F #4F4F4F #8CFF00
+    #     active_workspace   #0D0D0D #0D0D0D #EFEFEF
+    #     inactive_workspace #0D0D0D #0D0D0D #EFEFEF
+    #     urgent_workspace   #2f343a #900000 #ffffff
+    # }
+
+
+
     # colors {
     #     background  #212121
     #     statusline  #dddddd
@@ -1237,11 +1252,11 @@ exec --no-startup-id xinput --set-prop 'Synaptics TM3072-003' 'Coordinate Transf
 
 #*********************************************电源管理j4-make-config配色*************************************
 
-# 交互式选择  goole, greenish, tango-jungle
+# 交互式选择  archlinux, base16-tomorrow, bear2, *goole, greenish, grvbox,   okraits, *seti,
+# ,*solarized_dark,  *solarized_light, *solarized_mod, *tango-jungle, tomorrow-night-80s,*ubntu
 # $  ./j4-make-config -i
 
 # $i3-theme-window
-# $i3-theme-bar
 
 
 
