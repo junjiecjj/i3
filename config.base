@@ -108,13 +108,13 @@ exec --no-startup-id fcitx  &
 
 #音频相关的托盘
 # 系统托盘图标：pasystray
-exec  --no-startup-id  pasystray  &
+exec  --no-startup-id  nohup   pasystray     >  /dev/null  2>&1 &
 # KMix — KDE 音量控制应用程序支持多个平台，包括 PulseAudio、可配置的系统托盘小程序。
-exec --no-startup-id  kmix &
+exec --no-startup-id   nohup   kmix     >  /dev/null  2>&1 &
 # pa-applet — 带有音量条的 PulseAudio 系统托盘小程序。
-exec --no-startup-id  /foo/bar/bin/pa-applet  &
+exec --no-startup-id   nohup   /foo/bar/bin/pa-applet       >  /dev/null  2>&1 &
 #轻量级系统托盘应用程序，可让您使用 PulseAudio 控制麦克风状态和音量,上下滚轮调节输入音大小。
-exec --no-startup-id  mictray  &
+exec --no-startup-id   nohup   mictray       >  /dev/null  2>&1 &
 
 
 # 登陆时启动polybar,与bar{}别同时使用
