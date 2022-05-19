@@ -654,7 +654,7 @@ bindsym $mod+Control+s exec steam
 # set $ws10        10:Fullscreen
 
 
-set $ws1         1:Browser
+set $ws1         1:🐧Browser
 set $ws2         2:code
 set $ws3         3:Term
 set $ws4         4:File
