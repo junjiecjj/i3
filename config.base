@@ -75,7 +75,7 @@ exec_always nitrogen --restore; sleep 2
 exec --no-startup-id  redshift-gtk &
 
 #===autostart parograms只可以同时启用其中一种===
-exec_always --no-startup-id   picom --experimental-backends -b
+exec_always --no-startup-id    picom --experimental-backends -b
 # exec --no-startup-id  compton -cCGfF -o 0.38 -O 200 -I 200 -t 0 -l 0 -r 3 -D2 -m 0.88
 
 #登录时 启用窗口透明
