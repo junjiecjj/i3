@@ -90,7 +90,7 @@ exec_always --no-startup-id feh --recursive --randomize --bg-fill /home/jack/图
 # exec --no-startup-id bash  ~/.config/i3/i3script/wallpaper.sh &
 
 # 火焰截图
-exec --no-startup-id flameshot  &
+exec --no-startup-id nohup flameshot >/dev/null 2>&1  &
 
 # 桌面通知
 exec --no-startup-id dunst &
@@ -496,17 +496,24 @@ bindsym $mod+y exec yakuake
 
 # printscreen--scrot(Print=PrtSc/PrintScreen)
 # bindsym $mod+Print exec scrot
-#快速截图
-bindsym --release $mod+Print exec "scrot -cd 5 -q 100 -s $HOME/图片/`date +%Y-%m-%d_%H:%M:%S`.png"
-# Take a full screenshot store in file
-bindsym Print exec --no-startup-id "scrot 'Screenshot_%Y-%m-%d-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES) ; viewnior $$(xdg-user-dir PICTURES)/$f'"
-# Take a screenshot after 5 seconds,ScrollLock在i3wm中为Scroll_Lock
-bindsym $mod+Scroll_Lock exec --no-startup-id "scrot -cd 5 'Screenshot_%Y-%m-%d-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES) ; viewnior $$(xdg-user-dir PICTURES)/$f'"
-# Take a full screenshot to clipboard(need xclip installed)
-bindsym Control+Print exec --no-startup-id "scrot '/tmp/%F_%T_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'"
+#快速截图,自己选则截图区域，5s延时，并保存至 ~/图片
+bindsym --release $mod+Print exec "scrot -cd 5 -q 1 -s $(xdg-user-dir PICTURES)/`date +%Y-%m-%d_%H:%M:%S`.png"
+#  截取全屏，无GUI，保存指定路径
+bindsym Print exec --no-startup-id "scrot 'Scrot_%Y-%m-%d-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES) ; viewnior $$(xdg-user-dir PICTURES)/$f'";exec notify-send 'Scrot截图 截取全屏，无GUI，保存指定路径'
+#  截取全屏，无GUI，保存指定路径,延迟3s,  ScrollLock在i3wm中为Scroll_Lock
+bindsym $mod+Scroll_Lock exec --no-startup-id "scrot -cd 3 'Scrot_%Y-%m-%d-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES) ; viewnior $$(xdg-user-dir PICTURES)/$f'";exec notify-send 'Scrot截图 截取全屏 无GUI 保存指定路径 延迟3s'
+# 截取全屏，无GUI， 保存指定路径,延迟3s,复制到剪切板
+bindsym Scroll_Lock exec --no-startup-id "scrot -cd 3 $(xdg-user-dir PICTURES)'/Scrot_%F_%T_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'";exec notify-send 'Scrot截图 截取全屏 无GUI 保存指定路径 延迟3s 复制到剪切板'
 
-# win+shift+Print深度截图
-bindsym $mod+Shift+Print exec  --no-startup-id deepin-screenshot
+# win+shift+Print深度截图,自己选择截图区域
+bindsym $mod+Shift+Print exec  --no-startup-id deepin-screenshot;exec notify-send '深度截图'
+
+
+# win+shift+Print火焰截图,自己选择截图区域,保存在~/图片 或~/Picture
+bindsym Shift+Print exec  --no-startup-id flameshot gui -p  $(xdg-user-dir PICTURES) -d 2000 ;exec notify-send '火焰截图 无延时 自己选择截图区域 保存在~/图片'
+#  捕获全屏（无GUI）并保存到剪贴板和路径,延迟2秒
+bindsym Control+Print exec  --no-startup-id  flameshot full -c -p  $(xdg-user-dir PICTURES)  -d 2000 ;exec notify-send '火焰截图 捕获全屏（无GUI）并保存到剪贴板和路径~/图片 延迟2秒'
+
 
 # dmenu (a program launcher)
 bindsym $mod+i exec --no-startup-id i3-dmenu-desktop
@@ -587,7 +594,7 @@ mode "$mode_launcher" {
     bindsym c exec /opt/deepinwine/apps/Deepin-WeChat/run.sh, mode "default"
     bindsym d exec  /opt/baidunetdisk/baidunetdisk, mode "default"
     bindsym b exec blueman-manager, mode "default"
-    bindsym s exec --no-startup-id flameshot gui -p  ~/图片/, mode "default"
+    bindsym s exec --no-startup-id flameshot gui -p  ~/图片/ -d 2000, mode "default"
     bindsym w exec VBoxManage startvm "win10"  --type gui, mode "default"
     bindsym m exec --no-startup-id netease-cloud-music, mode "default"
 
