@@ -2,19 +2,19 @@
 
 # i3WM安装与配置
 
-i3wm、DWM、Awesome、Xmond、Bspwm等都是Linux系统上的平铺式窗口管理器，一般只有顶级用户在需要定制自己的窗口管理器，但是对于喜欢折腾的人来说，是很好的消遣方式。
+i3wm、DWM、Awesome、Xmond、Bspwm等都是Linux系统上的平铺式窗口管理器，一般只有顶级用户才需要定制自己的窗口管理器，但是对于喜欢折腾的人来说，是很好的消遣方式。
 
 
 
 相比于集成了窗口管理器的Gnome、KDE等桌面环境来说，平铺式窗口管理器优点如下：
 
-+ 节约内存和机器的CPU。一般Windows开机啥也不干，需要3G内存，Ubuntu开机啥也不干，需要2G，而平铺窗口管理器因为只开启需要的基本程序，只需要1G。
++ 节约内存和机器的CPU。一般Windows开机啥也不干，需要3G内存，Ubuntu开机啥也不干，需要2G，而平铺窗口管理器因为只需要开启的基本程序，只需要1G。
 
 + 高效。因为定义了很多在窗口、工作区、显示器之间切换的快捷键，可以很方便的快速切换，这一优点可以克服显示器少和屏幕小的缺点，使得一个笔记本就可以高效办公、Code等。
 
 + 界面美观。
 
-+ 不需要鼠标。当只用neovim、终端、ranger等类vim软件时，完全不需要鼠标就可以使用；时对于wps，VSCode，PyCharm等或者其他专业领域的IDE，当熟悉IDE快捷键时，也不需要鼠标，但是不熟悉IDE快捷键时还是需要鼠标会比较方便。
++ 不需要鼠标。当只用neovim、终端、ranger等类vim软件时，完全不需要鼠标就可以使用；但对于需要使用wps，VSCode，PyCharm等或者其他专业领域的IDE的用户来说，当熟悉IDE快捷键时，也不需要鼠标，但是不熟悉IDE快捷键时还是需要鼠标会比较方便。
 
 + 可以定制状态栏，比如我的状态栏就依次显示：
 
@@ -34,7 +34,7 @@ i3wm、DWM、Awesome、Xmond、Bspwm等都是Linux系统上的平铺式窗口管
 
   
 
-
+具体的快捷键和配置文件请看，config和config.base文件，这两个配置文件一致，config是config.base生成的，只是多了配色设置，具体啥区别，请看 [j4-make-config](https://article.itxueyuan.com/wAbPE)的介绍。
 
 
 
@@ -42,8 +42,6 @@ i3wm、DWM、Awesome、Xmond、Bspwm等都是Linux系统上的平铺式窗口管
 
 ![2022-05-18_15:49:05_1920x1080](https://user-images.githubusercontent.com/32957066/168987645-a2bb929b-2e85-4663-aeb8-fb248341add4.png)
 ![2022-05-18_15:51:31_1920x1080](https://user-images.githubusercontent.com/32957066/168987703-a8bb736f-f442-45bb-8c13-27427281fafe.png)
-
-
 
 
 
@@ -619,10 +617,6 @@ sudo apt-get install build-essential libcairo2-dev libpango1.0-dev libjpeg-dev l
 
 
 
-
-
-
-
 ## 网络系统托盘
 
 
@@ -766,10 +760,6 @@ $ nmcli radio wifi off
 
 
 
-
-
-
-
 ### nmcli 使用示例
 
 显示附近的 wifi:
@@ -828,10 +818,6 @@ $ nmcli radio wifi off
 
 
 
-
-
-
-
 ## 安装dwmstatus 
 ```bash
 git clone git://git.suckless.org/dwmstatus
@@ -839,7 +825,6 @@ cd dwmstatus
 make
 sudo ake PREFIX=/usr install
 cd
-
 
 ```
 
@@ -851,17 +836,11 @@ cd
 
 `sudo apt-get update`
 
-
-
 `sudo apt-get install  redshift  redshift-gtk`
 
 
 
-
-
 ##  Spotify是一个音乐流媒体服务商
-
-
 
 
 
@@ -873,13 +852,7 @@ sudo snap install spotify
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 4773BD5E130D1D45
 
 
-
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-
 
 sudo apt update
 sudo apt install spotify-client
-
-
-
-
