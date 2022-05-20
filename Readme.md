@@ -12,7 +12,11 @@
 
 i3wm、DWM、Awesome、Xmond、Bspwm等都是Linux系统上的平铺式窗口管理器，一般只有顶级用户才需要定制自己的窗口管理器，但对于喜欢折腾的人来说，也是很好的消遣方式。
 
+有哪些平铺式WM：
 
+[1. Top 15 Window Managers for Linux](https://www.fosslinux.com/49466/top-window-managers-for-linux.htm)
+
+[[2. What are the best window managers for Linux?](https://www.slant.co/topics/390/~best-window-managers-for-linux)](https://www.slant.co/topics/390/~best-window-managers-for-linux)
 
 相比于集成了窗口管理器的Gnome、KDE等桌面环境来说，平铺式窗口管理器优点如下：
 
