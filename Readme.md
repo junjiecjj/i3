@@ -359,6 +359,9 @@ sudo apt install xautolock
 ## 配套小工具
 
 ```bash
+# 多显示器需要使用配置工具，我用的是 xrandr。其他工具还有 Xinerama 和 winView，另外 arandr 是 xrandr 的图形界面，也可以用。
+sudo apt install  arandr  x11-xserver-utils
+
 # Viewnior是一个图像查看器应用程序，它被创建为简单，快速且优雅。
 sudo apt install viewnior
 
