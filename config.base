@@ -994,7 +994,7 @@ bindsym $mod+Mod1+c layout toggle split
 # bindsym $mod+Mod1+x layout toggle
 
 # # 在堆叠/标签/横向分割/纵向分割之间切换
-bindsym $mod+Mod1+x layout toggle all
+# bindsym $mod+Mod1+x layout toggle all
 
 # # 在堆叠/标签/横向分割之间切换
 # bindsym $mod+Mod1+x layout toggle stacking tabbed splith
@@ -1256,7 +1256,7 @@ exec --no-startup-id xinput --set-prop 'Synaptics TM3072-003' 'Coordinate Transf
 
 #*********************************************电源管理j4-make-config配色*************************************
 
-# 交互式选择  archlinux, base16-tomorrow, bear2, *goole, greenish, grvbox,   okraits, *seti,
+# 交互式选择  archlinux, base16-tomorrow, bear2, *goole, *greenish, grvbox,   okraits, *seti,
 # ,*solarized_dark,  *solarized_light, *solarized_mod, *tango-jungle, tomorrow-night-80s,*ubntu
 # $  ./j4-make-config -i
 
