@@ -1,8 +1,16 @@
 
 
++  是从2017年开始接触Linux的，从《鸟哥的Linux私房菜》开始，开始自己装系统玩，然后成为Linux重度用户，再到shellscript写装机自动配置文件，再到阅读Linux内核的书籍，虽然看不太懂，也没动手写源码，只是写一些小的demo。
++ 每隔一段时间都会搜搜Linux上有哪些好玩的东西，一碰到好玩的就会折腾一整天，这次就是折腾窗口管理器。实际上，除了硬件不能动，Linux上一切都是可以折腾的，从界面到内核。
++ 从最开始的Ubuntu(Gnome桌面环境)，到有一次组会偶然听到我们的大师兄介绍他使用的Linux，他提到使用的窗口管理器为FVWM，请参见我的[配置](),，因为我也一直不喜欢用Gnome和KDE等大型桌面环境，觉得会使得机器变慢，所以就折腾了FVWM，FVWM也是很高级的窗口管理器，非常节约内存，开机几百兆，但是它一般是用作浮动式的窗口管理器，很少用来做平铺式的窗口管理器，因为要想使用它作为平铺WM，配置会非常复杂。在折腾FVWM时就知道存在i3wm，dwm等平铺式WM，但是当时疲于它事，暂且没折腾。再使用了FVWM三年后，因为一次搬家，使用大屏显示器不方便，于是就想到用i3wm等，可以高效利用多窗口多工作空间的优势(FVWM也有这些概念)。
+
+
+
+
+
 # i3WM安装与配置
 
-i3wm、DWM、Awesome、Xmond、Bspwm等都是Linux系统上的平铺式窗口管理器，一般只有顶级用户才需要定制自己的窗口管理器，但是对于喜欢折腾的人来说，是很好的消遣方式。
+i3wm、DWM、Awesome、Xmond、Bspwm等都是Linux系统上的平铺式窗口管理器，一般只有顶级用户才需要定制自己的窗口管理器，但对于喜欢折腾的人来说，也是很好的消遣方式。
 
 
 
@@ -37,6 +45,20 @@ i3wm、DWM、Awesome、Xmond、Bspwm等都是Linux系统上的平铺式窗口管
   
 
 具体的快捷键和配置文件请看，**config** 和 **config.base** 文件，这两个配置文件一致，config是config.base生成的，只是多了配色设置，具体啥区别，请看 [j4-make-config](https://article.itxueyuan.com/wAbPE)的介绍。
+
+其他WM，请看：
+
+请看[DWM](https://github.com/junjiecjj/my-dwm)
+
+请看[I3WM](https://github.com/junjiecjj/i3)
+
+请看[Xmoad]()  ,待续
+
+请看[Awesome]() ,待续
+
+请看[BspWM]() ,待续
+
+
 
 
 
