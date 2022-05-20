@@ -720,7 +720,7 @@ bindsym $mod+Control+s exec steam
 
 
 set $ws1         1:Browser
-set $ws2         2:code
+set $ws2         2:code
 set $ws3         3:Term
 set $ws4         4:File
 set $ws5         5:Chat
