@@ -68,11 +68,17 @@ i3wm、DWM、Awesome、Xmond、Bspwm等都是Linux系统上的平铺式窗口管
 
 效果图：
 
-![Scrot_2022-05-20_22:16:55_1920x1080.png](Scrot_2022-05-20_22:16:55_1920x1080.png)
+<img src="/home/jack/.config/i3/Scrot_2022-05-20_22:17:40_1920x1080.png" alt="Scrot_2022-05-20_22:17:40_1920x1080" style="zoom: 50%;" />
 
 
 
-![Scrot_2022-05-20_22:17:40_1920x1080](Scrot_2022-05-20_22:17:40_1920x1080.png)
+
+
+![2022-05-18_15:51:31_1920x1080](https://user-images.githubusercontent.com/32957066/168987703-a8bb736f-f442-45bb-8c13-27427281fafe.png)
+
+
+
+
 
 
 
