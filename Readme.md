@@ -83,14 +83,6 @@ i3wm、DWM、Awesome、Xmond、Bspwm等都是Linux系统上的平铺式窗口管
 
 
 
-
-
-
-
-
-
-
-
 ## 安装 字体  例如apple的Yosemite San Francisco的ttf文件,
 
 ```bash
