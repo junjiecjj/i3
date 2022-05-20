@@ -450,10 +450,17 @@ bar {
 
     #设置字体：
     font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+    # font pango:Cascadia Code  10
     # font pango:CaskaydiaCove Nerd Font Mono SemiLight 10
-    font pango:System San Francisco Display 10.5
+    # font pango:CaskaydiaCove Nerd Font Mono Regular 10
+    # font pango:CaskaydiaCove Nerd Font Mono SemiBold 10
+    # font pango:JetBrainsMono Nerd Font Mono Light 10
+    # font pango:JetBrainsMono Nerd Font Mono Regular 10
+    # font pango:JetBrainsMono Nerd Font Mono Bold 10
+    # font pango:System San Francisco Display 10.5
     # font pango:Monaco for Powerline 10
     # font pango:wqy-zenhei 10
+    font pango:WenQuanYi Micro Hei Regular 11
 
     #分隔符：
     separator_symbol "|"
@@ -671,7 +678,24 @@ bindsym $mod+Control+s exec steam
 # set $ws9 9:玖
 # set $ws10 0:拾
 
-# workspace names e 🐧"
+# volum: f028 墳fa7d f2a0 🔊
+# weather:  朗  歹
+# wifi: f1eb 直faa8
+# terminal: e795 f120 f489
+# file:f482 f413
+# chat:f1d7
+# video: f03d ﱘf001   ﱘf001   﫽fafd
+# picture: f1c5 f03e  
+# game: 
+# windows: e70f f17a fab2 🐧e62a
+# laptop: \uf109  \uf821 \uf822 f823 f824  💻  
+# battery: f240  f583  f60b
+# browser:e    f269  e745
+# code: f40d  f121   f1c9
+# down: f103    f175  e340 e353  f547 f175  f176  ﯁fbc1   f062
+# CPU：f2db  e266
+
+# workspace names
 # set $ws1 1:
 # set $ws2 2:
 # set $ws3 3:
@@ -685,7 +709,7 @@ bindsym $mod+Control+s exec steam
 
 # set $ws1         1:Browser
 # set $ws2         2:Code
-# set $ws3         3:Terminal
+# set $ws3         3:Terminal
 # set $ws4         4:File
 # set $ws5         5:Chat
 # set $ws6         6:Video
@@ -696,13 +720,13 @@ bindsym $mod+Control+s exec steam
 
 
 set $ws1         1:Browser
-set $ws2         2:code
+set $ws2         2:code
 set $ws3         3:Term
 set $ws4         4:File
 set $ws5         5:Chat
 set $ws6         6:Video
-set $ws7         7:Music
-set $ws8         8:Graphic
+set $ws7         7:ﱘMusic
+set $ws8         8:Graphic
 set $ws9         9:Game
 set $ws10        10:全屏
 
