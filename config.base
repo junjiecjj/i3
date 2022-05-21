@@ -61,6 +61,11 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # 把 nm-applet 开起来，用于显示网络托盘图标，需要安装 gnome-extra/nm-applet
 exec --no-startup-id nm-applet  &
 
+
+#蓝牙系统托盘
+exec --no-startup-id blueman-applet  &
+
+
 # 锁屏工具
 exec --no-startup-id xscreensaver -no-splash &
 

@@ -467,7 +467,23 @@ exec_always variety -b
 
 
 
-## 声音控制
+## 声音控制系统托盘
+
+```bash
+
+# 第一种工具 ALSA, `alsamixer` 、 `amixer`
+sudo apt install    alsa-utils   asmixer
+
+
+# 第二种工具
+sudo apt-get install pulseaudio pulseaudio-module-bluetooth pavucontrol bluez-firmware
+```
+
+
+
+
+
+
 
 ### Advanced Linux Sound Architecture (简体中文)
 
@@ -674,6 +690,83 @@ sudo apt-get install build-essential libcairo2-dev libpango1.0-dev libjpeg-dev l
 
 
 ```
+
+
+
+## 蓝牙系统托盘
+
+
+
+[Bluetooth (简体中文)](https://wiki.archlinux.org/title/Bluetooth_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87))
+
+
+
+### 前端
+
+#### 控制台
+
+- **bluetoothctl** — Pairing a device from the shell is one of the simplest and most reliable options.
+
+
+
+**提示：** 输入 `echo -e "<command1>\n<command2>\n" | bluetoothctl` 来自动化bluetoothctl命令
+
+#### 图形界面
+
+下面的软件包提供图形界面来设置蓝牙。
+
+- GNOME Bluetooth-- GNOME的蓝牙工具。
+  - [gnome-bluetooth](https://archlinux.org/packages/?name=gnome-bluetooth) 提供后端。
+  - [gnome-shell](https://archlinux.org/packages/?name=gnome-shell) 提供状态托盘。
+  - [gnome-control-center](https://archlinux.org/packages/?name=gnome-control-center) 可通过图形界面配置蓝牙。可以在活动预览输入“蓝牙”或者运行 `gnome-control-center bluetooth` 进行配置。
+  - 你还可以直接运行 `bluetooth-sendto` 命令来把文件发送到远程设备。
+  - 打开蓝牙设置面板来接收文件；只有在蓝牙设置面板打开时才能接收文件。
+  - To add a Bluetooth entry to the *Send To* menu in Thunar's file properties menu, see instructions [here](https://docs.xfce.org/xfce/thunar/send-to). (The command that needs to be configured is `bluetooth-sendto %F`).
+
+- **Bluedevil** — [KDE](https://wiki.archlinux.org/title/KDE)的蓝牙工具。如果Dolphin和系统托盘里没有蓝牙图标，就在系统托盘选项里启用，或者添加一个挂件。点击图标或在KDE系统设置里都可以配置蓝牙。
+
+- [**Blueberry**](https://github.com/linuxmint/blueberry || [blueberry](https://archlinux.org/packages/?name=blueberry)) — Linux Mint的GNOME Bluetooth变种，可在所有桌面环境工作。*Blueberry* 不支持通过Obex Object推送来接收文件。
+
+- **[Blueman](https://wiki.archlinux.org/title/Blueman)** — 全功能蓝牙管理器。https://github.com/blueman-project/blueman || [blueman](https://archlinux.org/packages/?name=blueman)
+
+- **[ObexFTP](https://wiki.archlinux.org/title/ObexFTP)** — 在任意启动了OBEX的设备上传输文件的工具。
+
+
+
+
+
+```bash
+# blueberry系统托盘
+sudo add-apt-repository ppa:trebelnik-stefina/cinnamon
+sudo apt update
+sudo apt install blueberry 
+
+
+
+#Ubuntu 20.04 上安裝 Blueman 
+sudo apt install blueman
+sudo apt install bluez bluez-obexd
+```
+
+检查bluetooth service是否启动
+
+```bash
+sudo systemctl status bluetooth.service
+```
+
+若bluetooth.service没有启动，则启动它
+
+```bash
+sudo systemctl start bluetooth.service
+```
+
+系统托盘：
+
+```bash
+blueman-applet  &
+```
+
+就会发现任务栏上出现一个蓝牙的图标了
 
 
 
