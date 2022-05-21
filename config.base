@@ -73,9 +73,9 @@ exec --no-startup-id xscreensaver -no-splash &
 # exec --no-startup-id conky -c ~/.conkyrc
 
 # 在每次注销或者刷新i3wm时自动执行nitrogen并刷新壁纸
-exec_always nitrogen --restore; sleep 2
+# exec_always nitrogen --restore; sleep 2
 #variety设置壁纸时候，普通用户必须有权限
-exec  --no-startup-id nohup  variety   >  /dev/null  2>&1 &
+# exec  --no-startup-id nohup  variety   >  /dev/null  2>&1 &
 
 
 
