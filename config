@@ -475,13 +475,13 @@ bar {
 
 
 colors {
-	background #0D0D0D
-	statusline #EFEFEF
-	separator #666666
-	focused_workspace  #4F4F4F #4F4F4F #8CFF00
-	active_workspace   #0D0D0D #0D0D0D #EFEFEF
-	inactive_workspace #0D0D0D #0D0D0D #EFEFEF
-	urgent_workspace   #2f343a #900000 #ffffff
+	background #504945
+	statusline #d5c4a1
+	separator #3c3836 
+	focused_workspace #3c3836 #32302f #fabd2f
+	active_workspace #3c3836 #504945 #d5c4a1
+	inactive_workspace #3c3836 #504945 #d5c4a1
+	urgent_workspace   #7c6f64 #fabd2f #3c3836
 }
 
     ## greenish
@@ -738,7 +738,7 @@ set $ws3         3:Term
 set $ws4         4:File
 set $ws5         5:Chat
 set $ws6         6:Video
-set $ws7         7:ﱘ Music
+set $ws7         7:ﱘMusic
 set $ws8         8:Graphic
 set $ws9         9:Game
 set $ws10        10:全屏
@@ -1306,10 +1306,14 @@ exec --no-startup-id xinput --set-prop 'Synaptics TM3072-003' 'Coordinate Transf
 # $  ./j4-make-config -i
 
 # class                 border  backgr. text    indicator
-client.focused          #383838 #8CFF00 #383838 #EFEFEF
-client.focused_inactive #333333 #333333 #ffffff #EFEFEF
-client.unfocused        #333333 #333333 #888888 #EFEFEF
-client.urgent           #2f343a #900000 #ffffff #900000
+client.focused          #3c3836 #32302f #fabd2f #fabd2f
+client.focused_inactive #3c3836 #504945 #d5c4a1 #504945
+client.unfocused        #3c3836 #504945 #d5c4a1 #504945
+client.urgent           #7c6f64 #fabd2f #3c3836 #fabd2f
+
+# $i3-background
+exec_always --no-startup-id xsetroot -solid '#3c3836'
+
 
 
 
