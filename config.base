@@ -1179,7 +1179,7 @@ bindsym $mod+Control+c reload
 bindsym $mod+Control+r restart
 
 
-# kill focused window
+# kill focused window,shu
 bindsym --release $mod+$mod1+q exec --no-startup-id xkill
 
 
