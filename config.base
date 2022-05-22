@@ -93,7 +93,7 @@ exec_always --no-startup-id    picom --experimental-backends -b
 # exec_always --no-startup-id  xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &
 
 #登陆时 随机选择壁纸 ，~/Pictures/DesktopBackground 下要放几张图片
-exec_always --no-startup-id feh --recursive --randomize --bg-fill /home/jack/图片/Wallpapers/
+exec_always --no-startup-id feh --recursive --randomize --bg-fill   $(xdg-user-dir PICTURES)'/Wallpapers/'
 
 # 登陆时 随机选择壁纸,并每隔一段时间就更改壁纸 ，~/Pictures/DesktopBackground 下要放几张图片
 # exec --no-startup-id bash  ~/.config/i3/i3script/wallpaper.sh &
@@ -608,7 +608,7 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # 更换壁纸
-bindsym $mod+Control+b exec feh --recursive --randomize --bg-fill /home/jack/图片/Wallpapers/
+bindsym $mod+Control+b exec feh --recursive --randomize --bg-fill  $(xdg-user-dir PICTURES)'/Wallpapers/'
 
 
 
