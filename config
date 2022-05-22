@@ -93,7 +93,7 @@ exec_always --no-startup-id    picom --experimental-backends -b
 # exec_always --no-startup-id  xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &
 
 #登陆时 随机选择壁纸 ，~/Pictures/DesktopBackground 下要放几张图片
-exec_always --no-startup-id feh --recursive --randomize --bg-fill /home/jack/图片/Wallpapers/
+exec_always --no-startup-id feh --recursive --randomize --bg-fill   $(xdg-user-dir PICTURES)'/Wallpapers/'
 
 # 登陆时 随机选择壁纸,并每隔一段时间就更改壁纸 ，~/Pictures/DesktopBackground 下要放几张图片
 # exec --no-startup-id bash  ~/.config/i3/i3script/wallpaper.sh &
@@ -616,7 +616,7 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # 更换壁纸
-bindsym $mod+Control+b exec feh --recursive --randomize --bg-fill /home/jack/图片/Wallpapers/
+bindsym $mod+Control+b exec feh --recursive --randomize --bg-fill  $(xdg-user-dir PICTURES)'/Wallpapers/'
 
 
 
@@ -1159,17 +1159,17 @@ bindsym $mod+m focus floating; mode "$movefw"
 
 # redshift modes
 bindsym $mod+Shift+r mode "$mode_redshift"
-set $mode_redshift 设置色温: (a)uto, (r)重置, (2)500K, (3)000K, (35)00, (4)000K, (45)00, (5)000K
+set $mode_redshift 设置色温: (a)uto, (r)重置, (2)500K, (3)500K, (4)500K, (5)500, (6)500 (7)500K
 set $kill_redshift pkill -9 redshift;
 mode "$mode_redshift" {
     bindsym a exec --no-startup-id "$kill_redshift redshift -P -t 5000:4000", mode "default"
     bindsym r exec --no-startup-id "$kill_redshift redshift -x",              mode "default"
     bindsym 2 exec --no-startup-id "$kill_redshift redshift -P -O 2500", mode "default"
-    bindsym 3 exec --no-startup-id "$kill_redshift redshift -P -O 3000", mode "default"
-    bindsym 4 exec --no-startup-id "$kill_redshift redshift -P -O 3500", mode "default"
-    bindsym 4 exec --no-startup-id "$kill_redshift redshift -P -O 4000", mode "default"
+    bindsym 3 exec --no-startup-id "$kill_redshift redshift -P -O 3500", mode "default"
     bindsym 4 exec --no-startup-id "$kill_redshift redshift -P -O 4500", mode "default"
-    bindsym 5 exec --no-startup-id "$kill_redshift redshift -P -O 5000", mode "default"
+    bindsym 5 exec --no-startup-id "$kill_redshift redshift -P -O 5500", mode "default"
+    bindsym 6 exec --no-startup-id "$kill_redshift redshift -P -O 6500", mode "default"
+    bindsym 7 exec --no-startup-id "$kill_redshift redshift -P -O 7500", mode "default"
 
     # exit mode: "Enter" or "Escape"
     bindsym Return mode "default"
