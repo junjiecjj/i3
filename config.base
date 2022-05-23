@@ -561,8 +561,10 @@ bindsym Control+Print exec  --no-startup-id  flameshot full -c -p  $(xdg-user-di
 # dmenu (a program launcher)
 bindsym $mod+i exec --no-startup-id i3-dmenu-desktop
 # rofi和dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
-bindsym $mod+r exec --no-startup-id rofi  -show combi
+bindsym $mod+d           exec dmenu_run
+#  win+\   gmrun
+bindsym $mod+backslash   exec gmrun
+bindsym $mod+r           exec --no-startup-id rofi  -show combi
 
 
 
@@ -899,7 +901,7 @@ bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_
 # 请注意，虽然任何窗口都可以通过这个命令变成固定的，但只有在窗口是浮动的情况下才会生效。
 bindsym $mod+Shift+s sticky toggle
 
-# slash:/   quoteright:'  comma:,  period:.  semicolon:;   quoteright:'
+# slash:/  backslash:\  quoteright:'  comma:,  period:.  semicolon:;   quoteright:'
 # 将当前容器移动到前/后的工作区并聚焦于前/后工作区
 # bindsym $mod+slash             move container to workspace prev; workspace prev
 # bindsym $mod+quoteright        move container to workspace next; workspace next
