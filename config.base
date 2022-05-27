@@ -132,7 +132,7 @@ exec --no-startup-id   nohup   mictray       >  /dev/null  2>&1 &
 # 登陆时启动polybar,与bar{}别同时使用
 # exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-exec --no-startup-id xautolock -time 5 -locker '/usr/bin/betterlockscreen -l' -corners ---- -cornersize 30 &
+exec --no-startup-id xautolock -time 30 -locker '/usr/bin/betterlockscreen -l'  -corners +000 -cornersize 5 -cornerdelay 5 -cornerredelay 180 &
 exec --no-startup-id betterlockscreen -w dim
 exec --no-startup-id source ~/.fehbg
 
