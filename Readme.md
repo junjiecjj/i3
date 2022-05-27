@@ -28,7 +28,7 @@ i3wm、DWM、Awesome、Xmond、Bspwm等都是Linux系统上的平铺式窗口管
 
 + 适合于热衷按照使用习惯、喜好定制化自己桌面，有较强掌控欲的用户。
 
-+ 不需要鼠标。当只用neovim(类vim编辑器)、ST(终端)、ranger(终端文件管理器)、zathura(PDF阅读器)等类vim软件时，完全不需要鼠标就可以使用；但对于需要使用wps，VSCode，PyCharm等或者其他专业领域的IDE的用户来说，当熟悉IDE快捷键时，也不需要鼠标，但是不熟悉IDE快捷键时还是需要鼠标会比较方便。
++ 不需要鼠标或者最大程度的减少对鼠标的依赖。当只用neovim(类vim编辑器)、ST(终端)、ranger(终端文件管理器)、zathura(PDF阅读器)等类vim软件时，完全不需要鼠标就可以使用；但对于需要使用google-chrome、wps、VSCode、Spyder等或者其他专业领域的IDE的用户来说，当熟悉IDE快捷键时，也不需要鼠标，但是不熟悉IDE快捷键时还是需要鼠标会比较方便。
 
 + 可以定制状态栏，比如我的配置文件中就有I3block或者i3status两种状态栏，用的时候只需要选择一种即可，如下图我的i3blocks(配置文件为 **i3blocks.conf** )状态栏就依次显示：
 
@@ -52,15 +52,16 @@ i3wm、DWM、Awesome、Xmond、Bspwm等都是Linux系统上的平铺式窗口管
 
 其他WM，请看：
 
-请看[DWM](https://github.com/junjiecjj/my-dwm)
++ [DWM](https://github.com/junjiecjj/my-dwm)
++ [I3WM](https://github.com/junjiecjj/i3)
++ [Xmoad](https://github.com/junjiecjj/xmonad)
++ [Awesome](https://github.com/junjiecjj/awesome)
++ 请看[BspWM]() ,待续.
++ [LeftWM](https://github.com/junjiecjj/leftwm) 
 
-请看[I3WM](https://github.com/junjiecjj/i3)
 
-请看[Xmoad]()  ,待续
 
-请看[Awesome]() ,待续
-
-请看[BspWM]() ,待续
+其中前五个比较成熟，最后一个速度最快。
 
 
 
@@ -86,8 +87,27 @@ i3wm、DWM、Awesome、Xmond、Bspwm等都是Linux系统上的平铺式窗口管
 
 
 
+## 安装 字体  例如apple的Yosemite San Francisco的ttf文件
 
-## 安装 字体  例如apple的Yosemite San Francisco的ttf文件,
+> 1. 安装文泉驿微米黑字体
+
+   ```bash
+   sudo apt-get install fonts-wqy-microhei
+   sudo apt-get install fonts-wqy-zenhei
+   ```
+
+
+
+
+> 2. 安装微软字体、宋体等
+
+   ```bash
+   sudo apt-get update
+   sudo apt-get install ttf-mscorefonts-installer
+   sudo fc-cache -f -v # 更新字体缓存
+   ```
+
+
 
 ```bash
 cd  /usr/share/fonts/truetype       
@@ -112,6 +132,8 @@ creatfont
 
 cd
 ```
+
+具体安装方法[请见](https://github.com/junjiecjj/MarkDown/blob/main/recordEverything.md)。
 
 
 
@@ -138,12 +160,6 @@ $: sudo apt install compton xcompmgr
 
 
 ```
-
-
-
-
-
-
 
 
 
@@ -366,6 +382,10 @@ sudo apt install xautolock
 ## 配套小工具
 
 ```bash
+#系统托盘
+sudo apt install  trayer  stalonetray
+
+
 # 多显示器需要使用配置工具，我用的是 xrandr。其他工具还有 Xinerama 和 winView，另外 arandr 是 xrandr 的图形界面，也可以用。
 sudo apt install  arandr  x11-xserver-utils
 
