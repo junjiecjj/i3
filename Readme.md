@@ -10,7 +10,7 @@
 
 # i3WM安装与配置
 
-i3wm、DWM、Awesome、Xmond、Bspwm等都是Linux系统上的平铺式窗口管理器，一般只有顶级用户才需要定制自己的窗口管理器，但对于喜欢折腾的人来说，也是很好的消遣方式。
+i3wm、DWM、Awesome、Xmond、Bspwm等都是Linux系统上的平铺式窗口管理器，一般只有顶级用户才需要定制自己的窗口管理器，但对于喜欢折腾的人来说，也是很好的娱乐方式。
 
 有哪些平铺式WM：
 
@@ -161,7 +161,7 @@ $: sudo apt install compton xcompmgr
 
 ```
 
-
+picom[配置文件](https://github.com/junjiecjj/configure_file/tree/master/picom)
 
 
 
@@ -254,9 +254,9 @@ cd i3status-2/.14
 
 
 
-## dunst
+## dunst通知弹窗
 
-
+[配置文件](https://github.com/junjiecjj/configure_file/tree/master/dunst)
 
 ```bash
 
@@ -306,14 +306,15 @@ sudo apt install  kbdd    yad xdotool
 ```bash
 sudo apt-get install i3lock
 
-
 ```
 
 
 ##  i3lock-fancy 
 
 ```bash
+sudo apt install i3lock-fancy
 
+#或
 
 cd ~/tmp
 
