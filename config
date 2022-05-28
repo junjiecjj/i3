@@ -132,7 +132,7 @@ exec --no-startup-id   nohup   mictray       >  /dev/null  2>&1 &
 # 登陆时启动polybar,与bar{}别同时使用
 # exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-exec --no-startup-id xautolock -time 5 -locker '/usr/bin/betterlockscreen -l' -corners ---- -cornersize 30 &
+exec --no-startup-id xautolock -time 30 -locker '/usr/bin/betterlockscreen -l'  -corners +000 -cornersize 5 -cornerdelay 5 -cornerredelay 180 &
 exec --no-startup-id betterlockscreen -w dim
 exec --no-startup-id source ~/.fehbg
 
@@ -475,13 +475,14 @@ bar {
 
 
 colors {
-	background #0D0D0D
-	statusline #EFEFEF
-	separator #666666
-	focused_workspace  #4F4F4F #4F4F4F #8CFF00
-	active_workspace   #0D0D0D #0D0D0D #EFEFEF
-	inactive_workspace #0D0D0D #0D0D0D #EFEFEF
-	urgent_workspace   #2f343a #900000 #ffffff
+    # tango jungle <workclass> <border> <backg> <text>
+    focused_workspace 	$green $darkgreen $white
+    active_workspace 	$brown $darkbrown $grey
+    inactive_workspace	$black $darkblack $grey
+    urgent_workspace 	$yellow $darkyellow $white
+  	background #222222
+	separator  #444444
+	statusline $darkgrey
 }
 
     ## greenish
@@ -612,7 +613,8 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 5
 
 
 # 音乐播放器 controls
-bindsym XF86AudioPlay exec playerctl play
+# bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
@@ -900,7 +902,7 @@ bindsym $mod+Control+8 move container to workspace $ws8; workspace $ws8
 bindsym $mod+Control+9 move container to workspace $ws9; workspace $ws9
 bindsym $mod+Control+0 move container to workspace $ws0; workspace $ws0
 
-# 快速在两个Workspace之间跳转, 在当前聚焦的和上一个聚焦的工作区之间切换
+# 快速在两个Workspace之间跳转, 在当前聚焦的和上一个聚焦的工作区(桌面)之间切换,且是两个有窗口打来的桌面
 bindsym $mod+b workspace back_and_forth
 # 将当前容器(一个界面)快速在两个workspace之间来回移动
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
@@ -918,9 +920,10 @@ bindsym $mod+Shift+s sticky toggle
 # 聚焦于前后工作区
 bindsym $mod+semicolon              workspace prev
 bindsym $mod+quoteright             workspace next
-# 在workspace之间来回切换
+# 在workspace之间依次顺序切换,不管桌面有没有窗口打开
 bindsym $mod+Tab                    workspace next
-bindsym Mod1+Tab                    workspace prev
+# bindsym Mod1+Tab                    workspace prev
+bindsym $mod+grave                  workspace prev
 
 # 将当前容器移动到前/后的工作区但仍然处于当前工作区
 bindsym $mod+Shift+semicolon        move container to workspace prev
@@ -1307,11 +1310,50 @@ exec --no-startup-id xinput --set-prop 'Synaptics TM3072-003' 'Coordinate Transf
 # ,*solarized_dark,  *solarized_light, *solarized_mod, *tango-jungle, tomorrow-night-80s,*ubntu
 # $  ./j4-make-config -i
 
-# class                 border  backgr. text    indicator
-client.focused          #383838 #8CFF00 #383838 #EFEFEF
-client.focused_inactive #333333 #333333 #ffffff #EFEFEF
-client.unfocused        #333333 #333333 #888888 #EFEFEF
-client.urgent           #2f343a #900000 #ffffff #900000
+# tango dark
+set $darkblue 		#204A87
+set $darkbrown		#8F5902
+set $darkgreen 		#4E9A06
+set $darkmagenta 	#5C3566
+set $darkred 		#A40000
+set $darkyellow 	#C4A000
+set $darkorange		#CE5C00
+
+# tango light
+set $lightblue 		#729FCF
+set $lightbrown		#E9B96E
+set $lightgreen 	#8AE234
+set $lightmagenta 	#AD7FA8
+set $lightred 		#EF2929
+set $lightyellow 	#FCE94F
+set $lightorange	#FCAF3E
+
+# tango normal
+set $blue 			#3465A4
+set $brown			#C17D11
+set $green 			#73D216
+set $magenta 		#75507B
+set $red 			#CC0000
+set $yellow 		#EDD400
+set $orange			#F57900
+
+# tango mono
+set $black 			#555753
+set $grey			#BABDB6
+set $white 			#EEEEEC
+set $darkblack 		#2E3436
+set $darkgrey 		#888A85
+set $darkwhite 		#D3D7CF
+
+# $i3-background
+exec_always --no-startup-id xsetroot -solid '#2E3436'
+
+# tango jungle <clientclass> <border> <backg> <text> <indicator>
+client.focused          $green $darkgreen $white $lightgreen
+client.focused_inactive $darkgrey $black $grey $darkgrey
+client.unfocused        $black $darkblack $grey $darkgrey
+client.urgent           $yellow $darkyellow $white $lightyellow
+
 
 
 

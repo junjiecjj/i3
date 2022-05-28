@@ -604,7 +604,8 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 5
 
 
 # 音乐播放器 controls
-bindsym XF86AudioPlay exec playerctl play
+# bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
@@ -892,7 +893,7 @@ bindsym $mod+Control+8 move container to workspace $ws8; workspace $ws8
 bindsym $mod+Control+9 move container to workspace $ws9; workspace $ws9
 bindsym $mod+Control+0 move container to workspace $ws0; workspace $ws0
 
-# 快速在两个Workspace之间跳转, 在当前聚焦的和上一个聚焦的工作区之间切换
+# 快速在两个Workspace之间跳转, 在当前聚焦的和上一个聚焦的工作区(桌面)之间切换,且是两个有窗口打来的桌面
 bindsym $mod+b workspace back_and_forth
 # 将当前容器(一个界面)快速在两个workspace之间来回移动
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
@@ -910,9 +911,10 @@ bindsym $mod+Shift+s sticky toggle
 # 聚焦于前后工作区
 bindsym $mod+semicolon              workspace prev
 bindsym $mod+quoteright             workspace next
-# 在workspace之间来回切换
+# 在workspace之间依次顺序切换,不管桌面有没有窗口打开
 bindsym $mod+Tab                    workspace next
-bindsym Mod1+Tab                    workspace prev
+# bindsym Mod1+Tab                    workspace prev
+bindsym $mod+grave                  workspace prev
 
 # 将当前容器移动到前/后的工作区但仍然处于当前工作区
 bindsym $mod+Shift+semicolon        move container to workspace prev
