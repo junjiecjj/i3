@@ -56,12 +56,12 @@ i3wm、DWM、Awesome、Xmond、Bspwm等都是Linux系统上的平铺式窗口管
 + [I3WM](https://github.com/junjiecjj/i3)
 + [Xmoad](https://github.com/junjiecjj/xmonad)
 + [Awesome](https://github.com/junjiecjj/awesome)
-+ 请看[BspWM]() ,待续.
++ [BspWM](https://github.com/junjiecjj/bspwm)
 + [LeftWM](https://github.com/junjiecjj/leftwm) 
++ [herbstluftwm](https://github.com/junjiecjj/herbstluftwm)
++ [spectrwm](https://github.com/junjiecjj/spectrwm)
 
 
-
-其中前五个比较成熟，最后一个速度最快。
 
 
 
