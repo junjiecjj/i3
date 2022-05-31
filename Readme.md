@@ -52,14 +52,20 @@ i3wm、DWM、Awesome、Xmond、Bspwm等都是Linux系统上的平铺式窗口管
 
 其他WM，请看：
 
-+ [DWM](https://github.com/junjiecjj/my-dwm)
-+ [I3WM](https://github.com/junjiecjj/i3)
-+ [Xmoad](https://github.com/junjiecjj/xmonad)
-+ [Awesome](https://github.com/junjiecjj/awesome)
-+ [BspWM](https://github.com/junjiecjj/bspwm)
-+ [LeftWM](https://github.com/junjiecjj/leftwm) 
-+ [herbstluftwm](https://github.com/junjiecjj/herbstluftwm)
-+ [spectrwm](https://github.com/junjiecjj/spectrwm)
++ [DWM](https://github.com/junjiecjj/my-dwm) ： C语言实现，C配置文件
++ [I3WM](https://github.com/junjiecjj/i3)： C语言实现，文本语言配置
++ [Xmoad](https://github.com/junjiecjj/xmonad)：HaskShell实现，HaskShell配置
++ [Awesome](https://github.com/junjiecjj/awesome)： C语言实现，Lua配置
++ [BspWM](https://github.com/junjiecjj/bspwm)：C语言实现，文本语言配置
++ [LeftWM](https://github.com/junjiecjj/leftwm) ：Rust底层实现和Rust实现
++ [herbstluftwm](https://github.com/junjiecjj/herbstluftwm)：C++语言实现，文本语言配置
++ [spectrwm](https://github.com/junjiecjj/spectrwm)：C语言实现，文本语言配置
+
+以上就是最常见的Tiling WM, 使用TilingWM最好是在Arch发行版的系统上，Linux发行版生态最好的是Arch系列的衍生版，我用Ubuntu20.04，Spectrwm的状态栏就无法很好的支持，有一个`bar_action_expand	= 1`特性就无法使用，设置这个值就会提示错误，而这个值对实现显示CPU，Mem，Net等状态栏信息至关重要，否则状态栏会很简单。
+
+其中Bspwm的使用感受不太好，主要是不自带显示工作区的功能，而polybar，dze2，tin2等显示状态栏信息的工具需要单独配置，我的电脑编译安装polybar失败，所以状态栏无法显示。
+
+而i3，DWM，Xmond，Awesome都有自带的状态栏，i3WM有i3blocks，显示的信息非常多，DWM可以编译安装slstatus，Xmonad有xmobar，但这三者都需要简单的配置，Awesome在状态栏方面可以说是佼佼者，几行代码搞定，可以自动检索CPU核数，显示每个CPU的负载，且自带非常完善的菜单栏，最接近KDE等桌面环境同时又具备非常完善的平铺功能，是对新手非常友好。
 
 
 
