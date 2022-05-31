@@ -357,25 +357,6 @@ exec --no-startup-id xset dpms 0 0 0
 # client.background       #82abba
 
 
-set_from_resource $term_background background
-set_from_resource $term_foreground foreground
-set_from_resource $term_color0     color0
-set_from_resource $term_color1     color1
-set_from_resource $term_color2     color2
-set_from_resource $term_color3     color3
-set_from_resource $term_color4     color4
-set_from_resource $term_color5     color5
-set_from_resource $term_color6     color6
-set_from_resource $term_color7     color7
-set_from_resource $term_color8     color8
-set_from_resource $term_color9     color9
-set_from_resource $term_color10    color10
-set_from_resource $term_color11    color11
-set_from_resource $term_color12    color12
-set_from_resource $term_color13    color13
-set_from_resource $term_color14    color14
-set_from_resource $term_color15    color15
-
 #set $background #10101000
 #set $foreground #ffffff
 #set $gray       #d0d0d0
@@ -861,6 +842,12 @@ bindsym $mod+e focus child
 #============================================================================================================================================
 #====================  将容器在工作区之间移动,以及依次跳转工作区,以及在现在聚焦和之前聚焦的工作区之间跳转 ================================
 #=============================================================================================================================================
+#---window focus---
+#以 workspace_auto_back_and_forth 开头的是设置是否启用回到之前的工作区的。
+#workspace_auto_back_and_forth yes|no
+# 例如：假设你在工作区“1：www”并使用 mod+2 切换到“2：IM”，因为有人向你发送了一条消息。你现在不需要记住你是从哪里切换过来的，你只需再次按 $mod+2 即可切换回“1: www”。
+workspace_auto_back_and_forth yes
+
 
 
 # move focused container to workspace
@@ -1020,8 +1007,19 @@ workspace_layout tabbed
 mouse_warping output
 
 
+
 #全屏模式下的弹出窗口,popup_during_fullscreen smart|ignore|leave_fullscreen
 popup_during_fullscreen smart
+
+#================================================================================================================================
+# =========================  桌面布局
+#================================================================================================================================
+
+
+#===window control===
+# enter fullscreen mode for the focused container
+# 全屏
+bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split),mod1为Alt
 # stacking模式(工作空间里只显示一个活动的窗口,在工作空间上方得到一个窗口的列表):堆叠式
@@ -1063,18 +1061,9 @@ bindsym $mod+Delete scratchpad show
 # hide | show window(minus is "-" and plus is "+".)
 # 此时执行Win + Shift + Space键即可将其恢复成普通窗口
 
-#---window focus---
-#以 workspace_auto_back_and_forth 开头的是设置是否启用回到之前的工作区的。
-#workspace_auto_back_and_forth yes|no
-# 例如：假设你在工作区“1：www”并使用 mod+2 切换到“2：IM”，因为有人向你发送了一条消息。你现在不需要记住你是从哪里切换过来的，你只需再次按 $mod+2 即可切换回“1: www”。
-workspace_auto_back_and_forth yes
-
-
-#===window control===
-# enter fullscreen mode for the focused container
-# 全屏
-bindsym $mod+f fullscreen toggle
-
+#================================================================================================================================
+# =========================  窗口大小，移动窗口
+#================================================================================================================================
 
 
 
