@@ -28,6 +28,42 @@
 
 # Tiling WM
 
+先上效果图：
+
+分别是Sepctrwm、i3、DWM、Awesome、Xmonad截图。
+
+
+
+<font face="黑体" color=red size=5>Sepctrwm</font>
+
+<img src="https://img-blog.csdnimg.cn/f8ba15d8aed64681992511d293ee5223.png" alt="Specrwm" style="zoom:67%;" />
+
+<font face="黑体" color=red size=5>i3wm</font>
+ <img src="https://img-blog.csdnimg.cn/0657d6c67dcd4ab0b634cd72b1b7a9ba.png" alt="I3WM" style="zoom:67%;" />
+
+
+
+<font face="黑体" color=red size=5>DWM</font>
+
+<img src="https://img-blog.csdnimg.cn/bd20c8fd46b04bd4b110d2bc2b1d59f1.png" alt="DWM" style="zoom: 67%;" /> 
+
+
+
+<font face="黑体" color=red size=5>**Awesome**</font>
+
+<img src="https://img-blog.csdnimg.cn/7a28c2d8947a4054be6bfca81e44c139.png" alt="img" style="zoom:67%;" /> 
+
+
+
+
+
+<font face="黑体" color=red size=5>**Xmonad**</font>
+
+<img src="https://img-blog.csdnimg.cn/87c482deda5f489d9893d7e907b168f3.png" alt="img" style="zoom:67%;" />
+
+
+
+
 i3wm、DWM、Awesome、Xmond、Bspwm等都是Linux系统上的平铺式窗口管理器(Tiling Windows manager)，一般只有顶级用户才需要定制自己的窗口管理器，但对于喜欢折腾的人来说，也是很好的消遣方式。
 
 有哪些平铺式WM：
@@ -173,24 +209,6 @@ i3wm、DWM、Awesome、Xmond、Bspwm等都是Linux系统上的平铺式窗口管
   + 焦点跟随鼠标。
 
 
-
-
-
-效果图：
-
-分别是Sepctrwm、i3、DWM、Awesome、Xmonad截图。
-
-<img src="https://img-blog.csdnimg.cn/f8ba15d8aed64681992511d293ee5223.png" alt="Specrwm" style="zoom:67%;" />
-
-
-
- <img src="https://img-blog.csdnimg.cn/0657d6c67dcd4ab0b634cd72b1b7a9ba.png" alt="I3WM" style="zoom:67%;" />
-
-<img src="https://img-blog.csdnimg.cn/bd20c8fd46b04bd4b110d2bc2b1d59f1.png" alt="DWM" style="zoom: 67%;" /> 
-
-<img src="https://img-blog.csdnimg.cn/7a28c2d8947a4054be6bfca81e44c139.png" alt="img" style="zoom:67%;" /> 
-
-<img src="https://img-blog.csdnimg.cn/87c482deda5f489d9893d7e907b168f3.png" alt="img" style="zoom:67%;" />
 
 
 
