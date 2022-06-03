@@ -180,17 +180,17 @@ i3wm、DWM、Awesome、Xmond、Bspwm等都是Linux系统上的平铺式窗口管
 
 分别是Sepctrwm、i3、DWM、Awesome、Xmonad截图。
 
-![img](https://img-blog.csdnimg.cn/f8ba15d8aed64681992511d293ee5223.png)
+<img src="https://img-blog.csdnimg.cn/f8ba15d8aed64681992511d293ee5223.png" alt="Specrwm" style="zoom:67%;" />
 
 
 
- ![img](https://img-blog.csdnimg.cn/0657d6c67dcd4ab0b634cd72b1b7a9ba.png)
+ <img src="https://img-blog.csdnimg.cn/0657d6c67dcd4ab0b634cd72b1b7a9ba.png" alt="I3WM" style="zoom:67%;" />
 
-![img](https://img-blog.csdnimg.cn/bd20c8fd46b04bd4b110d2bc2b1d59f1.png) 
+<img src="https://img-blog.csdnimg.cn/bd20c8fd46b04bd4b110d2bc2b1d59f1.png" alt="DWM" style="zoom: 67%;" /> 
 
-![img](https://img-blog.csdnimg.cn/7a28c2d8947a4054be6bfca81e44c139.png) 
+<img src="https://img-blog.csdnimg.cn/7a28c2d8947a4054be6bfca81e44c139.png" alt="img" style="zoom:67%;" /> 
 
-![img](https://img-blog.csdnimg.cn/87c482deda5f489d9893d7e907b168f3.png)
+<img src="https://img-blog.csdnimg.cn/87c482deda5f489d9893d7e907b168f3.png" alt="img" style="zoom:67%;" />
 
 
 
