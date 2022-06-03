@@ -178,21 +178,25 @@ i3wm、DWM、Awesome、Xmond、Bspwm等都是Linux系统上的平铺式窗口管
 
 效果图：
 
-![2022-05-20_1920x1080.png](https://raw.githubusercontent.com/junjiecjj/i3/main/Scrot_2022-05-20_1920x1080.png)
+分别是Sepctrwm、i3、DWM、Awesome、Xmonad截图。
 
-![2022-05-20_2_1920x1080.png](https://raw.githubusercontent.com/junjiecjj/i3/main/Scrot_2022-05-20_2_1920x1080.png)
-
-
+![img](https://img-blog.csdnimg.cn/f8ba15d8aed64681992511d293ee5223.png)
 
 
 
-<img src="Scrot_2022-05-20_1920x1080.png" alt="Scrot_2022-05-20_22:16:55_1920x1080.png" style="zoom:50%;" />
+ ![img](https://img-blog.csdnimg.cn/0657d6c67dcd4ab0b634cd72b1b7a9ba.png)
+
+![img](https://img-blog.csdnimg.cn/bd20c8fd46b04bd4b110d2bc2b1d59f1.png) 
+
+![img](https://img-blog.csdnimg.cn/7a28c2d8947a4054be6bfca81e44c139.png) 
+
+![img](https://img-blog.csdnimg.cn/87c482deda5f489d9893d7e907b168f3.png)
 
 
 
 
 
-<img src="Scrot_2022-05-20_2_1920x1080.png" alt="Scrot_2022-05-20_22:17:40_1920x1080.png" style="zoom:50%;" />
+
 
 # i3WM安装与配置
 
