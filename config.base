@@ -415,7 +415,7 @@ bar {
 
     #指定输出位置，默认是全部显示器都有，单独设置可以启动多个不同的：
     output eDP-1
-    output primary
+    # output primary
 
     #托盘显示位置：tray_output none|primary|<output>
     ## 在主显示器上显示托盘图标
@@ -482,6 +482,72 @@ bar {
     #     binding_mode        #229c56 #229c56 #ffffff
     # }
     # height 40
+}
+
+
+bar {
+    # i3bar_command $HOME/.config/polybar/launch.sh
+    # status_command i3status
+    # status_command i3blocks
+    status_command i3status -c   /home/jack/.config/i3/i3status.conf
+    # status_command  SCRIPT_DIR=~/.config/i3/i3blockScripts/ i3blocks -c   /home/jack/.config/i3/i3blocks.conf
+    # status_command conky    -c   ~/.config/i3/conkyrc_bar/conkyrc
+
+    # i3bar_command ~/.config/i3/i3_lemonbar/i3_lemonbar.py
+
+    i3bar_command i3bar --transparency
+    # status_command  /home/jack/.config/i3/i3script/net-speed.sh
+    #状态栏实时显示网速
+    # status_command exec  bash ~/.config/i3/i3script/net-speed.sh
+
+    position top
+    #i3bar 有三种显示模式（dock 停靠，hide 隐藏，invisible 无形）
+    mode  dock
+
+    # 是否显示工作区按钮
+    workspace_buttons yes
+    # workspace_min_width 40
+
+    #指定输出位置，默认是全部显示器都有，单独设置可以启动多个不同的：
+    output DP-3
+
+
+    # 在大显示器上显示托盘图标
+    # tray_output HDMI2
+
+    # 禁用系统托盘
+    # tray_output none
+
+    # 遵循费兹法则
+    #托盘内容之间的间距：
+    tray_padding 0
+
+    # 绑定模式指示器
+    binding_mode_indicator yes
+
+    #设置字体：
+    font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+    # font pango:Cascadia Code  10
+    # font pango:CaskaydiaCove Nerd Font Mono SemiLight 10
+    # font pango:CaskaydiaCove Nerd Font Mono Regular 10
+    # font pango:CaskaydiaCove Nerd Font Mono SemiBold 10
+    # font pango:JetBrainsMono Nerd Font Mono Light 10
+    # font pango:JetBrainsMono Nerd Font Mono Regular 10
+    # font pango:JetBrainsMono Nerd Font Mono Bold 10
+    # font pango:System San Francisco Display 10.5
+    # font pango:Monaco for Powerline 10
+    # font pango:wqy-zenhei 10
+    font pango:WenQuanYi Micro Hei Regular 11
+
+    #分隔符：
+    separator_symbol "|"
+
+    #清除工作区号码，如果指定了名字，清除了挺好的：
+    strip_workspace_numbers yes
+
+
+    # $i3-theme-bar
+
 }
 
 
@@ -919,6 +985,8 @@ bindsym $mod+Control+quoteright     move container to workspace next; workspace 
 
 #================================================================================================================================
 # =========================  在显示器之间移动工作区,在显示器之间移动窗口container,
+# # i3桌面与显示器的关系如下：
+# 并不是每个显示器可以显示所有的桌面，是全部显示器加起来显示全部的桌面，比如桌面1在显示器1，桌面2在显示器2，桌面3在显示器2，那桌面1不会在显示器2...
 #================================================================================================================================
 # 在显示器之间移动工作区workspace,移动整个工作间到右边的显示输出
 # 移动目前工作区到下一个输出（如果你只有两个输出，相当于在两个输出之间切换）
