@@ -781,7 +781,7 @@ set $ws3         3:Term
 set $ws4         4:File
 set $ws5         5:Chat
 set $ws6         6:Video
-set $ws7         7:ﱘMusic
+set $ws7         7:♪Music
 set $ws8         8:Graphic
 set $ws9         9:Game
 set $ws10        10:全屏
@@ -1017,6 +1017,7 @@ bindsym $mod+Shift+bracketright   move container to output right
 # 聚焦于左右边的显示器输出
 bindsym $mod+bracketleft  focus output left
 bindsym $mod+bracketright focus output right
+bindsym $mod+Escape focus output right
 # 聚焦于显示输出 HDMI-2
 # bindsym $mod+braceright focus output HDMI-2
 
