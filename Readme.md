@@ -235,7 +235,7 @@ i3wm、DWM、Awesome、Xmond、Bspwm等都是Linux系统上的平铺式窗口管
 
 所以，对多显示器，Awesome用起来是体验最好的，它解耦各个显示器之间的工作区(桌面)，相互不影响。
 
-综上，个人认为在考虑实用性、流畅性、性能、拓展性等各项综合指标后，得分排序：Awesome > i3 > Xmonad > DWM > SpectrWM > BSPWM > LeftWM > herbstluftWM。
+综上，个人认为在考虑实用性、流畅性、性能、拓展性等各项综合指标后，得分排序：Awesome > i3 = Xmonad > DWM > SpectrWM > BSPWM > LeftWM > herbstluftWM。
 
 
 
