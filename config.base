@@ -775,16 +775,28 @@ bindsym $mod+Control+s exec steam
 # set $ws10        10:Fullscreen
 
 
-set $ws1         1:Browser
-set $ws2         2:code
-set $ws3         3:Term
-set $ws4         4:File
-set $ws5         5:Chat
-set $ws6         6:Video
-set $ws7         7:♪Music
-set $ws8         8:Graphic
-set $ws9         9:Game
-set $ws10        10:全屏
+# set $ws1         1:Browser
+# set $ws2         2:code
+# set $ws3         3:Term
+# set $ws4         4:File
+# set $ws5         5:Chat
+# set $ws6         6:Video
+# set $ws7         7:♪Music
+# set $ws8         8:Graphic
+# set $ws9         9:Game
+# set $ws10        10:Full
+
+
+set $ws1         1:1:Browser
+set $ws2         2:2:Code
+set $ws3         3:3:Term
+set $ws4         4:4:File
+set $ws5         5:5:Chat
+set $ws6         6:6:Video
+set $ws7         7:7:Music
+set $ws8         8:8:Graphic
+set $ws9         9:9:Game
+set $ws10        10:0:Full
 
 
 # # 设置启动对应应用之后的默认工作空间，获取对应app应用对应类的方式为xprop
