@@ -612,6 +612,8 @@ sudo  apt install  kwrite（kde）
 #setings，鼠标，图标等自定义
 sudo  apt install  lxappearance
 
+#系统剪切板
+sudo  apt install copyq
 
 #视频播放器
 sudo  apt install  mpv vlc
